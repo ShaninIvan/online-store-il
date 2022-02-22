@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
+import { promotedReducer } from './slices/promotedSlice'
 
 export const store = configureStore({
-    reducer: {},
+    reducer: {
+        promo: promotedReducer,
+    },
 })
 
 export type AppDispatch = typeof store.dispatch

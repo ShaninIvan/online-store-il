@@ -562,10 +562,10 @@ module.exports = function (webpackEnv) {
                             test: lessRegex,
                             use: getStyleLoaders(
                                 {
-                                    modules: false,
                                     importLoaders: 3,
-                                    sourceMap:
-                                        isEnvProduction && shouldUseSourceMap,
+                                    sourceMap: isEnvProduction
+                                        ? shouldUseSourceMap
+                                        : isEnvDevelopment,
                                 },
                                 'less-loader'
                             ),
@@ -575,14 +575,13 @@ module.exports = function (webpackEnv) {
                             test: lessModuleRegex,
                             use: getStyleLoaders(
                                 {
-                                    modules: true,
                                     importLoaders: 3,
-                                    sourceMap:
-                                        isEnvProduction && shouldUseSourceMap,
+                                    sourceMap: isEnvProduction
+                                        ? shouldUseSourceMap
+                                        : isEnvDevelopment,
                                 },
                                 'less-loader'
                             ),
-                            sideEffects: true,
                         },
                         // "file" loader makes sure those assets get served by WebpackDevServer.
                         // When you `import` an asset, you get its (virtual) filename.

@@ -15,6 +15,7 @@
     "@types/react": "^16.14.23",
     "@types/react-dom": "^16.9.14",
     "@types/react-redux": "^7.1.22",
+    "@types/react-router-dom": "^5.3.3",
     "axios": "^0.26.0",
     "babel-jest": "^27.4.2",
     "babel-loader": "^8.2.3",
@@ -38,8 +39,6 @@
     "jest": "^27.4.3",
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
-    "less": "^4.1.2",
-    "less-loader": "^10.2.0",
     "mini-css-extract-plugin": "^2.4.5",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
@@ -111,6 +110,8 @@
     "@storybook/preset-create-react-app": "^4.0.1",
     "@storybook/react": "^6.4.19",
     "@storybook/testing-library": "^0.0.9",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
     "webpack": "^5.69.1"
   },
   "jest": {
