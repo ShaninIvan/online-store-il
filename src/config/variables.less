@@ -1,0 +1,36 @@
+//Брейкпоинты ширин экрана для @media
+@maxwidth-tablet: 768px;
+@maxwidth-mobile: 425px;
+
+//HEADER:
+#mix-headerTop(@backgound: #020202, @font: #FFFFFF) {
+    background-color: @backgound;
+    color: @font;
+}
+
+#mix-headerBottom(@background: #FFFFFF, @font: #000000) {
+    background-color: @background;
+    color: @font;
+}
+
+//MAIN
+#mix-main(@background: #FFFFFF, @font: #000000) {
+    background-color: @background;
+    color: @font;
+}
+
+//FOOTER
+#mix-footer(@backgound: #020203, @font: #FFFFFF) {
+    background-color: @background;
+    color: @font;
+}
+
+//Ссылки
+#mix-link(@hoverColor: rgb(105, 14, 190)) {
+    color: inherit;
+    text-decoration: none;
+    transition: 150ms;
+    &:hover {
+        color: @hoverColor;
+    }
+}
