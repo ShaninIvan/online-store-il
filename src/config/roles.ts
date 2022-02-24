@@ -1,13 +1,14 @@
-import { useNavigate } from 'react-router-dom'
-
 type RoleType = {
-    [key: string]: {
+    [key in Roles]: {
         validation: (() => boolean) | null
         onFalse?: () => any
     }
 }
 
-const navigate = useNavigate()
+export enum Roles {
+    Guest = 'Guest',
+    User = 'User',
+}
 
 export const RolesConfig: RoleType = {
     Guest: {
@@ -16,6 +17,5 @@ export const RolesConfig: RoleType = {
     // TODO: добавить валидацию для User
     User: {
         validation: () => true,
-        onFalse: () => navigate('/login'),
     },
 }

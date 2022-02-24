@@ -1,9 +1,11 @@
+import { RouteList } from 'core/routing/RouteList'
 import React from 'react'
 import styles from './Main.module.less'
 
-/**
- * Root component with router to display pages
- */
 export const Main: React.FC = () => {
-    return <main className={styles.main}>main</main>
+    return (
+        <main className={styles.main}>
+            <RouteList />
+        </main>
+    )
 }

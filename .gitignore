@@ -10,6 +10,7 @@
 
 # production
 /build
+/_hygen
 
 # misc
 .DS_Store
