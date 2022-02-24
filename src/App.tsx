@@ -4,6 +4,7 @@ import Main from 'container/Main'
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import './App.less'
+import './assets/icons/icons.css'
 
 function App() {
     return (
