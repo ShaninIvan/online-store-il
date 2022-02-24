@@ -1,0 +1,18 @@
+---
+to: "<%= stories ? `_hygen/${Name}.stories.tsx` : null %>"
+---
+import React from 'react'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { <%= Name %> } from './<%= Name %>'
+
+export default {
+  title: '<%= Name %>',
+  component: <%= Name %>,
+} as ComponentMeta<typeof <%= Name %>>
+
+
+const defaultArgs = {
+  <%- hasChildren ? `children: <div></div>` : `` %>
+}
+
+const Template: ComponentStory<typeof <%= Name %>> = (args) => <<%= Name %> {...defaultArgs} {...args} />

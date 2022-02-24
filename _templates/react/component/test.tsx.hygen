@@ -1,0 +1,14 @@
+---
+to: "<%= test ? `_hygen/${Name}.test.tsx` : null %>"
+---
+import React from 'react'
+import { render, screen } from '@testing-library/react'
+import { <%= Name %> } from './<%= Name %>'
+
+<%- hasChildren ? `const children = <div></div>` : `` %>
+
+describe("<%= Name %>", () => {
+    it("renders <%= Name %> component", () => {
+        render(<%- hasChildren ? `<${Name}>`+'{children}'+`</${Name}>` : `<${Name}/>` %>)
+    })
+})

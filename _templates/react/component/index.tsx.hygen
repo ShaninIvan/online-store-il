@@ -1,0 +1,6 @@
+---
+to: _hygen/index.tsx
+---
+import { <%= Name %> } from './<%= Name %>'
+
+export default <%= Name %>
