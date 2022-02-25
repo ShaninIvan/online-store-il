@@ -12,14 +12,10 @@ import ProductAbout from 'pages/PageProduct/components/ProductAbout'
 import ProductDetails from 'pages/PageProduct/components/ProductDetails'
 import ProductSpecs from 'pages/PageProduct/components/ProductSpecs'
 import PageTerms from 'pages/PageTerms'
-import { Roles, RolesConfig } from './roles'
+import { RouteObject } from 'react-router-dom'
+import { Roles } from './roles'
 
-export type RouteType = {
-    path: string
-    element: React.FC
-    roles?: (keyof typeof RolesConfig)[]
-    children?: RouteType[]
-}
+export type RouteType = RouteObject & { roles?: Roles[] }
 
 export enum Paths {
     home = '/',
@@ -37,70 +33,70 @@ export enum Paths {
     terms = '/terms',
 }
 
-const routesConfig: RouteType[] = [
+const ROUTES_CONFIG: RouteType[] = [
     {
         path: '/',
-        element: PageHome,
+        element: <PageHome />,
     },
     {
         path: '/catalog/:id',
-        element: PageCatalog,
+        element: <PageCatalog />,
     },
     {
         path: '/product/:id',
-        element: PageProduct,
+        element: <PageProduct />,
         children: [
             {
                 path: 'about',
-                element: ProductAbout,
+                element: <ProductAbout />,
             },
             {
                 path: 'details',
-                element: ProductDetails,
+                element: <ProductDetails />,
             },
             {
                 path: 'specs',
-                element: ProductSpecs,
+                element: <ProductSpecs />,
             },
         ],
     },
     {
         path: '/contacts',
-        element: PageContacts,
+        element: <PageContacts />,
         roles: [Roles.User],
     },
     {
         path: '/login',
-        element: PageLogin,
+        element: <PageLogin />,
         roles: [Roles.Guest],
     },
     {
         path: '/cart',
-        element: PageCart,
+        element: <PageCart />,
         roles: [Roles.User],
     },
     {
         path: '/checkout',
-        element: PageCheckout,
+        element: <PageCheckout />,
         roles: [Roles.User],
     },
     {
         path: '/dashboard',
-        element: PageDashboard,
+        element: <PageDashboard />,
         roles: [Roles.User],
     },
     {
         path: '/about',
-        element: PageAbout,
+        element: <PageAbout />,
     },
     {
         path: '/terms',
-        element: PageTerms,
+        element: <PageTerms />,
     },
     {
         path: '*',
-        element: PageNotFound,
+        element: <PageNotFound />,
     },
 ]
 
-export default routesConfig
+export default ROUTES_CONFIG

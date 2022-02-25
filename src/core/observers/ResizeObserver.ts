@@ -4,7 +4,8 @@ type Listener = (width: number) => any
 
 export class ResizeObserver {
     private constructor() {
-        window.addEventListener('resize', () =>
+        window.addEventListener(
+            'resize',
             throttle(this.handleResize.bind(this), 500)
         )
     }

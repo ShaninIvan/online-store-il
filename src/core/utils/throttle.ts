@@ -13,10 +13,12 @@ export function throttle(func: Function, ms: number) {
         func.apply(this, arguments)
         isThrottled = true
 
-        setTimeout(() => {
+        setTimeout(function () {
             isThrottled = false
             savedArgs && wrapper.apply(savedThis, savedArgs)
             savedThis = savedArgs = null
         }, ms)
     }
+
+    return wrapper
 }
