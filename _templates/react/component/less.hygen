@@ -1,6 +1,8 @@
 ---
 to: _hygen/<%= Name %>.module.less
 ---
+@import '/src/config/variables';
+
 .<%= name.toLowerCase() %> {
     
 }
