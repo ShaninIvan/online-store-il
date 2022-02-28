@@ -3,34 +3,35 @@
 @maxwidth-mobile: 425px;
 
 //HEADER:
-#mix-headerTop {
+.mix-headerTop {
     background-color: #020202;
     color: #ffffff;
 }
 
-#mix-headerBottom {
+.mix-headerBottom {
     background-color: #ffffff;
     color: #000000;
 }
 
 //MAIN
-#mix-main {
+.mix-main {
     background-color: #ffffff;
     color: #000000;
 }
 
 //FOOTER
-#mix-footer {
+.mix-footer {
     background-color: #020203;
     color: #ffffff;
 }
 
 //Ссылки
-#mix-link {
+.mix-link {
     color: inherit;
     text-decoration: none;
     transition: 150ms;
-    &:hover {
-        color: rgb(120, 8, 224);
+    &:hover,
+    & > div:hover {
+        color: rgb(120, 8, 224) !important;
     }
 }

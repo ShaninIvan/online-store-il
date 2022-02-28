@@ -6,10 +6,12 @@ type CursorPos = {
     screenHalf: 'left' | 'right'
 }
 
-type Listener = (event: React.MouseEvent) => any
+type Listener = (event: MouseEvent) => any
 
 export class MouseObserver {
-    private constructor() {}
+    private constructor() {
+        document.addEventListener('click', (event) => this.clickHandler(event))
+    }
 
     public static getObserver() {
         if (!MouseObserver.observer) {
@@ -41,7 +43,7 @@ export class MouseObserver {
 
     private listeners = new Set<Listener>()
 
-    private clickHandler(event: React.MouseEvent) {
+    private clickHandler(event: MouseEvent) {
         this.cursorPos.clientX = event.clientX + window.scrollX
         this.cursorPos.clientY = event.clientY + window.screenY
         this.cursorPos.screenHalf =

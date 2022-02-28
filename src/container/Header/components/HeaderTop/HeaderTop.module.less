@@ -1,7 +1,7 @@
 @import '/src/config/variables';
 
 .headertop {
-    #mix-headerTop;
+    .mix-headerTop;
     width: 100%;
     height: 44px;
     display: flex;
@@ -12,6 +12,16 @@
 }
 
 .worktime {
+    display: flex;
+    align-items: center;
+
+    :global {
+        .opened {
+            transition: 150ms;
+            transform: rotateX(180deg);
+        }
+    }
+
     &__days {
         color: #8c8c8c;
     }
@@ -26,11 +36,52 @@
 }
 
 .contacts {
+    display: flex;
     & > a {
         margin-left: 14px;
-        font-size: 16px;
     }
 }
 
-@media screen and (max-width: @maxwidth-tablet) {
+.mix-shopinfo-block {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.shopinfo {
+    width: 262px;
+    height: 233px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 400;
+    color: #000000;
+
+    &_gray {
+        font-weight: 600;
+        color: #8c8c8c;
+    }
+
+    &_blue {
+        color: rgb(20, 156, 235);
+    }
+
+    &__worktime {
+        .mix-shopinfo-block;
+        font-size: 12px;
+        & > div > div {
+            margin-top: 4px;
+            font-size: 13px;
+        }
+    }
+
+    &__address {
+        .mix-shopinfo-block;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid #acacac;
+    }
 }

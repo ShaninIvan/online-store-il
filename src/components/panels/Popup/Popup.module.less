@@ -1,0 +1,42 @@
+@import '/src/config/variables';
+
+.popup {
+    width: fit-content;
+    height: fit-content;
+}
+
+.toggle {
+    cursor: pointer;
+    transition: 150ms;
+}
+
+.window {
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    z-index: 100;
+    background-color: #ffffff;
+    transition: transform 0.2s;
+    transform-origin: 50% 0 0;
+    transform: scaleY(0);
+    z-index: 10;
+    &.opened {
+        transform: scaleY(1);
+    }
+}
+
+.arrow {
+    z-index: 2;
+    background-color: tranparent;
+    position: absolute;
+    top: -17px;
+}
+
+.content {
+    min-width: 200px;
+    min-height: 150px;
+    width: fit-content;
+    height: fit-content;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+}
