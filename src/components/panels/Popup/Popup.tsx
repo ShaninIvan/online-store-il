@@ -67,7 +67,7 @@ export const Popup: React.FC<PropsType> = ({ toggle, children }) => {
     return (
         <div ref={popupRef} className={styles.popup}>
             <div
-                className={`${styles.toggle} ${open ? 'opened' : ''}`}
+                className={`${styles.toggle} toggle ${open ? 'opened' : ''}`}
                 onClick={() => setOpen(!open)}
             >
                 {toggle}

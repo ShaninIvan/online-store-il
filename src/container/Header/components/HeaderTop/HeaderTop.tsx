@@ -1,3 +1,6 @@
+import ShopInfoMenu from 'components/menus/ShopInfoMenu'
+import Popup from 'components/panels/Popup'
+import Icon from 'components/parts/Icon'
 import ScreenChecker from 'components/utils/ScreenChecker'
 import { CONTACTS_DETAILS } from 'config/contacts'
 import { Paths } from 'config/routes'
@@ -12,6 +15,18 @@ export const HeaderTop: React.FC = () => {
             <div className={styles.worktime}>
                 <span className={styles.worktime__days}>Mon-Thu:</span>
                 &nbsp; 9:00 AM - 5:30 PM
+                <Popup
+                    toggle={
+                        <Icon
+                            name='arrowdown'
+                            size={10}
+                            color='#fff'
+                            background='#000'
+                        />
+                    }
+                >
+                    <ShopInfoMenu />
+                </Popup>
             </div>
             <div className={styles.address}>
                 <ScreenChecker desktop>
@@ -34,14 +49,14 @@ export const HeaderTop: React.FC = () => {
                         target='_blank'
                         rel='noreferrer'
                     >
-                        <span className='icon-facebook' />
+                        <Icon name='facebook' color='#fff' background='#000' />
                     </a>
                     <a
                         href={CONTACTS_DETAILS.Instagram}
                         target='_blank'
                         rel='noreferrer'
                     >
-                        <span className='icon-instagram' />
+                        <Icon name='instagram' color='#fff' background='#000' />
                     </a>
                 </div>
             </ScreenChecker>
