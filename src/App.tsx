@@ -1,6 +1,7 @@
 import Footer from 'container/Footer'
 import Header from 'container/Header'
 import Main from 'container/Main'
+import ErrorBoundary from 'core/ErrorBoundary'
 import { ResizeObserver } from 'core/observers/ResizeObserver'
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
@@ -16,13 +17,15 @@ function App() {
     }, [resizeObserver])
 
     return (
-        <BrowserRouter>
-            <div className='App'>
-                <Header />
-                <Main />
-                <Footer />
-            </div>
-        </BrowserRouter>
+        <ErrorBoundary onError={<>Ups!</>}>
+            <BrowserRouter>
+                <div className='App'>
+                    <Header />
+                    <Main />
+                    <Footer />
+                </div>
+            </BrowserRouter>
+        </ErrorBoundary>
     )
 }
 

@@ -1,21 +1,19 @@
-import PageAbout from 'pages/PageAbout'
-import PageCart from 'pages/PageCart'
-import PageCatalog from 'pages/PageCatalog'
-import PageCheckout from 'pages/PageCheckout'
-import PageContacts from 'pages/PageContacts'
-import PageDashboard from 'pages/PageDashboard'
 import PageHome from 'pages/PageHome'
 import PageLogin from 'pages/PageLogin'
 import PageNotFound from 'pages/PageNotFound'
-import PageProduct from 'pages/PageProduct'
 import ProductAbout from 'pages/PageProduct/components/ProductAbout'
 import ProductDetails from 'pages/PageProduct/components/ProductDetails'
 import ProductSpecs from 'pages/PageProduct/components/ProductSpecs'
 import PageTerms from 'pages/PageTerms'
-import { RouteObject } from 'react-router-dom'
+import { lazy } from 'react'
 import { Roles } from './roles'
 
-export type RouteType = RouteObject & { roles?: Roles[] }
+export type RouteType = {
+    path: string
+    element: React.ReactNode
+    children?: RouteType[]
+    roles?: Roles[]
+}
 
 export enum Paths {
     home = '/',
@@ -32,6 +30,14 @@ export enum Paths {
     about = '/about',
     terms = '/terms',
 }
+
+const PageCatalog = lazy(() => import('pages/PageCatalog'))
+const PageProduct = lazy(() => import('pages/PageProduct'))
+const PageContacts = lazy(() => import('pages/PageContacts'))
+const PageAbout = lazy(() => import('pages/PageAbout'))
+const PageCart = lazy(() => import('pages/PageCart'))
+const PageCheckout = lazy(() => import('pages/PageCheckout'))
+const PageDashboard = lazy(() => import('pages/PageDashboard'))
 
 const ROUTES_CONFIG: RouteType[] = [
     {

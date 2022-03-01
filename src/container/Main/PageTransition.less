@@ -1,0 +1,30 @@
+.page-enter {
+    animation: pageEnter 1000ms forwards;
+    z-index: 1;
+}
+
+.page-exit {
+    animation: pageExit 1000ms forwards;
+    z-index: 0;
+}
+
+@keyframes pageEnter {
+    0% {
+        transform: translateX(100%) scale(0.97);
+    }
+    50% {
+        transform: translateX(0) scale(0.97);
+    }
+    100% {
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes pageExit {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
