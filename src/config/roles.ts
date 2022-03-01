@@ -1,11 +1,11 @@
 type RoleType = {
-    [key in Roles]: {
+    [key in ROLES]: {
         validation: (() => boolean) | null
         onFalse?: () => any
     }
 }
 
-export enum Roles {
+export enum ROLES {
     Guest = 'Guest',
     User = 'User',
 }

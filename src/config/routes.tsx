@@ -6,13 +6,13 @@ import ProductDetails from 'pages/PageProduct/components/ProductDetails'
 import ProductSpecs from 'pages/PageProduct/components/ProductSpecs'
 import PageTerms from 'pages/PageTerms'
 import { lazy } from 'react'
-import { Roles } from './roles'
+import { ROLES } from './roles'
 
 export type RouteType = {
     path: string
     element: React.ReactNode
     children?: RouteType[]
-    roles?: Roles[]
+    roles?: ROLES[]
 }
 
 export enum Paths {
@@ -69,27 +69,27 @@ const ROUTES_CONFIG: RouteType[] = [
     {
         path: '/contacts',
         element: <PageContacts />,
-        roles: [Roles.User],
+        roles: [ROLES.User],
     },
     {
         path: '/login',
         element: <PageLogin />,
-        roles: [Roles.Guest],
+        roles: [ROLES.Guest],
     },
     {
         path: '/cart',
         element: <PageCart />,
-        roles: [Roles.User],
+        roles: [ROLES.User],
     },
     {
         path: '/checkout',
         element: <PageCheckout />,
-        roles: [Roles.User],
+        roles: [ROLES.User],
     },
     {
         path: '/dashboard',
         element: <PageDashboard />,
-        roles: [Roles.User],
+        roles: [ROLES.User],
     },
     {
         path: '/about',
