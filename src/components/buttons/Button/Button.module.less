@@ -1,0 +1,60 @@
+@import '/src/config/variables';
+
+.button {
+    min-width: 60px;
+    width: fit-content;
+    height: 37px;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.25s;
+    position: relative;
+    &:hover {
+        border-radius: 5px;
+    }
+    &:active {
+        filter: opacity(50%);
+    }
+}
+
+.tranparent-blue {
+    background-color: transparent;
+    color: #0156ff;
+    border: 2px solid #0156ff;
+}
+
+.blue-white {
+    background-color: #0156ff;
+    color: #ffffff;
+    border: 2px solid #0156ff;
+}
+
+.orange-black {
+    background-color: #ffb800;
+    color: #000000;
+    border: 2px solid #ffb800;
+}
+
+.transparent-gray {
+    background-color: transparent;
+    color: #666666;
+    border: 2px solid #666666;
+}
+
+.black-white {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+    .button {
+        font-size: 13px;
+    }
+}
