@@ -5,7 +5,7 @@ import ErrorBoundary from 'core/ErrorBoundary'
 import { ResizeObserver } from 'core/observers/ResizeObserver'
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import './App.less'
+import './global.less'
 import './assets/icons/icons.css'
 
 function App() {
