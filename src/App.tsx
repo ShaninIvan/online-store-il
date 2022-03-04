@@ -6,7 +6,6 @@ import { ResizeObserver } from 'core/observers/ResizeObserver'
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import './global.less'
-import './assets/icons/icons.css'
 
 function App() {
     const [, setScreenWidth] = useState<number>(0)
