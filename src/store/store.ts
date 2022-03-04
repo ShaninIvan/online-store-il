@@ -1,9 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
-import { promotedReducer } from './slices/promotedSlice'
+import { settingsReducer } from './slices/settingsSlice'
 
 export const store = configureStore({
     reducer: {
-        promo: promotedReducer,
+        settings: settingsReducer,
     },
 })
 
