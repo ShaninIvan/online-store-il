@@ -1,5 +1,8 @@
+export const SERVER_URL = 'https://elstarstoreapi.herokuapp.com/'
+
 export enum API {
-    categories = 'https://teststrapitest.herokuapp.com/categories',
-    products = 'https://teststrapitest.herokuapp.com/products',
-    promoted = 'https://teststrapitest.herokuapp.com/promoted-categories',
+    Brands = '/brands',
+    Categories = '/categories',
+    Customs = '/custom-builds',
+    Products = '/products',
 }

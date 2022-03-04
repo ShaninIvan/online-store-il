@@ -15,16 +15,7 @@ export const HeaderTop: React.FC = () => {
             <div className={styles.worktime}>
                 <span className={styles.worktime__days}>Mon-Thu:</span>
                 &nbsp; 9:00 AM - 5:30 PM
-                <Popup
-                    toggle={
-                        <Icon
-                            name='arrowdown'
-                            size={10}
-                            color='#fff'
-                            background='#000'
-                        />
-                    }
-                >
+                <Popup toggle={<Icon name='arrowdown' size={10} />}>
                     <ShopInfoMenu />
                 </Popup>
             </div>
@@ -49,14 +40,14 @@ export const HeaderTop: React.FC = () => {
                         target='_blank'
                         rel='noreferrer'
                     >
-                        <Icon name='facebook' color='#fff' background='#000' />
+                        <Icon name='facebook' />
                     </a>
                     <a
                         href={CONTACTS_DETAILS.Instagram}
                         target='_blank'
                         rel='noreferrer'
                     >
-                        <Icon name='instagram' color='#fff' background='#000' />
+                        <Icon name='instagram' />
                     </a>
                 </div>
             </ScreenChecker>
