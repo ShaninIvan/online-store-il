@@ -1,9 +1,11 @@
 import Icon from 'components/parts/Icon'
-import { CONTACTS_DETAILS } from 'config/contacts'
+import { useSettings } from 'hooks/useSettings'
 import React from 'react'
 import styles from './ShopInfoMenu.module.less'
 
 export const ShopInfoMenu: React.FC = () => {
+    const { contacts } = useSettings()
+
     return (
         <div className={styles.shopinfomenu}>
             <div className={styles.worktime}>
@@ -14,16 +16,13 @@ export const ShopInfoMenu: React.FC = () => {
                 <div>
                     <div className={styles.small}>We are open:</div>
                     <div>
-                        <span className={styles.gray}>Mon-Thu:</span> 9:00 AM -
-                        5:30 PM
+                        <span className={styles.gray}>Mon-Thu:</span> 9:00 AM - 5:30 PM
                     </div>
                     <div>
-                        <span className={styles.gray}>Fr:</span> 9:00 AM - 6:00
-                        PM
+                        <span className={styles.gray}>Fr:</span> 9:00 AM - 6:00 PM
                     </div>
                     <div>
-                        <span className={styles.gray}>Sat:</span> 11:00 AM -
-                        5:00 PM
+                        <span className={styles.gray}>Sat:</span> 11:00 AM - 5:00 PM
                     </div>
                 </div>
             </div>
@@ -34,7 +33,7 @@ export const ShopInfoMenu: React.FC = () => {
                 <div className={styles.icon}>
                     <Icon name='address' size={24} />
                 </div>
-                <div>Address: {CONTACTS_DETAILS.Address}</div>
+                <div>Address: {contacts.address}</div>
             </div>
 
             <hr />
@@ -42,15 +41,11 @@ export const ShopInfoMenu: React.FC = () => {
             <div className={styles.other}>
                 <div>
                     Phones:&nbsp;
-                    <span className={styles.blue}>
-                        {CONTACTS_DETAILS.Phones}
-                    </span>
+                    <span className={styles.blue}>{contacts.phone}</span>
                 </div>
                 <div>
                     Email:&nbsp;
-                    <span className={styles.blue}>
-                        {CONTACTS_DETAILS.Email}
-                    </span>
+                    <span className={styles.blue}>{contacts.email}</span>
                 </div>
             </div>
         </div>

@@ -2,14 +2,16 @@ import ShopInfoMenu from 'components/menus/ShopInfoMenu'
 import Popup from 'components/panels/Popup'
 import Icon from 'components/parts/Icon'
 import ScreenChecker from 'components/utils/ScreenChecker'
-import { CONTACTS_DETAILS } from 'config/contacts'
 import { Paths } from 'config/routes'
 import RouteManager from 'core/routing/RouteManager'
+import { useSettings } from 'hooks/useSettings'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './HeaderTop.module.less'
 
 export const HeaderTop: React.FC = () => {
+    const { contacts } = useSettings()
+
     return (
         <div className={styles.headertop}>
             <div className={styles.worktime}>
@@ -22,31 +24,21 @@ export const HeaderTop: React.FC = () => {
             <div className={styles.address}>
                 <ScreenChecker desktop>
                     <span className={styles.address__visit}>
-                        Visit our showroom in {CONTACTS_DETAILS.Address}
+                        Visit our showroom in {contacts.address}
                     </span>
                     &nbsp;
                 </ScreenChecker>
                 <span className={styles.address__contact}>
-                    <Link to={RouteManager.getPath(Paths.contacts)}>
-                        Contact Us
-                    </Link>
+                    <Link to={RouteManager.getPath(Paths.contacts)}>Contact Us</Link>
                 </span>
             </div>
             <ScreenChecker desktop>
                 <div className={styles.contacts}>
-                    Call Us: {CONTACTS_DETAILS.Phones}
-                    <a
-                        href={CONTACTS_DETAILS.Facebook}
-                        target='_blank'
-                        rel='noreferrer'
-                    >
+                    Call Us: {contacts.phone}
+                    <a href={contacts.facebook} target='_blank' rel='noreferrer'>
                         <Icon name='facebook' />
                     </a>
-                    <a
-                        href={CONTACTS_DETAILS.Instagram}
-                        target='_blank'
-                        rel='noreferrer'
-                    >
+                    <a href={contacts.instagram} target='_blank' rel='noreferrer'>
                         <Icon name='instagram' />
                     </a>
                 </div>
