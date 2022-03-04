@@ -6,3 +6,9 @@ to: _hygen/<%= Name %>.module.less
 .<%= name.toLowerCase() %> {
     
 }
+
+@media screen and (max-width: @maxwidth-tablet) {
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}
