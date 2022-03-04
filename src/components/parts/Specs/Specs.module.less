@@ -1,0 +1,32 @@
+@import '/src/config/variables';
+
+.specs {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.spec {
+    height: 30px;
+    background-color: #ffffff;
+    display: flex;
+
+    &:nth-of-type(even) {
+        background-color: #f5f7ff;
+    }
+}
+
+.name {
+    width: fit-content;
+    padding: 6px 15px;
+    color: #000000;
+}
+
+.value {
+    width: 100%;
+    padding: 6px 15px;
+    color: #666666;
+}

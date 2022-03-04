@@ -27,7 +27,7 @@ type DetailType = {
 
 export type SpecType = {
     id: number
-    spec: string
+    name: string
     value: string
 }
 
