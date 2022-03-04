@@ -16,7 +16,7 @@ export const Availability: React.FC<PropsType> = ({ count }) => {
                 in stock
             </div>
         )
-
+    // TODO: обновить иконки (нет phone)
     return (
         <div className={`${styles.availability} ${styles.red}`}>
             <div className={styles.circle}>

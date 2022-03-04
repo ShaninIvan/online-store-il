@@ -6,6 +6,7 @@ type IconNames =
     | 'profile'
     | 'savings'
     | 'stats'
+    | 'star'
     | 'support'
     | 'account'
     | 'address'
