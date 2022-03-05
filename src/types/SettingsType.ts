@@ -1,3 +1,5 @@
+import IAPIState from './IAPIState'
+
 export type SettingsType = {
     discount: number
     contacts: {
@@ -17,8 +19,6 @@ export type SettingsResponseType = {
     meta: {}
 }
 
-export type SettingsStateType = {
+export interface SettingsStateType extends IAPIState {
     settings: SettingsType
-    isLoading: boolean
-    error: string | null
 }

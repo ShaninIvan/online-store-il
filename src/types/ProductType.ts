@@ -1,4 +1,5 @@
 import { CategoryType } from './CategoryType'
+import IAPIState from './IAPIState'
 
 export type ProductType = {
     id: number
@@ -31,8 +32,6 @@ export type SpecType = {
     value: string
 }
 
-export type ProductStateType = {
+export interface ProductStateType extends IAPIState {
     products: ProductType[]
-    isLoading: boolean
-    error: string | null
 }

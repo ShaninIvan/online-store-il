@@ -1,3 +1,5 @@
+import IAPIState from './IAPIState'
+
 export type CategoryType = {
     id: number
     name: string
@@ -12,8 +14,6 @@ type ImageType = {
     previewUrl: string | null
 }
 
-export type CategoryStateType = {
+export interface CategoryStateType extends IAPIState {
     categories: CategoryType[]
-    isLoading: boolean
-    error: string | null
 }
