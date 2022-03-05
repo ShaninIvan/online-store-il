@@ -1,5 +1,5 @@
 import Icon from 'components/parts/Icon'
-import { useSettings } from 'hooks/useSettings'
+import useSettings from 'hooks/useSettings'
 import React from 'react'
 import styles from './ShopInfoMenu.module.less'
 

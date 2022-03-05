@@ -6,7 +6,7 @@ type ScreensizeType = {
     desktop: boolean
 }
 
-export const useResizeObserver = (): ScreensizeType => {
+const ScreenStatus = (): ScreensizeType => {
     const status = {
         mobile: matchMedia(MEDIA.mobile).matches,
         tablet: matchMedia(MEDIA.tablet).matches,
@@ -15,3 +15,5 @@ export const useResizeObserver = (): ScreensizeType => {
 
     return status
 }
+
+export default ScreenStatus

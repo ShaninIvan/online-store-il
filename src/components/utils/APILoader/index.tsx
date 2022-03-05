@@ -1,3 +1,3 @@
-import { APILoader } from './APILoader'
+import { Loader } from './Loader'
 
-export default APILoader
+export default Loader

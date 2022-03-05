@@ -34,14 +34,7 @@ export const fetchSettings = createAsyncThunk(
 const settingsSlice = createSlice({
     name: 'settings',
     initialState: initialState,
-    reducers: {
-        /*
-        actionName: (state, action: PayloadAction<number>) => {
-            state.isLoading = false
-            state.counter += action.payload
-        },
-       */
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchSettings.pending, (state) => {

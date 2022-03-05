@@ -1,29 +1,29 @@
-import APILoader from 'components/utils/APILoader'
 import Footer from 'container/Footer'
 import Header from 'container/Header'
 import Main from 'container/Main'
 import ErrorBoundary from 'core/ErrorBoundary'
-import { ResizeObserver } from 'core/observers/ResizeObserver'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import './global.less'
+import useScreenResizeHandler from 'hooks/useScreenResizeHandler'
+import useAPILoader from 'hooks/useAPILoader'
+import { fetchSettings } from 'store/slices/settingsSlice'
+import Loader from 'components/utils/APILoader'
+
+const thunks = [fetchSettings]
 
 function App() {
-    const [, setScreenWidth] = useState<number>(0)
-    const resizeObserver = ResizeObserver.getObserver()
-
-    useEffect(() => {
-        resizeObserver.setListener(setScreenWidth)
-    }, [resizeObserver])
+    useScreenResizeHandler()
+    const isLoading = useAPILoader(thunks)
 
     return (
         <ErrorBoundary onError={<>Ups!</>}>
             <BrowserRouter>
                 <div className='App'>
+                    <Loader isLoading={isLoading} />
                     <Header />
                     <Main />
                     <Footer />
-                    <APILoader />
                 </div>
             </BrowserRouter>
         </ErrorBoundary>
