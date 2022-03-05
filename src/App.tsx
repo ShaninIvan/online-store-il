@@ -9,8 +9,9 @@ import useScreenResizeHandler from 'hooks/useScreenResizeHandler'
 import useAPILoader from 'hooks/useAPILoader'
 import { fetchSettings } from 'store/slices/settingsSlice'
 import Loader from 'components/utils/APILoader'
+import { fetchCategories } from 'store/slices/categorySlice'
 
-const thunks = [fetchSettings]
+const thunks = [fetchSettings, fetchCategories]
 
 function App() {
     useScreenResizeHandler()

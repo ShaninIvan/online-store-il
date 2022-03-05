@@ -2,16 +2,19 @@ import IAPIState from './IAPIState'
 
 export type CategoryType = {
     id: number
-    name: string
-    image: ImageType | null
-    parent: CategoryType | null
-    subCategories?: CategoryType[]
+    attributes: {
+        name: string
+        image: []
+        parent: {
+            data: { id: number; attributes: { name: string } } | null
+        }
+        subCategories: { data: { id: number; attributes: { name: string } } }[]
+    }
 }
 
-type ImageType = {
-    url: string
-    alternativeText: string
-    previewUrl: string | null
+export type CategoryResponseType = {
+    data: CategoryType[]
+    meta: {}
 }
 
 export interface CategoryStateType extends IAPIState {
