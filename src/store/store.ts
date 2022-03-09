@@ -1,13 +1,15 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
+import { brandReducer } from './slices/brandSlice'
 import { categoryReducer } from './slices/categorySlice'
-import { navbarReducer } from './slices/navbarSlice'
+import { navigationReducer } from './slices/navigationSlice'
 import { settingsReducer } from './slices/settingsSlice'
 
 export const store = configureStore({
     reducer: {
         settings: settingsReducer,
         categories: categoryReducer,
-        navigation: navbarReducer,
+        navigation: navigationReducer,
+        brands: brandReducer,
     },
 })
 

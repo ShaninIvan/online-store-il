@@ -3,11 +3,11 @@ import { CategoryType } from 'types/CategoryType'
 import { ProductType } from 'types/ProductType'
 
 type NavigationStateType = {
-    level1: CategoryType['subcategories']
+    level1: CategoryType[]
     parent1: number | null
-    level2: CategoryType['subcategories']
+    level2: CategoryType[]
     parent2: number | null
-    level3: CategoryType['subcategories']
+    level3: CategoryType[]
     parent3: number | null
     variants: ProductType[]
 }
@@ -37,18 +37,24 @@ const initialState: NavigationStateType = {
     variants: [],
 }
 
-const navbarSlice = createSlice({
-    name: 'navbar',
+const navigationSlice = createSlice({
+    name: 'navigation',
     initialState: initialState,
     reducers: {
         navResetMenu: () => initialState,
         navSetLevel1: (state, action: PayloadAction<Level1PayloadType>) => {
             state.level1 = action.payload.level
             state.parent1 = action.payload.parent
+            state.level2 = []
+            state.parent2 = null
+            state.level3 = []
+            state.parent3 = null
         },
         navSetLevel2: (state, action: PayloadAction<Level2PayloadType>) => {
             state.level2 = action.payload.level
             state.parent2 = action.payload.parent
+            state.level3 = []
+            state.parent3 = null
         },
         navSetLevel3: (state, action: PayloadAction<Level3PayloadType>) => {
             state.level3 = action.payload.level
@@ -61,5 +67,5 @@ const navbarSlice = createSlice({
 })
 
 export const { navResetMenu, navSetLevel1, navSetLevel2, navSetLevel3, navSetVariants } =
-    navbarSlice.actions
-export const navbarReducer = navbarSlice.reducer
+    navigationSlice.actions
+export const navigationReducer = navigationSlice.reducer

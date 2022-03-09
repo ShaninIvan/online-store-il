@@ -10,8 +10,9 @@ import useAPILoader from 'hooks/useAPILoader'
 import { fetchSettings } from 'store/slices/settingsSlice'
 import Loader from 'components/utils/APILoader'
 import { fetchCategories } from 'store/slices/categorySlice'
+import { fetchBrands } from 'store/slices/brandSlice'
 
-const thunks = [fetchSettings, fetchCategories]
+const thunks = [fetchSettings, fetchCategories, fetchBrands]
 
 function App() {
     useScreenResizeHandler()

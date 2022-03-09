@@ -2,22 +2,12 @@ import React from 'react'
 import styles from './Button.module.less'
 import svg from './assets/paypal.svg'
 
-interface PropsType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    preset:
-        | 'tranparent-blue'
-        | 'blue-white'
-        | 'orange-black'
-        | 'transparent-gray'
-        | 'black-white'
+type PropsType = {
+    preset: 'tranparent-blue' | 'blue-white' | 'orange-black' | 'transparent-gray' | 'black-white'
     paypal?: boolean
-}
+} & React.HTMLAttributes<HTMLButtonElement>
 
-export const Button: React.FC<PropsType> = ({
-    children,
-    preset,
-    paypal = false,
-    ...props
-}) => {
+export const Button: React.FC<PropsType> = ({ children, preset, paypal = false, ...props }) => {
     const classes = `${styles.button} ${styles[preset]}`
 
     if (paypal)
@@ -28,5 +18,9 @@ export const Button: React.FC<PropsType> = ({
             </button>
         )
 
-    return <button className={classes}>{children}</button>
+    return (
+        <button className={classes} {...props}>
+            {children}
+        </button>
+    )
 }

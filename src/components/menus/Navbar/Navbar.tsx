@@ -1,24 +1,39 @@
 import Button from 'components/buttons/Button'
+import Icon from 'components/parts/Icon'
 import { Paths } from 'config/routes'
 import getPath from 'core/routing/getPath'
 import useAppDispatch from 'hooks/useAppDispatch'
 import useAppSelector from 'hooks/useAppSelector'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { navResetMenu, navSetLevel1 } from 'store/slices/navbarSlice'
+import {
+    navResetMenu,
+    navSetLevel1,
+    navSetLevel2,
+    navSetLevel3,
+} from 'store/slices/navigationSlice'
 import { CategoryType } from 'types/CategoryType'
 import styles from './Navbar.module.less'
 
-const getLevel = (category: CategoryType) => {
+const getLevel = (category: CategoryType, categories: CategoryType[]) => {
+    const ids = category.subcategories.map((item) => item.id)
+
     return {
-        level: category.subcategories ?? [],
+        level: categories.filter((item) => ids.includes(item.id)),
         parent: category.id,
     }
 }
 
+const checkSubcategories = (category: CategoryType) => {
+    return category.subcategories.length > 0
+}
+
 export const Navbar: React.FC = () => {
     const { categories } = useAppSelector((state) => state.categories)
-    const { parent1 } = useAppSelector((state) => state.navigation)
+    const { level1, parent1, level2, parent2, level3, parent3, variants } = useAppSelector(
+        (state) => state.navigation
+    )
+    const { brands } = useAppSelector((state) => state.brands)
 
     const dispatch = useAppDispatch()
 
@@ -26,24 +41,101 @@ export const Navbar: React.FC = () => {
 
     const mains = categories.filter((category) => category.parent === null)
 
+    const openCatalog = (id: number | string) => {
+        navigate(getPath(Paths.catalog, { id: id }))
+        dispatch(navResetMenu())
+    }
+
     return (
         <nav className={styles.navbar} onMouseLeave={() => dispatch(navResetMenu())}>
+            {/* MAIN CATEGORIES */}
             {mains.map((category) => {
                 return category.subcategories.length > 0 ? (
                     <div
                         key={category.id}
                         className={`${styles.main} ${category.id === parent1 && styles.parent}`}
-                        onMouseEnter={() => dispatch(navSetLevel1(getLevel(category)))}
-                        onClick={() => navigate(getPath(Paths.catalog, { id: category.id }))}
+                        onMouseEnter={() => dispatch(navSetLevel1(getLevel(category, categories)))}
+                        onClick={() => openCatalog(category.id)}
                     >
                         {category.name}
                     </div>
                 ) : (
-                    <div key={category.id}>{category.name}</div>
+                    <div key={category.id} onClick={() => openCatalog(category.id)}>
+                        {category.name}
+                    </div>
                 )
             })}
-            <Button preset='tranparent-blue'>Our Deals</Button>
-            <div className={`${styles.submenu} ${parent1 && styles.show}`}></div>
+            <Button preset='tranparent-blue' onClick={() => openCatalog('ourdeals')}>
+                Our Deals
+            </Button>
+
+            {/* SUBMENU */}
+
+            <div className={`${styles.submenu} ${parent1 && styles.show}`}>
+                <div className={styles.top}>
+                    {/* SUBMENU LEVEL 1 */}
+                    <div className={styles.level1}>
+                        {level1.map((category) => (
+                            <div
+                                key={category.id}
+                                className={`${styles.item} ${
+                                    category.id === parent2 && styles.parent
+                                }`}
+                                onClick={() => openCatalog(category.id)}
+                                onMouseEnter={() =>
+                                    dispatch(navSetLevel2(getLevel(category, categories)))
+                                }
+                            >
+                                {category.name}
+                                {checkSubcategories(category) && (
+                                    <Icon name='arrowright' size={8} />
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                    {/* SUBMENU LEVEL 2 */}
+                    <div className={`${styles.level2} ${level2.length > 0 && styles.show}`}>
+                        {level2.map((category) => (
+                            <div
+                                key={category.id}
+                                className={`${styles.item} ${
+                                    category.id === parent3 && styles.parent
+                                }`}
+                                onClick={() => openCatalog(category.id)}
+                                onMouseEnter={() =>
+                                    dispatch(navSetLevel3(getLevel(category, categories)))
+                                }
+                            >
+                                {category.name}
+                                {checkSubcategories(category) && (
+                                    <Icon name='arrowright' size={8} />
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                    {/* SUBMENU LEVEL 3 */}
+                    <div className={`${styles.level3} ${level3.length > 0 && styles.show}`}>
+                        {level3.map((category) => (
+                            <div
+                                key={category.id}
+                                className={styles.item}
+                                onClick={() => openCatalog(category.id)}
+                            >
+                                {category.name}
+                            </div>
+                        ))}
+                    </div>
+                    {/* SUBMENU VARIANTS */}
+                    <div className={styles.variants}></div>
+                </div>
+                <div className={styles.bottom}>
+                    {brands.map((brand) => (
+                        <div key={brand.id}>
+                            <img src={brand.image.imageUrl} alt={brand.image.imageAlt} />
+                        </div>
+                    ))}
+                </div>
+            </div>
         </nav>
     )
 }
