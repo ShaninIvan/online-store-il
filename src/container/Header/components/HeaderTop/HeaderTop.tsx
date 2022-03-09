@@ -3,7 +3,7 @@ import Popup from 'components/panels/Popup'
 import Icon from 'components/parts/Icon'
 import ScreenChecker from 'components/utils/ScreenChecker'
 import { Paths } from 'config/routes'
-import RouteManager from 'core/routing/RouteManager'
+import getPath from 'core/routing/getPath'
 import useSettings from 'hooks/useSettings'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -29,7 +29,7 @@ export const HeaderTop: React.FC = () => {
                     &nbsp;
                 </ScreenChecker>
                 <span className={styles.address__contact}>
-                    <Link to={RouteManager.getPath(Paths.contacts)}>Contact Us</Link>
+                    <Link to={getPath(Paths.contacts)}>Contact Us</Link>
                 </span>
             </div>
             <ScreenChecker desktop>

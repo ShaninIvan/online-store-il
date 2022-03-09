@@ -13,7 +13,10 @@ const useAPILoader = (asyncThunks: AT[]): boolean => {
         asyncThunks.forEach((thunk) => dispatch(thunk()))
     }, [asyncThunks, dispatch])
 
-    const isLoading: boolean[] = Object.values(selector).map((state) => state.isLoading)
+    const isLoading: boolean[] = Object.values(selector).map((state) => {
+        if ('isLoading' in state) return state.isLoading
+        return false
+    })
 
     return isLoading.includes(true)
 }

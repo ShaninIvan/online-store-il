@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { API } from 'config/API'
 import { getAPI } from 'core/utils/getAPI'
-import { CategoryResponseType, CategoryStateType } from 'types/CategoryType'
+import normalizeAPI from 'core/utils/normalizeAPI'
+import { CategoryStateType, CategoryType } from 'types/CategoryType'
 
 const initialState: CategoryStateType = {
     categories: [],
@@ -15,8 +16,7 @@ export const fetchCategories = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const data = (await axios.get(getAPI(API.Categories))).data
-
-            return data
+            return normalizeAPI(data)
         } catch (error: any) {
             return rejectWithValue(error.response)
         }
@@ -33,13 +33,10 @@ const categorySlice = createSlice({
                 state.isLoading = true
                 state.error = null
             })
-            .addCase(
-                fetchCategories.fulfilled,
-                (state, action: PayloadAction<CategoryResponseType>) => {
-                    state.categories = action.payload.data
-                    state.isLoading = false
-                }
-            )
+            .addCase(fetchCategories.fulfilled, (state, action: PayloadAction<CategoryType[]>) => {
+                state.categories = action.payload
+                state.isLoading = false
+            })
             .addCase(fetchCategories.rejected, (state, action: PayloadAction<any>) => {
                 state.isLoading = false
                 state.error = `${action.payload.status} / ${action.payload.statusText} in URL: ${action.payload.config.url}`
@@ -47,7 +44,4 @@ const categorySlice = createSlice({
     },
 })
 
-export const {
-    /* actions */
-} = categorySlice.actions
 export const categoryReducer = categorySlice.reducer

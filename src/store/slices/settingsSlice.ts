@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { API } from 'config/API'
 import { getAPI } from 'core/utils/getAPI'
-import { SettingsResponseType, SettingsStateType } from 'types/SettingsType'
+import normalizeAPI from 'core/utils/normalizeAPI'
+import { SettingsStateType, SettingsType } from 'types/SettingsType'
 
 const initialState: SettingsStateType = {
     settings: {
@@ -24,7 +25,7 @@ export const fetchSettings = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const data = (await axios.get(getAPI(API.Settings))).data
-            return data
+            return normalizeAPI(data)
         } catch (error: any) {
             return rejectWithValue(error.response)
         }
@@ -41,13 +42,10 @@ const settingsSlice = createSlice({
                 state.isLoading = true
                 state.error = null
             })
-            .addCase(
-                fetchSettings.fulfilled,
-                (state, action: PayloadAction<SettingsResponseType>) => {
-                    state.settings = action.payload.data.attributes
-                    state.isLoading = false
-                }
-            )
+            .addCase(fetchSettings.fulfilled, (state, action: PayloadAction<SettingsType>) => {
+                state.settings = action.payload
+                state.isLoading = false
+            })
             .addCase(fetchSettings.rejected, (state, action: PayloadAction<any>) => {
                 state.isLoading = false
                 state.error = `${action.payload.status} / ${action.payload.statusText} in URL: ${action.payload.config.url}`
@@ -55,7 +53,4 @@ const settingsSlice = createSlice({
     },
 })
 
-export const {
-    /* actions */
-} = settingsSlice.actions
 export const settingsReducer = settingsSlice.reducer

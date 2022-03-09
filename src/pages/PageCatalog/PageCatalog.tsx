@@ -1,6 +1,9 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import styles from './PageCatalog.module.less'
 
 export const PageCatalog: React.FC = () => {
-    return <div className={styles.pagecatalog}></div>
+    const { id } = useParams()
+
+    return <div className={styles.pagecatalog}>Catalog page: {id}</div>
 }
