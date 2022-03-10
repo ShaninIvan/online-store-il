@@ -10,9 +10,10 @@ import styles from './SmallCard.module.less'
 type PropsType = {
     product: ProductType
     discount?: number
+    onCardClick: (id: number) => any
 }
 
-export const SmallCard: React.FC<PropsType> = ({ product, discount = 0 }) => {
+export const SmallCard: React.FC<PropsType> = ({ product, discount = 0, onCardClick }) => {
     const rating = [
         product.rating.one,
         product.rating.two,
@@ -33,7 +34,7 @@ export const SmallCard: React.FC<PropsType> = ({ product, discount = 0 }) => {
     const newPrice = product.price.toFixed(2)
 
     return (
-        <div className={styles.smallcard}>
+        <div className={styles.smallcard} onClick={() => onCardClick(product.id)}>
             <div className={styles.availability}>
                 <Availability count={product.inStock} />
             </div>

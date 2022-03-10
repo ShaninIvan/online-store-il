@@ -55,6 +55,11 @@ export const Navbar: React.FC = () => {
         dispatch(navResetMenu())
     }
 
+    const openProduct = (id: number) => {
+        navigate(getPath(Paths.productAbout, { id: id }))
+        dispatch(navResetMenu())
+    }
+
     return (
         <nav className={styles.navbar} onMouseLeave={() => dispatch(navResetMenu())}>
             {/* MAIN CATEGORIES */}
@@ -142,7 +147,11 @@ export const Navbar: React.FC = () => {
                     {/* SUBMENU VARIANTS */}
                     <div className={styles.variants}>
                         {variants.map((product) => (
-                            <SmallCard product={product} discount={settings.discount} />
+                            <SmallCard
+                                product={product}
+                                discount={settings.discount}
+                                onCardClick={openProduct}
+                            />
                         ))}
                     </div>
                 </div>

@@ -67,4 +67,6 @@ const Template: ComponentStory<typeof SmallCard> = (args) => (
 )
 
 export const inStock = Template.bind({})
-inStock.args = {}
+inStock.args = {
+    onCardClick: (id: number) => {},
+}
