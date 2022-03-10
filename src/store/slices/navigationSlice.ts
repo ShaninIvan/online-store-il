@@ -49,12 +49,14 @@ const navigationSlice = createSlice({
             state.parent2 = null
             state.level3 = []
             state.parent3 = null
+            state.variants = []
         },
         navSetLevel2: (state, action: PayloadAction<Level2PayloadType>) => {
             state.level2 = action.payload.level
             state.parent2 = action.payload.parent
             state.level3 = []
             state.parent3 = null
+            state.variants = []
         },
         navSetLevel3: (state, action: PayloadAction<Level3PayloadType>) => {
             state.level3 = action.payload.level

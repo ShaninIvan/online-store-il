@@ -28,11 +28,6 @@ export type UserOrdersType = {
     date: string
 }
 
-export type CartOrderType = {
-    id: ProductType['id']
-    count: number
-}
-
 export type UserWishType = {
     id: ProductType['id']
 }
