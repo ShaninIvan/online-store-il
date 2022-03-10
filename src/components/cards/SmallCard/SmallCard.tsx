@@ -29,7 +29,7 @@ export const SmallCard: React.FC<PropsType> = ({ product, discount = 0 }) => {
             ? `${product.description.substring(0, 60)}...`
             : product.description
 
-    const oldPrice = (product.price - product.price * (discount / 100)).toFixed(2)
+    const oldPrice = (product.price + product.price * (discount / 100)).toFixed(2)
     const newPrice = product.price.toFixed(2)
 
     return (
@@ -37,14 +37,14 @@ export const SmallCard: React.FC<PropsType> = ({ product, discount = 0 }) => {
             <div className={styles.availability}>
                 <Availability count={product.inStock} />
             </div>
-            <img src={product.image[0].imageUrl} alt={product.image[0].imageAlt} />
+            <img height={120} src={product.image[0].imageUrl} alt={product.image[0].imageAlt} />
             <div className={styles.circles}>
                 <Circle type='heart' callback={() => {}} />
                 <Circle type='stats' callback={() => {}} />
             </div>
             <div className={styles.stats}>
                 <Rating stars={stars} />
-                <div className={styles.reviews}>Reviews({product.rating.reviews})</div>
+                <div className={styles.reviews}>Reviews ({product.rating.reviews})</div>
             </div>
             <div className={styles.name}>{croppedDescription}</div>
             <div className={styles.price}>

@@ -1,4 +1,5 @@
 import Button from 'components/buttons/Button'
+import SmallCard from 'components/cards/SmallCard'
 import Icon from 'components/parts/Icon'
 import { Paths } from 'config/routes'
 import getPath from 'core/routing/getPath'
@@ -11,8 +12,10 @@ import {
     navSetLevel1,
     navSetLevel2,
     navSetLevel3,
+    navSetVariants,
 } from 'store/slices/navigationSlice'
 import { CategoryType } from 'types/CategoryType'
+import { ProductType } from 'types/ProductType'
 import styles from './Navbar.module.less'
 
 const getLevel = (category: CategoryType, categories: CategoryType[]) => {
@@ -22,6 +25,10 @@ const getLevel = (category: CategoryType, categories: CategoryType[]) => {
         level: categories.filter((item) => ids.includes(item.id)),
         parent: category.id,
     }
+}
+
+const getVariants = (products: ProductType[], categoryId: number, count: 2 | 3 | 4) => {
+    return products.filter((product) => product.category.id === categoryId).splice(0, count)
 }
 
 const checkSubcategories = (category: CategoryType) => {
@@ -34,6 +41,8 @@ export const Navbar: React.FC = () => {
         (state) => state.navigation
     )
     const { brands } = useAppSelector((state) => state.brands)
+    const { settings } = useAppSelector((state) => state.settings)
+    const { products } = useAppSelector((state) => state.products)
 
     const dispatch = useAppDispatch()
 
@@ -82,9 +91,10 @@ export const Navbar: React.FC = () => {
                                     category.id === parent2 && styles.parent
                                 }`}
                                 onClick={() => openCatalog(category.id)}
-                                onMouseEnter={() =>
+                                onMouseEnter={() => {
                                     dispatch(navSetLevel2(getLevel(category, categories)))
-                                }
+                                    dispatch(navSetVariants(getVariants(products, category.id, 4)))
+                                }}
                             >
                                 {category.name}
                                 {checkSubcategories(category) && (
@@ -102,9 +112,10 @@ export const Navbar: React.FC = () => {
                                     category.id === parent3 && styles.parent
                                 }`}
                                 onClick={() => openCatalog(category.id)}
-                                onMouseEnter={() =>
+                                onMouseEnter={() => {
                                     dispatch(navSetLevel3(getLevel(category, categories)))
-                                }
+                                    dispatch(navSetVariants(getVariants(products, category.id, 3)))
+                                }}
                             >
                                 {category.name}
                                 {checkSubcategories(category) && (
@@ -120,13 +131,20 @@ export const Navbar: React.FC = () => {
                                 key={category.id}
                                 className={styles.item}
                                 onClick={() => openCatalog(category.id)}
+                                onMouseEnter={() =>
+                                    dispatch(navSetVariants(getVariants(products, category.id, 2)))
+                                }
                             >
                                 {category.name}
                             </div>
                         ))}
                     </div>
                     {/* SUBMENU VARIANTS */}
-                    <div className={styles.variants}></div>
+                    <div className={styles.variants}>
+                        {variants.map((product) => (
+                            <SmallCard product={product} discount={settings.discount} />
+                        ))}
+                    </div>
                 </div>
                 <div className={styles.bottom}>
                     {brands.map((brand) => (
