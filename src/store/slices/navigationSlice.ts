@@ -4,11 +4,20 @@ import { ProductType } from 'types/ProductType'
 
 type NavigationStateType = {
     level1: CategoryType[]
-    parent1: number | null
+    parent1: {
+        id: number
+        name: string
+    } | null
     level2: CategoryType[]
-    parent2: number | null
+    parent2: {
+        id: number
+        name: string
+    } | null
     level3: CategoryType[]
-    parent3: number | null
+    parent3: {
+        id: number
+        name: string
+    } | null
     variants: ProductType[]
 }
 

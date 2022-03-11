@@ -1,0 +1,111 @@
+@import '/src/config/variables';
+
+.mobilenavbar {
+    width: fit-content;
+    height: fit-content;
+    z-index: 10;
+}
+
+.levels {
+    width: 436px;
+    height: 95vh;
+    display: flex;
+    position: absolute;
+    top: -40px;
+    left: 0;
+    z-index: 10;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transform-origin: 50% 0;
+    transform: scaleY(0);
+    transition: 0.2s;
+    &.show {
+        transform: scaleY(1);
+    }
+}
+
+.level {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #ffffff;
+    color: #000000;
+    top: 0;
+    left: 0;
+    font-size: 13px;
+    font-weight: 400;
+    transform-origin: 50% 0;
+    transform: scaleY(0);
+    transition: 0.2s;
+    &.show {
+        transform: scaleY(1);
+    }
+}
+
+.level__top {
+    width: 100%;
+    height: 75px;
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    hr {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #a9a9a9;
+    }
+}
+
+.level__bottom {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+button {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.parent,
+.item {
+    width: 100%;
+    height: 36px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+.parent {
+    background-color: #ebebeb;
+    & > * {
+        margin-right: 10px;
+    }
+}
+
+.item {
+    justify-content: space-between;
+
+    &__name {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    &__subs {
+        width: 50px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}

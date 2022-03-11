@@ -1,4 +1,5 @@
 import SearchBox from 'components/inputs/SearchBox'
+import MobileNavbar from 'components/menus/MobileNavbar'
 import Navbar from 'components/menus/Navbar'
 import Icon from 'components/parts/Icon'
 import ScreenChecker from 'components/utils/ScreenChecker'
@@ -16,9 +17,14 @@ export const HeaderBottom: React.FC = () => {
     return (
         <div className={styles.headerbottom}>
             <div className={styles.left}>
-                <Link to={getPath(Paths.home)}>
-                    <Icon name='logo' size={36} />
-                </Link>
+                <div className={styles.left__logo}>
+                    <Link to={getPath(Paths.home)}>
+                        <Icon name='logo' size={36} />
+                    </Link>
+                </div>
+                <ScreenChecker mobile tablet>
+                    <MobileNavbar />
+                </ScreenChecker>
             </div>
 
             <div className={styles.medium}>

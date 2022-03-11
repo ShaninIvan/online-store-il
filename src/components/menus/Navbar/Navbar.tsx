@@ -23,7 +23,10 @@ const getLevel = (category: CategoryType, categories: CategoryType[]) => {
 
     return {
         level: categories.filter((item) => ids.includes(item.id)),
-        parent: category.id,
+        parent: {
+            id: category.id,
+            name: category.name,
+        },
     }
 }
 
@@ -67,7 +70,7 @@ export const Navbar: React.FC = () => {
                 return category.subcategories.length > 0 ? (
                     <div
                         key={category.id}
-                        className={`${styles.main} ${category.id === parent1 && styles.parent}`}
+                        className={`${styles.main} ${category.id === parent1?.id && styles.parent}`}
                         onMouseEnter={() => dispatch(navSetLevel1(getLevel(category, categories)))}
                         onClick={() => openCatalog(category.id)}
                     >
@@ -93,7 +96,7 @@ export const Navbar: React.FC = () => {
                             <div
                                 key={category.id}
                                 className={`${styles.item} ${
-                                    category.id === parent2 && styles.parent
+                                    category.id === parent2?.id && styles.parent
                                 }`}
                                 onClick={() => openCatalog(category.id)}
                                 onMouseEnter={() => {
@@ -114,7 +117,7 @@ export const Navbar: React.FC = () => {
                             <div
                                 key={category.id}
                                 className={`${styles.item} ${
-                                    category.id === parent3 && styles.parent
+                                    category.id === parent3?.id && styles.parent
                                 }`}
                                 onClick={() => openCatalog(category.id)}
                                 onMouseEnter={() => {
@@ -148,6 +151,7 @@ export const Navbar: React.FC = () => {
                     <div className={styles.variants}>
                         {variants.map((product) => (
                             <SmallCard
+                                key={product.id}
                                 product={product}
                                 discount={settings.discount}
                                 onCardClick={openProduct}
