@@ -10,4 +10,17 @@
 }
 
 @media screen and (max-width: @maxwidth-mobile) {
+    .searchfocus,
+    .nosearchfocus {
+        animation: changeMode 0.1s linear forwards;
+    }
+}
+
+@keyframes changeMode {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

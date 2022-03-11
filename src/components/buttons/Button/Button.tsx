@@ -3,7 +3,13 @@ import styles from './Button.module.less'
 import svg from './assets/paypal.svg'
 
 type PropsType = {
-    preset: 'tranparent-blue' | 'blue-white' | 'orange-black' | 'transparent-gray' | 'black-white'
+    preset:
+        | 'tranparent-blue'
+        | 'blue-white'
+        | 'orange-black'
+        | 'transparent-gray'
+        | 'black-white'
+        | 'transparent-white'
     paypal?: boolean
 } & React.HTMLAttributes<HTMLButtonElement>
 

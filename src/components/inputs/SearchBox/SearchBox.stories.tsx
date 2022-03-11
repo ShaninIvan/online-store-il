@@ -7,9 +7,7 @@ export default {
     component: SearchBox,
 } as ComponentMeta<typeof SearchBox>
 
-const defaultArgs = {
-    callback: (value: string) => {},
-}
+const defaultArgs = {}
 
 const Template: ComponentStory<typeof SearchBox> = (args) => (
     <SearchBox {...defaultArgs} {...args} />

@@ -92,7 +92,39 @@
 }
 
 @media screen and (max-width: @maxwidth-tablet) {
+    .headertop {
+        height: 40px;
+        font-size: 11px;
+        justify-content: space-between;
+        padding-left: 110px;
+        padding-right: 28px;
+    }
+
+    .contacts {
+        display: none;
+    }
 }
 
 @media screen and (max-width: @maxwidth-mobile) {
+    .worktime {
+        font-size: 10px;
+    }
+
+    .headertop.searchfocus {
+        padding-left: 15px;
+
+        .worktime {
+            height: 23px;
+            padding: 0 10px;
+            border: 1px solid #acacac;
+            border-radius: 10px;
+        }
+        .address__contact {
+            display: none;
+        }
+
+        .contacts {
+            display: block;
+        }
+    }
 }

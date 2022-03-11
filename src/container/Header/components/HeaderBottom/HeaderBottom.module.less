@@ -39,8 +39,19 @@
     width: 100px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     &__find {
         cursor: pointer;
+    }
+
+    &__account {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid black;
+        border-radius: 50%;
     }
 }
 
@@ -49,32 +60,97 @@
         background-color: #0156ff;
         height: 64px;
         position: relative;
+        justify-content: space-between;
+        padding: 0 30px;
         color: #ffffff;
     }
 
     .left__logo {
         width: 64px;
-        height: 50px;
+        height: 32px;
+        padding-top: 10px;
         background-color: #0156ff;
         color: #ffffff;
         position: absolute;
-        left: 15px;
+        left: 20px;
         top: -30px;
-        z-index: 10;
         display: flex;
         justify-content: center;
-        align-items: center;
-        border-radius: 50%;
+        border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        * {
+            font-size: 23px !important;
+        }
     }
 
     .medium {
-        width: 70%;
+        width: 518px;
         &__searchbox {
             position: relative;
             transform: none;
         }
     }
+
+    .right {
+        width: 80px;
+
+        &__account {
+            border: 2px solid #ffffff;
+        }
+    }
 }
 
 @media screen and (max-width: @maxwidth-mobile) {
+    .headerbottom {
+        padding: 0 20px;
+    }
+
+    .left {
+        grid-area: left;
+    }
+
+    .medium {
+        width: 227px;
+        grid-area: medium;
+    }
+
+    .right {
+        grid-area: right;
+    }
+
+    .deals {
+        display: none;
+        grid-area: deals;
+    }
+
+    .headerbottom.searchfocus {
+        height: 110px;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1.5fr 1fr;
+        grid-template-areas: 'left deals right' 'medium medium medium';
+
+        .left {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-evenly;
+            align-items: center;
+            &__logo {
+                width: fit-content;
+                height: fit-content;
+                position: relative;
+                top: 0;
+                left: 0;
+                padding: 0;
+            }
+        }
+
+        .medium {
+            width: 100%;
+        }
+
+        .deals {
+            display: block;
+            margin-left: 20px;
+        }
+    }
 }
