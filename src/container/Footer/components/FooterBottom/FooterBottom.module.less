@@ -1,0 +1,40 @@
+@import '/src/config/variables';
+
+.footerbottom {
+    width: 100%;
+    height: 56px;
+    padding: 0 261px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    color: rgba(255, 255, 255, 0.6);
+    hr {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+}
+
+.links {
+    font-size: 18px;
+    display: flex;
+    & > * {
+        margin-right: 16px;
+    }
+}
+
+.payments {
+    margin-left: 104px;
+}
+
+.copyright {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}

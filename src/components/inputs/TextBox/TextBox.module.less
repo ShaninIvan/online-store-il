@@ -3,6 +3,7 @@
 .textbox {
     display: flex;
     flex-direction: column;
+    background-color: inherit;
 }
 
 .label {
@@ -13,6 +14,9 @@
     display: flex;
     align-items: center;
     margin-left: 5px;
+    &:empty {
+        height: 0;
+    }
 }
 
 .required {
@@ -30,6 +34,8 @@
     font-weight: 400;
     border: 1px solid #8c8c8c;
     border-radius: 4px;
+    background-color: inherit;
+    color: inherit;
 }
 
 @media screen and (max-width: @maxwidth-tablet) {

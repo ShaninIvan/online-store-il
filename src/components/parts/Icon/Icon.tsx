@@ -10,12 +10,12 @@ type PropsType = {
 
 export const Icon: React.FC<PropsType> = ({
     name,
-    size = 16,
+    size = 'inherit',
     color = 'inherit',
     background = 'inherit',
 }) => {
     const styles = {
-        fontSize: `${size}px`,
+        fontSize: size === 'inherit' ? 'inherit' : `${size}px`,
         color: color,
         backgroundColor: background,
     }

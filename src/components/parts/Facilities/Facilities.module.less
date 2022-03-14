@@ -1,0 +1,97 @@
+@import '/src/config/variables';
+
+.facilities {
+    width: 100%;
+    height: 273px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+}
+
+.white {
+    background-color: #ffffff;
+}
+
+.ghostly {
+    background-color: #f5f7ff;
+}
+
+.block {
+    width: 265px;
+    height: 168px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    &:not(:last-child) {
+        margin-right: 130px;
+    }
+}
+
+.circle {
+    width: 65px;
+    height: 65px;
+    background-color: #0156ff;
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.text {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+    .facilities {
+        height: 186px;
+    }
+
+    .block {
+        width: 229px;
+        width: 111px;
+        &:not(:last-child) {
+            margin-right: 22px;
+        }
+    }
+
+    .circle {
+        width: 45px;
+        height: 45px;
+        font-size: 17px;
+    }
+
+    .title {
+        font-size: 14px;
+    }
+
+    .title {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+    .facilities {
+        height: 423px;
+        flex-direction: column;
+    }
+
+    .block {
+        width: 265px;
+        height: 111px;
+        &:not(:last-child) {
+            margin-right: 0;
+            margin-bottom: 22px;
+        }
+    }
+}
