@@ -55,11 +55,12 @@
 @media screen and (max-width: @maxwidth-tablet) {
     .facilities {
         height: 186px;
+        justify-content: space-around;
     }
 
     .block {
         width: 229px;
-        width: 111px;
+        justify-content: space-evenly;
         &:not(:last-child) {
             margin-right: 22px;
         }
@@ -75,7 +76,7 @@
         font-size: 14px;
     }
 
-    .title {
+    .text {
         font-size: 12px;
     }
 }
@@ -84,6 +85,7 @@
     .facilities {
         height: 423px;
         flex-direction: column;
+        justify-content: space-evenly;
     }
 
     .block {
@@ -91,7 +93,7 @@
         height: 111px;
         &:not(:last-child) {
             margin-right: 0;
-            margin-bottom: 22px;
+            margin-bottom: 15px;
         }
     }
 }

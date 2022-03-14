@@ -34,7 +34,54 @@
 }
 
 @media screen and (max-width: @maxwidth-tablet) {
+    .footerbottom {
+        padding: 0 65px;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .links {
+        font-size: 17px;
+        & > * {
+            margin-right: 8px;
+        }
+    }
+
+    .payments {
+        margin-left: 50px;
+    }
+
+    .copyright {
+        font-size: 10px;
+    }
+
+    hr {
+        display: none;
+    }
 }
 
 @media screen and (max-width: @maxwidth-mobile) {
+    .footerbottom {
+        padding: 0 25px;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 'links copyright' 'payments payments';
+    }
+
+    .links {
+        grid-area: links;
+    }
+
+    .payments {
+        grid-area: payments;
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .copyright {
+        grid-area: copyright;
+        text-align: right;
+    }
 }
