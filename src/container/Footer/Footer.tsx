@@ -2,7 +2,6 @@ import Facilities from 'components/parts/Facilities'
 import { Paths } from 'config/routes'
 import React from 'react'
 import { useMatch } from 'react-router-dom'
-
 import FooterBottom from './components/FooterBottom'
 import FooterMedium from './components/FooterMedium'
 import FooterTop from './components/FooterTop'

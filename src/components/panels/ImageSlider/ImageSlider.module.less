@@ -1,0 +1,85 @@
+@import '/src/config/variables';
+
+.imageslider {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.content {
+    width: inherit;
+    height: inherit;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        object-fit: cover;
+    }
+}
+
+.prev,
+.next {
+    width: 36px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    background-color: #252931;
+    position: absolute;
+    z-index: 1;
+    transition: 0.2s;
+    opacity: 1;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.prev {
+    border-radius: 0px 30px 30px 0px;
+    left: 0;
+    &:hover {
+        opacity: 0.5;
+    }
+    &:active {
+        filter: invert(100%);
+    }
+}
+
+.next {
+    border-radius: 30px 0px 0px 30px;
+    right: 0;
+    &:hover {
+        opacity: 0.5;
+    }
+    &:active {
+        filter: invert(100%);
+    }
+}
+
+.slideEnter {
+    opacity: 1;
+    transition: 1s;
+}
+
+.slideExit {
+    opacity: 0;
+    transition: 1s;
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+    .prev,
+    .next {
+        width: 27px;
+        height: 36px;
+        font-size: 7px;
+    }
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}
