@@ -9,7 +9,9 @@ import styles from './PageHome.module.less'
 import ZipImg from 'assets/zip.png'
 import { ProductType } from 'types/ProductType'
 import { CategoryType } from 'types/CategoryType'
-import Page from 'components/panels/Page'
+import ScreenChecker from 'components/utils/ScreenChecker'
+import { PageHomeNewsMock, PageHomeReviewsMock } from './PageHomeMocks'
+import { PageHomeReviews } from './components/Reviews/PageHomeReviews'
 
 const banners = [
     {
@@ -48,44 +50,61 @@ export const PageHome: React.FC = () => {
     const newProducts = products.slice(-20)
 
     return (
-        <Page>
-            <div className={styles.pagehome}>
-                <div className={styles.banners}>
-                    <ImageSlider images={banners} />
-                </div>
+        <div className={styles.pagehome}>
+            <div className={styles.banners}>
+                <ImageSlider images={banners} />
+            </div>
 
-                <div className={styles.new}>
-                    <h2>New Products</h2>
-                    <Link to={getPath(Paths.home)}>See All New Products</Link>
-                    <div className={styles.new__cards}>
-                        <CardSlider products={newProducts} withControls />
-                    </div>
-                </div>
-
-                <div className={styles.zip}>
-                    <img src={ZipImg} alt='zip' /> <span className={styles.zip__vl}></span>
-                    <span>
-                        <b>own</b>&nbsp; it now, up to 6 months interest free&nbsp;
-                    </span>
-                    <Link to={getPath(Paths.terms)}>learn more</Link>
-                </div>
-
-                <div className={styles.promoted}>
-                    <PromoBlock category={customCategory} products={products} />
-                    {promoted.map((promo) => {
-                        return <PromoBlock key={promo.id} category={promo} products={products} />
-                    })}
-                </div>
-
-                <div className={styles.brands}>
-                    {brands.map((brand) => (
-                        <div key={brand.id} className={styles.brands__img}>
-                            <img src={brand.image.imageUrl} alt={brand.image.imageAlt} />
-                        </div>
-                    ))}
+            <div className={styles.newest}>
+                <h2>New Products</h2>
+                <Link to={getPath(Paths.home)}>See All New Products</Link>
+                <div className={styles.newest__cards}>
+                    <CardSlider products={newProducts} withControls />
                 </div>
             </div>
-        </Page>
+
+            <div className={styles.zip}>
+                <img src={ZipImg} alt='zip' /> <span className={styles.zip__vl}></span>
+                <span>
+                    <b>own</b>&nbsp; it now, up to 6 months interest free&nbsp;
+                </span>
+                <Link to={getPath(Paths.terms)}>learn more</Link>
+            </div>
+
+            <div className={styles.promoted}>
+                <PromoBlock category={customCategory} products={products} />
+                {promoted.map((promo) => {
+                    return <PromoBlock key={promo.id} category={promo} products={products} />
+                })}
+            </div>
+
+            <div className={styles.brands}>
+                {brands.map((brand) => (
+                    <div key={brand.id} className={styles.brands__img}>
+                        <img src={brand.image.imageUrl} alt={brand.image.imageAlt} />
+                    </div>
+                ))}
+            </div>
+
+            <ScreenChecker desktop>
+                <div className={styles.news}>
+                    <h2>Follow us on Instagram for News, Offers & More</h2>
+                    <div className={styles.news__items}>
+                        {PageHomeNewsMock.map((item, index) => (
+                            <div key={index} className={styles.news__item}>
+                                <img src={item.image} alt='news item' />
+                                <div className={styles.news__content}>{item.content}</div>
+                                <div className={styles.news__date}>{item.date}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </ScreenChecker>
+
+            <div className={styles.reviews}>
+                <PageHomeReviews reviews={PageHomeReviewsMock} />
+            </div>
+        </div>
     )
 }
 

@@ -12,7 +12,7 @@
     height: 328px;
 }
 
-.new {
+.newest {
     width: 100%;
     margin-top: 37px;
     display: flex;
@@ -105,9 +105,10 @@
 
 .brands {
     width: 100%;
+    margin-top: 30px;
+    margin-bottom: 40px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     &__img {
         width: 200px;
         height: 150px;
@@ -115,6 +116,47 @@
         justify-content: center;
         align-items: center;
     }
+}
+
+.news {
+    h2 {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 21px;
+    }
+
+    &__items {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__item {
+        width: 235px;
+        height: 322px;
+        margin-right: 12px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__content {
+        width: 185px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    &__date {
+        font-size: 10px;
+        color: #8c8c8c;
+    }
+}
+
+.reviews {
+    align-self: center;
 }
 
 @media screen and (max-width: @maxwidth-tablet) {

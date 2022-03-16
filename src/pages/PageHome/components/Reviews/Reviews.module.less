@@ -1,0 +1,61 @@
+@import '/src/config/variables';
+
+.reviews {
+    width: 1160px;
+    height: 310px;
+    padding: 49px 119px 65px;
+    background-color: #f5f7ff;
+    display: grid;
+    grid-template-rows: 110px 1fr 1fr;
+    grid-template-columns: 50px 4fr 1fr;
+    grid-template-areas: 'quotes text text' '. . author' 'button button radio';
+    grid-gap: 25px;
+}
+
+.quotes {
+    grid-area: quotes;
+    font-size: 96px;
+    line-height: 0.75;
+}
+
+.text {
+    grid-area: text;
+    font-size: 18px;
+}
+
+.author {
+    grid-area: author;
+    font-size: 14px;
+    text-align: right;
+}
+
+.button {
+    grid-area: button;
+}
+
+.radio {
+    grid-area: radio;
+    display: flex;
+    justify-content: flex-end;
+    &__item {
+        width: 12px;
+        height: 12px;
+        margin-right: 10px;
+        border-radius: 50%;
+        background-color: #cccccc;
+        transition: 0.2s;
+        cursor: pointer;
+        &:last-of-type {
+            margin-right: 0;
+        }
+        &.active {
+            background-color: #0156ff;
+        }
+    }
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}
