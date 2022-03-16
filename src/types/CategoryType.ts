@@ -3,7 +3,10 @@ import IAPIState from './IAPIState'
 export type CategoryType = {
     id: number
     name: string
-    image: []
+    image: {
+        imageUrl: string
+        imageAlt: string
+    }[]
     parent: {
         id: number
         name: string
@@ -14,6 +17,12 @@ export type CategoryType = {
     }[]
 }
 
+export type PromotedType = {
+    id: number
+    category: CategoryType
+}
+
 export interface CategoryStateType extends IAPIState {
     categories: CategoryType[]
+    promoted: CategoryType[]
 }

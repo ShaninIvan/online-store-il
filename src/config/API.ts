@@ -6,4 +6,5 @@ export enum API {
     Customs = '/custom-builds',
     Products = '/products',
     Settings = '/settings',
+    Promo = '/promoted-categories',
 }

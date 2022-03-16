@@ -1,3 +1,4 @@
+import { ScrollerTop } from 'components/utils/ScrollerTop/ScrollerTop'
 import ROUTES_CONFIG from 'config/routes'
 import React, { Suspense } from 'react'
 import { useLocation, useRoutes } from 'react-router-dom'
@@ -7,19 +8,17 @@ import './PageTransition.less'
 
 export const Main: React.FC = () => {
     const routes = useRoutes(ROUTES_CONFIG)
-    const location = useLocation()
+    const { pathname } = useLocation()
 
     return (
         <main className={styles.main}>
             <TransitionGroup component={null}>
-                <CSSTransition
-                    key={location.pathname}
-                    classNames='page'
-                    timeout={3000}
-                    unmountOnExit
-                >
+                <CSSTransition key={pathname} classNames='page' timeout={3000} unmountOnExit>
                     <Suspense fallback={<div>...</div>}>
-                        <>{routes}</>
+                        <>
+                            <ScrollerTop />
+                            {routes}
+                        </>
                     </Suspense>
                 </CSSTransition>
             </TransitionGroup>

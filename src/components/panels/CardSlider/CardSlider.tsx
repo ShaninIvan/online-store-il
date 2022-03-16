@@ -17,7 +17,7 @@ type PropsType = {
 export const CardSlider: React.FC<PropsType> = ({
     products,
     withControls = false,
-    offset = 300,
+    offset = 235,
 }) => {
     const [currentOffset, setCurrentOffset] = useState<number>(0)
     const [touchClientX, setTouchClientX] = useState<number>(0)

@@ -1,6 +1,11 @@
+import Page from 'components/panels/Page'
 import React from 'react'
 import styles from './PageContacts.module.less'
 
 export const PageContacts: React.FC = () => {
-    return <div className={styles.pagecontacts}>Contacts Page</div>
+    return (
+        <Page>
+            <div className={styles.pagecontacts}>Contacts Page</div>
+        </Page>
+    )
 }
