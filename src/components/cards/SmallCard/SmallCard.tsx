@@ -26,8 +26,8 @@ export const SmallCard: React.FC<PropsType> = ({ product, discount = 0, onCardCl
         rating.length > 0 ? rating.reduce((acc, current) => acc + current) / rating.length : 0
 
     const croppedDescription =
-        product.description.length > 60
-            ? `${product.description.substring(0, 60)}...`
+        product.description.length > 55
+            ? `${product.description.substring(0, 55)}...`
             : product.description
 
     const oldPrice = (product.price + product.price * (discount / 100)).toFixed(2)
