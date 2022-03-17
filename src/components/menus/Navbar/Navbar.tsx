@@ -1,5 +1,6 @@
 import Button from 'components/buttons/Button'
 import SmallCard from 'components/cards/SmallCard'
+import Brands from 'components/parts/Brands'
 import Icon from 'components/parts/Icon'
 import { Paths } from 'config/routes'
 import getPath from 'core/routing/getPath'
@@ -43,7 +44,6 @@ export const Navbar: React.FC = () => {
     const { level1, parent1, level2, parent2, level3, parent3, variants } = useAppSelector(
         (state) => state.navigation
     )
-    const { brands } = useAppSelector((state) => state.brands)
     const { settings } = useAppSelector((state) => state.settings)
     const { products } = useAppSelector((state) => state.products)
 
@@ -160,11 +160,7 @@ export const Navbar: React.FC = () => {
                     </div>
                 </div>
                 <div className={styles.bottom}>
-                    {brands.map((brand) => (
-                        <div key={brand.id}>
-                            <img src={brand.image.imageUrl} alt={brand.image.imageAlt} />
-                        </div>
-                    ))}
+                    <Brands />
                 </div>
             </div>
         </nav>

@@ -1,17 +1,17 @@
-import CardSlider from 'components/panels/CardSlider'
 import ImageSlider from 'components/panels/ImageSlider'
-import { Paths } from 'config/routes'
-import getPath from 'core/routing/getPath'
 import useAppSelector from 'hooks/useAppSelector'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styles from './PageHome.module.less'
-import ZipImg from 'assets/zip.png'
-import { ProductType } from 'types/ProductType'
-import { CategoryType } from 'types/CategoryType'
 import ScreenChecker from 'components/utils/ScreenChecker'
 import { PageHomeNewsMock, PageHomeReviewsMock } from './PageHomeMocks'
 import { PageHomeReviews } from './components/Reviews/PageHomeReviews'
+import { PageHomeNews } from './components/News/PageHomeNews'
+import { PageHomePromoblock } from './components/Promoblock/PageHomePromoblock'
+import Brands from 'components/parts/Brands'
+import { PageHomeZip } from './components/Zip/PageHomeZip'
+import { PageHomeNewest } from './components/Newest/PageHomeNewest'
+import { CategoryType } from 'types/CategoryType'
+import { ProductType } from 'types/ProductType'
 
 const banners = [
     {
@@ -42,12 +42,13 @@ const customCategory = {
     ],
 }
 
+const mappingPromo = (promoted: CategoryType[], products: ProductType[]) => {}
+
 export const PageHome: React.FC = () => {
     const { products } = useAppSelector((state) => state.products)
     const { categories, promoted } = useAppSelector((state) => state.categories)
-    const { brands } = useAppSelector((state) => state.brands)
 
-    const newProducts = products.slice(-20)
+    const newestProducts = products.slice(-20)
 
     return (
         <div className={styles.pagehome}>
@@ -55,78 +56,27 @@ export const PageHome: React.FC = () => {
                 <ImageSlider images={banners} />
             </div>
 
-            <div className={styles.newest}>
-                <h2>New Products</h2>
-                <Link to={getPath(Paths.home)}>See All New Products</Link>
-                <div className={styles.newest__cards}>
-                    <CardSlider products={newProducts} withControls />
-                </div>
-            </div>
+            <PageHomeNewest products={newestProducts} />
 
-            <div className={styles.zip}>
-                <img src={ZipImg} alt='zip' /> <span className={styles.zip__vl}></span>
-                <span>
-                    <b>own</b>&nbsp; it now, up to 6 months interest free&nbsp;
-                </span>
-                <Link to={getPath(Paths.terms)}>learn more</Link>
-            </div>
+            <PageHomeZip />
 
             <div className={styles.promoted}>
-                <PromoBlock category={customCategory} products={products} />
-                {promoted.map((promo) => {
-                    return <PromoBlock key={promo.id} category={promo} products={products} />
-                })}
-            </div>
-
-            <div className={styles.brands}>
-                {brands.map((brand) => (
-                    <div key={brand.id} className={styles.brands__img}>
-                        <img src={brand.image.imageUrl} alt={brand.image.imageAlt} />
-                    </div>
+                <PageHomePromoblock category={customCategory} products={products} />
+                {promoted.map((promo) => (
+                    <PageHomePromoblock key={promo.id} category={promo} products={products} />
                 ))}
             </div>
 
+            <div className={styles.brands}>
+                <Brands />
+            </div>
+
             <ScreenChecker desktop>
-                <div className={styles.news}>
-                    <h2>Follow us on Instagram for News, Offers & More</h2>
-                    <div className={styles.news__items}>
-                        {PageHomeNewsMock.map((item, index) => (
-                            <div key={index} className={styles.news__item}>
-                                <img src={item.image} alt='news item' />
-                                <div className={styles.news__content}>{item.content}</div>
-                                <div className={styles.news__date}>{item.date}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                <PageHomeNews news={PageHomeNewsMock} />
             </ScreenChecker>
 
             <div className={styles.reviews}>
                 <PageHomeReviews reviews={PageHomeReviewsMock} />
-            </div>
-        </div>
-    )
-}
-
-type PromoPropsType = {
-    category: Omit<CategoryType, 'id'> & { id: string | number }
-    products: ProductType[]
-}
-
-export const PromoBlock: React.FC<PromoPropsType> = ({ category, products }) => {
-    const visibleProducts = products.slice(0, 5)
-
-    if (category.image.length === 0) return <></>
-
-    return (
-        <div className={styles.promoblock}>
-            <div className={styles.promoblock__category}>
-                <img src={category.image[0].imageUrl} alt={category.image[0].imageAlt} />
-                <div className={styles.promoblock__name}>{category.name}</div>
-                <Link to={getPath(Paths.catalog, { id: category.id })}>See All Products</Link>
-            </div>
-            <div className={styles.promoblock__cards}>
-                <CardSlider products={visibleProducts} />
             </div>
         </div>
     )
