@@ -5,19 +5,16 @@
 
 .page-exit {
     position: absolute;
-    animation: pageExit 1000ms forwards;
+    animation: pageExit 300ms forwards;
     z-index: 0;
 }
 
 @keyframes pageEnter {
     0% {
-        transform: translateX(100%) scale(0.97);
-    }
-    50% {
-        transform: translateX(0) scale(0.97);
+        opacity: 0;
     }
     100% {
-        transform: translateX(0) scale(1);
+        opacity: 1;
     }
 }
 

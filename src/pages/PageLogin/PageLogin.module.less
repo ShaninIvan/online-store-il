@@ -1,6 +1,44 @@
 @import '/src/config/variables';
 
 .pagelogin {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 21px;
+    }
+}
+
+.forms {
+    display: flex;
+    align-self: center;
+}
+
+.offer {
+    margin-left: 35px;
+    width: 564px;
+    height: 415px;
+    padding-top: 37px;
+    padding-left: 57px;
+    background-color: #f5f9ff;
+    font-size: 14px;
+    font-weight: 300;
+    h3 {
+        font-size: 18px;
+        font-weight: 600;
+    }
+    ul {
+        list-style: inside;
+    }
+    button {
+        width: 208px;
+        height: 50px;
+    }
+    & > * {
+        margin-bottom: 25px;
+    }
 }
 
 @media screen and (max-width: @maxwidth-tablet) {

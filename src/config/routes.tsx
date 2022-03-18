@@ -1,18 +1,18 @@
 import PageHome from 'pages/PageHome'
 import PageLogin from 'pages/PageLogin'
+import { PageLoginAuth } from 'pages/PageLogin/components/Auth/PageLoginAuth'
+import { PageLoginRegister } from 'pages/PageLogin/components/Register/PageLoginRegister'
 import PageNotFound from 'pages/PageNotFound'
 import ProductAbout from 'pages/PageProduct/components/ProductAbout'
 import ProductDetails from 'pages/PageProduct/components/ProductDetails'
 import ProductSpecs from 'pages/PageProduct/components/ProductSpecs'
 import PageTerms from 'pages/PageTerms'
 import { lazy } from 'react'
-import { ROLES } from './roles'
 
 export type RouteType = {
     path: string
     element: React.ReactNode
     children?: RouteType[]
-    roles?: ROLES[]
 }
 
 export enum Paths {
@@ -23,7 +23,8 @@ export enum Paths {
     productDetails = '/product/:id/details',
     productSpecs = '/product/:id/specs',
     contacts = '/contacts',
-    login = '/login',
+    login = '/login/auth',
+    register = '/login/register',
     cart = '/cart',
     checkout = '/checkout',
     dashboard = '/dashboard',
@@ -69,27 +70,32 @@ const ROUTES_CONFIG: RouteType[] = [
     {
         path: '/contacts',
         element: <PageContacts />,
-        roles: [ROLES.User],
     },
     {
         path: '/login',
         element: <PageLogin />,
-        roles: [ROLES.Guest],
+        children: [
+            {
+                path: 'auth',
+                element: <PageLoginAuth />,
+            },
+            {
+                path: 'register',
+                element: <PageLoginRegister />,
+            },
+        ],
     },
     {
         path: '/cart',
         element: <PageCart />,
-        roles: [ROLES.User],
     },
     {
         path: '/checkout',
         element: <PageCheckout />,
-        roles: [ROLES.User],
     },
     {
         path: '/dashboard',
         element: <PageDashboard />,
-        roles: [ROLES.User],
     },
     {
         path: '/about',

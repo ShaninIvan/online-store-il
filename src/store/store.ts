@@ -4,6 +4,7 @@ import { categoryReducer } from './slices/categorySlice'
 import { navigationReducer } from './slices/navigationSlice'
 import { productReducer } from './slices/productSlice'
 import { settingsReducer } from './slices/settingsSlice'
+import { userReducer } from './slices/userSlice'
 
 export const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
         navigation: navigationReducer,
         brands: brandReducer,
         products: productReducer,
+        user: userReducer,
     },
 })
 
