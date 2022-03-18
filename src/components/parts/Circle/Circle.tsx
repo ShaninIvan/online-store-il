@@ -4,7 +4,7 @@ import styles from './Circle.module.less'
 
 type PropsType = {
     type: 'heart' | 'stats' | 'email'
-    callback: () => any
+    callback: () => void
 }
 
 export const Circle: React.FC<PropsType> = ({ type, callback }) => {

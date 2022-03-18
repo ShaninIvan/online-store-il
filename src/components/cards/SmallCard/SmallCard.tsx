@@ -10,7 +10,7 @@ import styles from './SmallCard.module.less'
 type PropsType = {
     product: ProductType
     discount?: number
-    onCardClick: (id: number) => any
+    onCardClick: (id: number) => void
 }
 
 export const SmallCard: React.FC<PropsType> = ({ product, discount = 0, onCardClick }) => {

@@ -41,7 +41,10 @@ const categorySlice = createSlice({
                     state,
                     action: PayloadAction<{ categories: CategoryType[]; promo: PromotedType[] }>
                 ) => {
-                    state.categories = action.payload.categories
+                    state.categories = action.payload.categories.sort((cat1, cat2) => {
+                        return cat1.id - cat2.id
+                    })
+
                     const promoIds = action.payload.promo.map((promo) => promo.category.id)
                     state.promoted = state.categories.filter((category) =>
                         promoIds.includes(category.id)
