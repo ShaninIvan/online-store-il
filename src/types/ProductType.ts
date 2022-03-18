@@ -10,7 +10,11 @@ export type ProductType = {
     category: {
         id: number
         name: string
-    }
+    } | null
+    brand: {
+        id: number
+        name: string
+    } | null
     price: number
     image: ImageType[]
     details: DetailType[]

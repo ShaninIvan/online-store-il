@@ -1,6 +1,6 @@
 import ImageSlider from 'components/panels/ImageSlider'
 import useAppSelector from 'hooks/useAppSelector'
-import React from 'react'
+import React, { useMemo } from 'react'
 import styles from './PageHome.module.less'
 import ScreenChecker from 'components/utils/ScreenChecker'
 import { PageHomeNewsMock, PageHomeReviewsMock } from './PageHomeMocks'
@@ -12,6 +12,9 @@ import { PageHomeZip } from './components/Zip/PageHomeZip'
 import { PageHomeNewest } from './components/Newest/PageHomeNewest'
 import { CategoryType } from 'types/CategoryType'
 import { ProductType } from 'types/ProductType'
+import getProductsWithoutCategory from 'services/getProducts/getProductsWithoutCategory'
+import getProductsByCategoryIds from 'services/getProducts/getProductsByCategoryIds'
+import getCategoryChildIds from 'services/getCategories/getCategoryChildIds'
 
 const banners = [
     {
@@ -42,13 +45,49 @@ const customCategory = {
     ],
 }
 
-const mappingPromo = (promoted: CategoryType[], products: ProductType[]) => {}
+type ExtendedCategoryType = Omit<CategoryType, 'id'> & { id: string | number }
+
+const mappingPromo = (
+    promoted: CategoryType[],
+    categories: CategoryType[],
+    products: ProductType[]
+) => {
+    const promoProducts = new Map<
+        ExtendedCategoryType,
+        ProductType[] | { [key: string]: ProductType[] }
+    >()
+
+    promoted.forEach((category) => {
+        if (category.subcategories.length > 0) {
+            const subcats: { [key: string]: ProductType[] } = {}
+
+            category.subcategories.forEach((subcat) => {
+                const ids = getCategoryChildIds(subcat.id, categories)
+                subcats[subcat.name] = getProductsByCategoryIds(ids, products)
+            })
+
+            promoProducts.set(category, subcats)
+        } else {
+            promoProducts.set(category, getProductsByCategoryIds([category.id], products))
+        }
+    })
+
+    return promoProducts
+}
 
 export const PageHome: React.FC = () => {
     const { products } = useAppSelector((state) => state.products)
     const { categories, promoted } = useAppSelector((state) => state.categories)
 
     const newestProducts = products.slice(-20)
+
+    const customProducts = new Map()
+    customProducts.set(customCategory, getProductsWithoutCategory(products))
+
+    const promoProducts = useMemo(
+        () => mappingPromo(promoted, categories, products),
+        [promoted, categories, products]
+    )
 
     return (
         <div className={styles.pagehome}>
@@ -61,9 +100,13 @@ export const PageHome: React.FC = () => {
             <PageHomeZip />
 
             <div className={styles.promoted}>
-                <PageHomePromoblock category={customCategory} products={products} />
+                <PageHomePromoblock category={customCategory} productsMap={customProducts} />
                 {promoted.map((promo) => (
-                    <PageHomePromoblock key={promo.id} category={promo} products={products} />
+                    <PageHomePromoblock
+                        key={promo.id}
+                        category={promo}
+                        productsMap={promoProducts}
+                    />
                 ))}
             </div>
 

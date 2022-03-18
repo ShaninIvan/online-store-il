@@ -32,7 +32,9 @@ const getLevel = (category: CategoryType, categories: CategoryType[]) => {
 }
 
 const getVariants = (products: ProductType[], categoryId: number, count: 2 | 3 | 4) => {
-    return products.filter((product) => product.category.id === categoryId).splice(0, count)
+    return products
+        .filter((product) => product.category && product.category.id === categoryId)
+        .splice(0, count)
 }
 
 const checkSubcategories = (category: CategoryType) => {

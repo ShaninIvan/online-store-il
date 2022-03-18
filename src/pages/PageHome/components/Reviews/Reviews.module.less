@@ -55,7 +55,41 @@
 }
 
 @media screen and (max-width: @maxwidth-tablet) {
+    .reviews {
+        width: 728px;
+        height: 220px;
+        padding: 20px 20px 37px;
+        grid-template-rows: 80px auto;
+        grid-template-columns: 30px 4fr 1fr;
+        grid-gap: 15px;
+    }
+
+    .quotes {
+        font-size: 52px;
+    }
+
+    .text {
+        font-size: 13px;
+    }
+
+    .author {
+        font-size: 10px;
+    }
+
+    .radio {
+        align-items: center;
+        &__item {
+            width: 9px;
+            height: 9px;
+        }
+    }
 }
 
 @media screen and (max-width: @maxwidth-mobile) {
+    .reviews {
+        width: 100%;
+        min-height: 300px;
+        height: fit-content;
+        grid-template-rows: auto 30px 70px;
+    }
 }
