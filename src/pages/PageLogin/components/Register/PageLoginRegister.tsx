@@ -10,7 +10,7 @@ export const PageLoginRegister: React.FC = () => {
 
     const form: React.LegacyRef<HTMLFormElement> = useRef(null)
 
-    const formSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
+    const formSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         if (!form.current) return

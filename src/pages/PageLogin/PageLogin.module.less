@@ -19,7 +19,6 @@
 .offer {
     margin-left: 35px;
     width: 564px;
-    height: 415px;
     padding-top: 37px;
     padding-left: 57px;
     background-color: #f5f9ff;
@@ -42,7 +41,42 @@
 }
 
 @media screen and (max-width: @maxwidth-tablet) {
+    .pagelogin {
+        h2 {
+            font-size: 18px;
+        }
+    }
+
+    .offer {
+        width: 345px;
+        padding: 25px 19px 40px;
+        font-size: 12px;
+        h3 {
+            font-size: 14px;
+        }
+        button {
+            width: 183px;
+            height: 38px;
+            font-size: 13px;
+        }
+        & > * {
+            margin-bottom: 15px;
+        }
+    }
+
+    .forms {
+        justify-content: center;
+    }
 }
 
 @media screen and (max-width: @maxwidth-mobile) {
+    .forms {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .offer {
+        margin-left: 0;
+        margin-top: 15px;
+    }
 }
