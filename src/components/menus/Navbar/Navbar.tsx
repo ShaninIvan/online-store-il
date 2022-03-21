@@ -2,7 +2,6 @@ import Button from 'components/buttons/Button'
 import SmallCard from 'components/cards/SmallCard'
 import Brands from 'components/parts/Brands'
 import Icon from 'components/parts/Icon'
-import { Paths } from 'config/routes'
 import getPath from 'core/routing/getPath'
 import useAppDispatch from 'hooks/useAppDispatch'
 import useAppSelector from 'hooks/useAppSelector'
@@ -56,12 +55,12 @@ export const Navbar: React.FC = () => {
     const mains = categories.filter((category) => category.parent === null)
 
     const openCatalog = (id: number | string) => {
-        navigate(getPath(Paths.catalog, { id: id }))
+        navigate(getPath('/catalog/:id', { id: id }))
         dispatch(navResetMenu())
     }
 
     const openProduct = (id: number) => {
-        navigate(getPath(Paths.productAbout, { id: id }))
+        navigate(getPath('/product/:id/about', { id: id }))
         dispatch(navResetMenu())
     }
 

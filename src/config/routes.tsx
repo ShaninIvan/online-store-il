@@ -15,22 +15,20 @@ export type RouteType = {
     children?: RouteType[]
 }
 
-export enum Paths {
-    home = '/',
-    catalog = '/catalog/:id',
-    product = '/product/:id',
-    productAbout = '/product/:id/about',
-    productDetails = '/product/:id/details',
-    productSpecs = '/product/:id/specs',
-    contacts = '/contacts',
-    login = '/login/auth',
-    register = '/login/register',
-    cart = '/cart',
-    checkout = '/checkout',
-    dashboard = '/dashboard',
-    about = '/about',
-    terms = '/terms',
-}
+export type PATHS =
+    | '/'
+    | '/catalog/:id'
+    | '/product/:id/about'
+    | '/product/:id/details'
+    | '/product/:id/specs'
+    | '/contacts'
+    | '/login/auth'
+    | '/login/register'
+    | '/cart'
+    | '/checkout'
+    | '/dashboard'
+    | '/about'
+    | '/terms'
 
 const PageCatalog = lazy(() => import('pages/PageCatalog'))
 const PageProduct = lazy(() => import('pages/PageProduct'))

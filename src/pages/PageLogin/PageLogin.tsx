@@ -1,5 +1,4 @@
 import Button from 'components/buttons/Button'
-import { Paths } from 'config/routes'
 import getPath from 'core/routing/getPath'
 import React from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
@@ -9,7 +8,7 @@ export const PageLogin: React.FC = () => {
     const navigate = useNavigate()
 
     const createAccountClickHandler = () => {
-        navigate(getPath(Paths.register))
+        navigate(getPath('/login/register'))
     }
 
     return (

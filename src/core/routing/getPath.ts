@@ -1,7 +1,7 @@
-import { Paths } from 'config/routes'
+import { PATHS } from 'config/routes'
 import { generatePath } from 'react-router-dom'
 
-const getPath = (path: Paths, params?: {}) => {
+const getPath = (path: PATHS, params?: {}) => {
     if (!params) return path
 
     return generatePath(path, params)

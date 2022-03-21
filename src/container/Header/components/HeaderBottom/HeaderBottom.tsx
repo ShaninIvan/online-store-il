@@ -4,7 +4,6 @@ import MobileNavbar from 'components/menus/MobileNavbar'
 import Navbar from 'components/menus/Navbar'
 import Icon from 'components/parts/Icon'
 import ScreenChecker from 'components/utils/ScreenChecker'
-import { Paths } from 'config/routes'
 import { HeaderSearchFocusContext } from 'container/Header/Header'
 import getPath from 'core/routing/getPath'
 import React, { useContext, useState } from 'react'
@@ -27,7 +26,7 @@ export const HeaderBottom: React.FC = () => {
         <div className={`${styles.headerbottom} ${searchFocus && styles.searchfocus}`}>
             <div className={styles.left}>
                 <div className={styles.left__logo}>
-                    <Link to={getPath(Paths.home)}>
+                    <Link to={getPath('/')}>
                         <Icon name='logo' size={36} />
                     </Link>
                 </div>

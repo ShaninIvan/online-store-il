@@ -1,6 +1,5 @@
 import Icon from 'components/parts/Icon'
 import ScreenChecker from 'components/utils/ScreenChecker'
-import { Paths } from 'config/routes'
 import getPath from 'core/routing/getPath'
 import useAppSelector from 'hooks/useAppSelector'
 import useSettings from 'hooks/useSettings'
@@ -36,15 +35,15 @@ export const FooterMedium: React.FC = () => {
                     </ScreenChecker>
                 </div>
                 <div className={styles.list}>
-                    <Link to={getPath(Paths.about)}>About Us</Link>
-                    <Link to={getPath(Paths.terms)}>About Zip</Link>
-                    <Link to={getPath(Paths.terms)}>Privacy Policy</Link>
-                    <Link to={getPath(Paths.home)}>Search</Link>
-                    <Link to={getPath(Paths.terms)}>Terms</Link>
-                    <Link to={getPath(Paths.dashboard)}>Orders and Returns</Link>
-                    <Link to={getPath(Paths.contacts)}>Contact Us</Link>
-                    <Link to={getPath(Paths.home)}>Advanced Search</Link>
-                    <Link to={getPath(Paths.dashboard)}>Newsletter Subscription</Link>
+                    <Link to={getPath('/about')}>About Us</Link>
+                    <Link to={getPath('/terms')}>About Zip</Link>
+                    <Link to={getPath('/terms')}>Privacy Policy</Link>
+                    <Link to={getPath('/')}>Search</Link>
+                    <Link to={getPath('/terms')}>Terms</Link>
+                    <Link to={getPath('/dashboard')}>Orders and Returns</Link>
+                    <Link to={getPath('/contacts')}>Contact Us</Link>
+                    <Link to={getPath('/')}>Advanced Search</Link>
+                    <Link to={getPath('/dashboard')}>Newsletter Subscription</Link>
                 </div>
             </div>
             {mains.map((main) => (
@@ -63,7 +62,7 @@ export const FooterMedium: React.FC = () => {
                     <div className={styles.list}>
                         {main.subcategories.map((category) => (
                             <Link
-                                to={getPath(Paths.catalog, { id: category.id })}
+                                to={getPath('/catalog/:id', { id: category.id })}
                                 key={category.id}
                             >
                                 {category.name}

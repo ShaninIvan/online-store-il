@@ -2,7 +2,6 @@ import ShopInfoMenu from 'components/menus/ShopInfoMenu'
 import Popup from 'components/panels/Popup'
 import Icon from 'components/parts/Icon'
 import ScreenChecker from 'components/utils/ScreenChecker'
-import { Paths } from 'config/routes'
 import { HeaderSearchFocusContext } from 'container/Header/Header'
 import getPath from 'core/routing/getPath'
 import useSettings from 'hooks/useSettings'
@@ -32,7 +31,7 @@ export const HeaderTop: React.FC = () => {
                     &nbsp;
                 </ScreenChecker>
                 <span className={styles.address__contact}>
-                    <Link to={getPath(Paths.contacts)}>Contact Us</Link>
+                    <Link to={getPath('/contacts')}>Contact Us</Link>
                 </span>
             </div>
 

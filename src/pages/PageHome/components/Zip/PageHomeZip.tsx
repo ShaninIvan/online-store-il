@@ -3,7 +3,6 @@ import styles from './Zip.module.less'
 import ZipImg from 'assets/zip.png'
 import { Link } from 'react-router-dom'
 import getPath from 'core/routing/getPath'
-import { Paths } from 'config/routes'
 
 export const PageHomeZip: React.FC = () => {
     return (
@@ -12,7 +11,7 @@ export const PageHomeZip: React.FC = () => {
             <span>
                 <b>own</b>&nbsp; it now, up to 6 months interest free&nbsp;
             </span>
-            <Link to={getPath(Paths.terms)}>learn more</Link>
+            <Link to={getPath('/terms')}>learn more</Link>
         </div>
     )
 }

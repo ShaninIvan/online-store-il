@@ -1,6 +1,5 @@
 import SmallCard from 'components/cards/SmallCard'
 import Icon from 'components/parts/Icon'
-import { Paths } from 'config/routes'
 import getPath from 'core/routing/getPath'
 import useSettings from 'hooks/useSettings'
 import React, { useRef, useState } from 'react'
@@ -35,7 +34,7 @@ export const CardSlider: React.FC<PropsType> = ({
     const navigate = useNavigate()
 
     const openCatalog = (id: number) => {
-        navigate(getPath(Paths.catalog, { id: id }))
+        navigate(getPath('/catalog/:id', { id: id }))
     }
 
     const slideLeftHandler = () => {

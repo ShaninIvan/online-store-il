@@ -5,7 +5,6 @@ import TecsImg from 'assets/tecs.png'
 import Icon from 'components/parts/Icon'
 import Button from 'components/buttons/Button'
 import getPath from 'core/routing/getPath'
-import { Paths } from 'config/routes'
 import useAppDispatch from 'hooks/useAppDispatch'
 import {
     navResetMenu,
@@ -52,7 +51,7 @@ export const MobileNavbar: React.FC = () => {
     }
 
     const openCatalog = (id: number | string) => {
-        navigate(getPath(Paths.catalog, { id: id }))
+        navigate(getPath('/catalog/:id', { id: id }))
         closeMenu()
     }
 

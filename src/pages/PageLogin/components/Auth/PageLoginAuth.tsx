@@ -1,6 +1,5 @@
 import Button from 'components/buttons/Button'
 import TextBox from 'components/inputs/TextBox'
-import { Paths } from 'config/routes'
 import getPath from 'core/routing/getPath'
 import useAppDispatch from 'hooks/useAppDispatch'
 import React, { useRef } from 'react'
@@ -34,7 +33,7 @@ export const PageLoginAuth: React.FC = () => {
                 <TextBox type='password' name='password' label='Password' required />
                 <div className={styles.controls}>
                     <Button preset='blue-white'>Sign In</Button>
-                    <Link to={getPath(Paths.login)}>Forgot Your Password?</Link>
+                    <Link to={getPath('/login/auth')}>Forgot Your Password?</Link>
                 </div>
             </form>
         </div>
