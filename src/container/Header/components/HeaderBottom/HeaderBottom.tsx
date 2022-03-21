@@ -1,7 +1,9 @@
 import Button from 'components/buttons/Button'
 import SearchBox from 'components/inputs/SearchBox'
+import AccountMenu from 'components/menus/AccountMenu'
 import MobileNavbar from 'components/menus/MobileNavbar'
 import Navbar from 'components/menus/Navbar'
+import Popup from 'components/panels/Popup'
 import Icon from 'components/parts/Icon'
 import ScreenChecker from 'components/utils/ScreenChecker'
 import { HeaderSearchFocusContext } from 'container/Header/Header'
@@ -65,7 +67,9 @@ export const HeaderBottom: React.FC = () => {
                     <Icon name='cart' size={19} />
                 </div>
                 <div className={styles.right__account}>
-                    <Icon name='profile' size={11} />
+                    <Popup toggle={<Icon name='profile' size={11} />}>
+                        <AccountMenu />
+                    </Popup>
                 </div>
             </div>
         </div>

@@ -1,11 +1,17 @@
 import Button from 'components/buttons/Button'
 import getPath from 'core/routing/getPath'
+import useAppSelector from 'hooks/useAppSelector'
 import React from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Navigate, Outlet, useNavigate } from 'react-router-dom'
 import styles from './PageLogin.module.less'
 
 export const PageLogin: React.FC = () => {
+    const { jwt } = useAppSelector((state) => state.user)
     const navigate = useNavigate()
+
+    if (jwt) {
+        return <Navigate to='/' />
+    }
 
     const createAccountClickHandler = () => {
         navigate(getPath('/login/register'))
