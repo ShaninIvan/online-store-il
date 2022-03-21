@@ -10,7 +10,7 @@ const useAuthorizedRequests = () => {
 
     const createAxiosGetParams = (path: string, urlParams: {} = {}) => {
         if (!jwt) {
-            navigate(getPath('/login/auth'))
+            navigate(getPath('/login'))
             return
         }
 
@@ -31,7 +31,7 @@ const useAuthorizedRequests = () => {
 
     const createAxiosPostParams = (path: string, data: any) => {
         if (!jwt) {
-            navigate(getPath('/login/auth'))
+            navigate(getPath('/login'))
             return
         }
 

@@ -29,7 +29,7 @@ export const AccountMenu: React.FC = () => {
     return (
         <div className={styles.accountmenu}>
             <Link to={getPath('/login/register')}>Create an Account</Link>
-            <Link to={getPath('/login/auth')}>Sign In</Link>
+            <Link to={getPath('/login')}>Sign In</Link>
         </div>
     )
 }

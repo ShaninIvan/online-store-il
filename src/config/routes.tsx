@@ -8,12 +8,7 @@ import ProductDetails from 'pages/PageProduct/components/ProductDetails'
 import ProductSpecs from 'pages/PageProduct/components/ProductSpecs'
 import PageTerms from 'pages/PageTerms'
 import { lazy } from 'react'
-
-export type RouteType = {
-    path: string
-    element: React.ReactNode
-    children?: RouteType[]
-}
+import { RouteObject } from 'react-router-dom'
 
 export type PATHS =
     | '/'
@@ -22,7 +17,7 @@ export type PATHS =
     | '/product/:id/details'
     | '/product/:id/specs'
     | '/contacts'
-    | '/login/auth'
+    | '/login'
     | '/login/register'
     | '/cart'
     | '/checkout'
@@ -38,7 +33,7 @@ const PageCart = lazy(() => import('pages/PageCart'))
 const PageCheckout = lazy(() => import('pages/PageCheckout'))
 const PageDashboard = lazy(() => import('pages/PageDashboard'))
 
-const ROUTES_CONFIG: RouteType[] = [
+const ROUTES_CONFIG: RouteObject[] = [
     {
         path: '/',
         element: <PageHome />,
@@ -49,10 +44,11 @@ const ROUTES_CONFIG: RouteType[] = [
     },
     {
         path: '/product/:id',
+
         element: <PageProduct />,
         children: [
             {
-                path: 'about',
+                index: true,
                 element: <ProductAbout />,
             },
             {
@@ -74,7 +70,7 @@ const ROUTES_CONFIG: RouteType[] = [
         element: <PageLogin />,
         children: [
             {
-                path: 'auth',
+                index: true,
                 element: <PageLoginAuth />,
             },
             {

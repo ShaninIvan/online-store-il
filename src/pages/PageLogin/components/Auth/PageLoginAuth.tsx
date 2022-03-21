@@ -33,7 +33,7 @@ export const PageLoginAuth: React.FC = () => {
                 <TextBox type='password' name='password' label='Password' required />
                 <div className={styles.controls}>
                     <Button preset='blue-white'>Sign In</Button>
-                    <Link to={getPath('/login/auth')}>Forgot Your Password?</Link>
+                    <Link to={getPath('/login')}>Forgot Your Password?</Link>
                 </div>
             </form>
         </div>
