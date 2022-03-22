@@ -3,6 +3,7 @@ import Availability from 'components/parts/Availability'
 import Circle from 'components/parts/Circle'
 import Icon from 'components/parts/Icon'
 import Rating from 'components/parts/Rating'
+import useCart from 'hooks/useCart'
 import React from 'react'
 import { ProductType } from 'types/ProductType'
 import styles from './SmallCard.module.less'
@@ -14,6 +15,8 @@ type PropsType = {
 }
 
 export const SmallCard: React.FC<PropsType> = ({ product, discount = 0, onCardClick }) => {
+    const cart = useCart()
+
     const rating = [
         product.rating.one,
         product.rating.two,
@@ -32,6 +35,12 @@ export const SmallCard: React.FC<PropsType> = ({ product, discount = 0, onCardCl
 
     const oldPrice = (product.price + product.price * (discount / 100)).toFixed(2)
     const newPrice = product.price.toFixed(2)
+
+    const addToCartClickHandler = (event: React.MouseEvent) => {
+        event.stopPropagation()
+
+        cart && cart.addToCart(product.id, 1)
+    }
 
     return (
         <div className={styles.smallcard} onClick={() => onCardClick(product.id)}>
@@ -53,7 +62,7 @@ export const SmallCard: React.FC<PropsType> = ({ product, discount = 0, onCardCl
                 <div className={styles.price__new}>${newPrice}</div>
             </div>
             <div className={styles.cart}>
-                <Button preset='tranparent-blue'>
+                <Button preset='tranparent-blue' onClick={(event) => addToCartClickHandler(event)}>
                     <Icon name='cart' />
                     &nbsp; Add To Cart
                 </Button>

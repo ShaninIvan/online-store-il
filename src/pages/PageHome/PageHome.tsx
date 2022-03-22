@@ -12,9 +12,9 @@ import { PageHomeZip } from './components/Zip/PageHomeZip'
 import { PageHomeNewest } from './components/Newest/PageHomeNewest'
 import { CategoryType } from 'types/CategoryType'
 import { ProductType } from 'types/ProductType'
-import getProductsWithoutCategory from 'services/getProducts/getProductsWithoutCategory'
-import getProductsByCategoryIds from 'services/getProducts/getProductsByCategoryIds'
-import getCategoryChildIds from 'services/getCategories/getCategoryChildIds'
+import getProductsWithoutCategory from 'services/Products/getProductsWithoutCategory'
+import getProductsByCategoryIds from 'services/Products/getProductsByCategoryIds'
+import getCategoryChildIds from 'services/Categories/getCategoryChildIds'
 
 const banners = [
     {

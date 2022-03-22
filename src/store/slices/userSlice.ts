@@ -8,6 +8,8 @@ const initialState: UserStateType = {
     user: {
         username: '',
         email: '',
+        avatar: '',
+        cart: 0,
     },
     isLoading: false,
     error: null,
@@ -19,7 +21,11 @@ export const userRegister = createAsyncThunk(
     'userSlice/register',
     async (data: FormData, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`${SERVER_URL}/api/auth/local/register`, data)
+            const response = await axios.post(`${SERVER_URL}/api/auth/local/register`, data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
             return response.data
         } catch (error: any) {
             return rejectWithValue(error.response.data.error.message ?? '')

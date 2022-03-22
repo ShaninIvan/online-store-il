@@ -5,5 +5,7 @@ export interface UserStateType extends IAPIState {
     user: {
         username: string
         email: string
+        avatar: string
+        cart: number
     }
 }

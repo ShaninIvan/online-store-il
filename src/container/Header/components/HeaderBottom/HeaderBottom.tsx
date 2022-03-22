@@ -8,12 +8,15 @@ import Icon from 'components/parts/Icon'
 import ScreenChecker from 'components/utils/ScreenChecker'
 import { HeaderSearchFocusContext } from 'container/Header/Header'
 import getPath from 'core/routing/getPath'
+import useAppSelector from 'hooks/useAppSelector'
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './HeaderBottom.module.less'
 
 export const HeaderBottom: React.FC = () => {
     const [findVisible, setFindVisible] = useState<boolean>(false)
+
+    const { user } = useAppSelector((state) => state.user)
 
     const { searchFocus, setSearchFocus } = useContext(HeaderSearchFocusContext)
 
@@ -23,6 +26,12 @@ export const HeaderBottom: React.FC = () => {
             event.currentTarget.blur()
         }
     }
+
+    const userImg = user.avatar ? (
+        <img src={user.avatar} alt='avatar' />
+    ) : (
+        <Icon name='profile' size={11} />
+    )
 
     return (
         <div className={`${styles.headerbottom} ${searchFocus && styles.searchfocus}`}>
@@ -67,7 +76,7 @@ export const HeaderBottom: React.FC = () => {
                     <Icon name='cart' size={19} />
                 </div>
                 <div className={styles.right__account}>
-                    <Popup toggle={<Icon name='profile' size={11} />}>
+                    <Popup toggle={userImg}>
                         <AccountMenu />
                     </Popup>
                 </div>

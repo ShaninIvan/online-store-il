@@ -10,8 +10,7 @@ export const AccountMenu: React.FC = () => {
     const dispatch = useAppDispatch()
     const { jwt } = useAppSelector((state) => state.user)
 
-    const signOutClickhandler = (event: React.MouseEvent) => {
-        event.preventDefault()
+    const signOutClickhandler = () => {
         dispatch(userExit())
     }
 
@@ -22,7 +21,9 @@ export const AccountMenu: React.FC = () => {
                 <Link to={getPath('/dashboard')}>My Wish List (0)</Link>
                 <Link to={getPath('/dashboard')}>Compare (0)</Link>
                 <hr />
-                <a onClick={(event) => signOutClickhandler(event)}>Sign Out</a>
+                <span className={styles.out} onClick={() => signOutClickhandler()}>
+                    Sign Out
+                </span>
             </div>
         )
 
