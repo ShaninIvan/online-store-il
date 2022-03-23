@@ -21,11 +21,7 @@ export const userRegister = createAsyncThunk(
     'userSlice/register',
     async (data: FormData, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`${SERVER_URL}/api/auth/local/register`, data, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            })
+            const response = await axios.post(`${SERVER_URL}/api/auth/local/register`, data)
             return response.data
         } catch (error: any) {
             return rejectWithValue(error.response.data.error.message ?? '')
