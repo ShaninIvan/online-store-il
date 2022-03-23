@@ -44,6 +44,30 @@
         cursor: pointer;
     }
 
+    &__cart {
+        position: relative;
+
+        .cart__count {
+            position: absolute;
+            right: -50%;
+            top: -50%;
+            width: 17px;
+            height: 17px;
+            justify-content: center;
+            align-items: center;
+            background-color: #0156ff;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            border-radius: 50%;
+            display: none;
+
+            &.visible {
+                display: flex;
+            }
+        }
+    }
+
     &__account {
         width: 32px;
         height: 32px;

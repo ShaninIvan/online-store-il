@@ -1,6 +1,7 @@
 import Button from 'components/buttons/Button'
 import SearchBox from 'components/inputs/SearchBox'
 import AccountMenu from 'components/menus/AccountMenu'
+import MiniCartMenu from 'components/menus/MiniCartMenu'
 import MobileNavbar from 'components/menus/MobileNavbar'
 import Navbar from 'components/menus/Navbar'
 import Popup from 'components/panels/Popup'
@@ -17,10 +18,11 @@ export const HeaderBottom: React.FC = () => {
     const [findVisible, setFindVisible] = useState<boolean>(false)
 
     const { user } = useAppSelector((state) => state.user)
+    const { orders } = useAppSelector((state) => state.cart)
 
     const { searchFocus, setSearchFocus } = useContext(HeaderSearchFocusContext)
 
-    const SearchEnterPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const searchEnterPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             setSearchFocus(false)
             event.currentTarget.blur()
@@ -31,6 +33,15 @@ export const HeaderBottom: React.FC = () => {
         <img src={user.avatar} alt='avatar' />
     ) : (
         <Icon name='profile' size={11} />
+    )
+
+    const cartToggle = (
+        <div className={styles.right__cart}>
+            <Icon name='cart' size={19} />
+            <div className={`${styles.cart__count} ${orders.length > 0 && styles.visible}`}>
+                {orders.length}
+            </div>
+        </div>
     )
 
     return (
@@ -56,7 +67,7 @@ export const HeaderBottom: React.FC = () => {
                 </ScreenChecker>
                 <div className={`${styles.medium__searchbox} ${findVisible && styles.show}`}>
                     <SearchBox
-                        onKeyPress={(e) => SearchEnterPressHandler(e)}
+                        onKeyPress={(e) => searchEnterPressHandler(e)}
                         onFocus={() => setSearchFocus(true)}
                         placeholder='Search here...'
                     />
@@ -72,9 +83,9 @@ export const HeaderBottom: React.FC = () => {
                         {findVisible ? <Icon name='close' /> : <Icon name='find' size={19} />}
                     </div>
                 </ScreenChecker>
-                <div className={styles.right__cart}>
-                    <Icon name='cart' size={19} />
-                </div>
+                <Popup toggle={cartToggle}>
+                    <MiniCartMenu />
+                </Popup>
                 <div className={styles.right__account}>
                     <Popup toggle={userImg}>
                         <AccountMenu />

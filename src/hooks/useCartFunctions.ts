@@ -25,10 +25,10 @@ const useCartFunctions = () => {
     )
 
     const removeFromCart = useCallback(
-        (product: ProductType) => {
+        (productId: number) => {
             if (!jwt) return
 
-            const updatedOrders = cartRemoveFromOrders(orders, product.id)
+            const updatedOrders = cartRemoveFromOrders(orders, productId)
             const params = getCartUpdateParams(jwt, user.cart, updatedOrders)
 
             dispatch(cartRequest(params))
