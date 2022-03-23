@@ -5,6 +5,8 @@ import Icon from 'components/parts/Icon'
 import Rating from 'components/parts/Rating'
 import useCartFunctions from 'hooks/useCartFunctions'
 import React from 'react'
+import getCardcroppedDesc from 'services/Cards/getCardcroppedDesc'
+import getCardStars from 'services/Cards/getCardStars'
 import { ProductType } from 'types/ProductType'
 import styles from './SmallCard.module.less'
 
@@ -16,21 +18,10 @@ type PropsType = {
 
 export const SmallCard: React.FC<PropsType> = ({ product, discount = 0, onCardClick }) => {
     const { addToCart } = useCartFunctions()
-    const rating = [
-        product.rating.one,
-        product.rating.two,
-        product.rating.three,
-        product.rating.four,
-        product.rating.five,
-    ].filter((star) => star > 0)
 
-    const stars =
-        rating.length > 0 ? rating.reduce((acc, current) => acc + current) / rating.length : 0
+    const stars = getCardStars(product.rating)
 
-    const croppedDescription =
-        product.description.length > 55
-            ? `${product.description.substring(0, 55)}...`
-            : product.description
+    const croppedDescription = getCardcroppedDesc(product.description)
 
     const oldPrice = (product.price + product.price * (discount / 100)).toFixed(2)
     const newPrice = product.price.toFixed(2)
