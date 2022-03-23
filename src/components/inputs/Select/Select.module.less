@@ -1,0 +1,74 @@
+@import '/src/config/variables';
+
+.select {
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-size: 13px;
+    position: relative;
+}
+
+.label {
+    min-width: 180px;
+    width: fit-content;
+    height: 50px;
+    border: 2px solid #cccccc;
+    border-radius: 2px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 600;
+    & > .title {
+        color: #b3b2b2;
+    }
+    & > .arrow {
+        font-size: 7px;
+    }
+}
+
+.list {
+    position: absolute;
+    top: 100%;
+    width: 180px;
+    background-color: #ffffff;
+    transform-origin: 50% 0;
+    transform: scaleY(0);
+    transition: 0.2s;
+    z-index: 100;
+    & > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #cccccc;
+        transition: 0.1s;
+        &:hover {
+            background-color: #cccccc;
+        }
+    }
+}
+
+.opened > .list {
+    transform: scaleY(1);
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+    .select {
+        min-width: 140px;
+        font-size: 11px;
+    }
+
+    .label {
+        height: 40px;
+        min-width: 140px;
+        & > .arrow {
+            font-size: 5px;
+        }
+    }
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}
