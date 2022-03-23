@@ -1,4 +1,5 @@
 import IAPIState from './IAPIState'
+import { ProductType } from './ProductType'
 
 export interface UserStateType extends IAPIState {
     jwt: string | null
@@ -8,4 +9,13 @@ export interface UserStateType extends IAPIState {
         avatar: string
         cart: number
     }
+}
+
+export interface CartStateType extends IAPIState {
+    orders: CartOrderType[]
+}
+
+export type CartOrderType = {
+    product: Pick<ProductType, 'id' | 'name' | 'image' | 'price'>
+    count: number
 }

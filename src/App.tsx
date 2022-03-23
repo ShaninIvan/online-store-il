@@ -11,6 +11,7 @@ import Loader from 'components/utils/Loader'
 import { fetchCategories } from 'store/slices/categorySlice'
 import { fetchBrands } from 'store/slices/brandSlice'
 import { fetchProducts } from 'store/slices/productSlice'
+import CartLoader from 'components/utils/CartLoader'
 
 const thunks = [fetchSettings, fetchCategories, fetchBrands, fetchProducts]
 
@@ -22,6 +23,7 @@ function App() {
         <BrowserRouter>
             <div className='App'>
                 <Loader isLoading={isLoading} />
+                <CartLoader />
                 <Header />
                 <Main />
                 <Footer />
