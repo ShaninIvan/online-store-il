@@ -1,0 +1,36 @@
+@import '/src/config/variables';
+
+.routeline {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 12px;
+    font-weight: 400;
+    & > * {
+        margin-right: 4px;
+    }
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    & > * {
+        margin-right: 4px;
+    }
+}
+
+.arrow {
+    color: #0156ff;
+    font-size: 5px;
+}
+
+.last {
+    font-weight: 300;
+    color: #8c8c8c;
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}
