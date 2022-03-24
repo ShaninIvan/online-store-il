@@ -2,7 +2,7 @@ import Button from 'components/buttons/Button'
 import RouteLine from 'components/parts/RouteLine'
 import useAppSelector from 'hooks/useAppSelector'
 import useCatalogParams from 'hooks/useCatalogParams'
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import getCatalogBrandsMap from 'services/Catalog/getCatalogBrandsMap'
 import getCatalogCategoriesMap from 'services/Catalog/getCatalogCategoriesMap'
@@ -27,7 +27,10 @@ const initialFilters: CatalogParamsFiltersType = {
     brands: [],
 }
 
-export const CatalogFilterContext = React.createContext(initialFilters)
+export const CatalogFilterContext = React.createContext({
+    filters: initialFilters,
+    setFilters: (state: typeof initialFilters) => {},
+})
 
 const ourDealsCategory: CategoryType = {
     id: -1,
@@ -43,6 +46,8 @@ export const PageCatalog: React.FC = () => {
     const { brands } = useAppSelector((state) => state.brands)
     const { products } = useAppSelector((state) => state.products)
 
+    const [filters, setFilters] = useState<CatalogParamsFiltersType>(initialFilters)
+
     const currentCategory =
         categories.find((category) => category.id === Number(id)) ?? ourDealsCategory
 
@@ -53,8 +58,6 @@ export const PageCatalog: React.FC = () => {
     )
     const fullProductList = categoriesMap.get(currentCategory) ?? []
 
-    categoriesMap.delete(currentCategory)
-
     const pricesMap = useMemo(() => getCatalogPricesMap(products, pageCatalogPrices), [products])
     const brandsMap = useMemo(() => getCatalogBrandsMap(products, brands), [products, brands])
     const colorsMap = useMemo(() => getCatalogColorsMap(products), [products])
@@ -63,11 +66,19 @@ export const PageCatalog: React.FC = () => {
     const params = useCatalogParams()
 
     // VISIBLE DATA
+    console.log(fullProductList)
+
     const productsCount = fullProductList.length
     const routeLine = getRouteLineByCategory(currentCategory, categories)
+    const filtersCount = Object.values(filters).reduce((acc, value) => {
+        if (Array.isArray(value)) {
+            return acc + value.length
+        }
+        return acc + 0
+    }, 0)
 
     return (
-        <CatalogFilterContext.Provider value={initialFilters}>
+        <CatalogFilterContext.Provider value={{ filters, setFilters }}>
             <div className={styles.pagecatalog}>
                 <div className={styles.banner}>
                     <img
@@ -99,9 +110,12 @@ export const PageCatalog: React.FC = () => {
                                 </div>
                             </div>
 
-                            <PageCatalogCategoryFilter categoriesMap={categoriesMap} />
+                            <PageCatalogCategoryFilter
+                                categoriesMap={categoriesMap}
+                                currentCategory={currentCategory}
+                            />
 
-                            <Button preset='blue-white'>Apply Filters</Button>
+                            <Button preset='blue-white'>Apply Filters({filtersCount})</Button>
                         </div>
                     </div>
 
