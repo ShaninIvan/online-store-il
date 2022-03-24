@@ -1,7 +1,5 @@
 import IAPIState from './IAPIState'
 
-type ProductsColors = 'black' | 'white' | 'red' | 'blue' | 'gray' | 'gold' | 'silver'
-
 export type ProductType = {
     id: number
     name: string
@@ -21,7 +19,10 @@ export type ProductType = {
     specs: SpecType[]
     inStock: number
     rating: RatingType
+    color: ProductsColors
 }
+
+type ProductsColors = 'black' | 'white' | 'red' | 'blue' | 'gray' | 'gold' | 'silver'
 
 type ImageType = {
     id: number
