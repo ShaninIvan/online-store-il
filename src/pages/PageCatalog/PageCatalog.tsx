@@ -1,5 +1,6 @@
 import RouteLine from 'components/parts/RouteLine'
 import useAppSelector from 'hooks/useAppSelector'
+import useCatalogFunctions from 'hooks/useCatalogFunctions'
 import React, { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import getCatalogBrandsMap from 'services/Catalog/getCatalogBrandsMap'
@@ -10,7 +11,8 @@ import getRouteLineByCategory from 'services/RouteLine/getRouteLineByCategory'
 import { CategoryType } from 'types/CategoryType'
 import { PageCatalogBackButton } from './components/BackButton/PageCatalogBackButton'
 import { PageCatalogItemsCount } from './components/ItemsCount/PageCatalogItemsCount'
-import { PageCatalogSort } from './components/Sort/PageCatalogSort'
+import { PageCatalogSelects } from './components/Selects/PageCatalogSelects'
+import { PageCatalogView } from './components/View/PageCatalogView'
 import styles from './PageCatalog.module.less'
 import { pageCatalogPrices } from './PageCatalogMocks'
 
@@ -40,6 +42,9 @@ export const PageCatalog: React.FC = () => {
     const brandsMap = useMemo(() => getCatalogBrandsMap(products, brands), [products, brands])
     const colorsMap = useMemo(() => getCatalogColorsMap(products), [products])
 
+    // SEARCH PARAMS
+    const params = useCatalogFunctions()
+
     // VISIBLE DATA
     const productsCount = categoriesMap.get(currentCategory)?.length
     const routeLine = getRouteLineByCategory(currentCategory, categories)
@@ -57,7 +62,8 @@ export const PageCatalog: React.FC = () => {
             <div className={styles.top}>
                 <PageCatalogBackButton />
                 <PageCatalogItemsCount start={0} end={10} total={20} />
-                {/* <PageCatalogSort /> */}
+                <PageCatalogSelects sort={params.sort} show={params.show} />
+                <PageCatalogView current={params.view.get()} changeHandler={params.view.set} />
             </div>
 
             <div className={styles.bottom}>

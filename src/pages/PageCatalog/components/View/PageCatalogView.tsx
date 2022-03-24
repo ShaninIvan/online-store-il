@@ -19,13 +19,13 @@ export const PageCatalogView: React.FC<PropsType> = ({ current, changeHandler })
     return (
         <div className={styles.view}>
             <div
-                className={`${styles.icon}${current === 'grid' && styles.active}`}
+                className={`${styles.mode} ${current === 'grid' && styles.active}`}
                 onClick={() => gridClickHandler()}
             >
                 <Icon name='grid' />
             </div>
             <div
-                className={`${styles.icon}${current === 'list' && styles.active}`}
+                className={`${styles.mode} ${current === 'list' && styles.active}`}
                 onClick={() => listClickHandler()}
             >
                 <Icon name='list' />

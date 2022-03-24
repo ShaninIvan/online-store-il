@@ -1,16 +1,20 @@
 @import '/src/config/variables';
 
 .view {
+    height: 50px;
     display: flex;
+    align-items: center;
+    margin-left: 20px;
 }
 
-.icon {
+.mode {
     width: 32px;
     height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #8c8c8c;
+    font-size: 26px;
     cursor: pointer;
 
     &.active {
@@ -18,8 +22,8 @@
         cursor: auto;
     }
 
-    &:nth-child(0) {
-        margin-right: 10px;
+    &:last-child {
+        margin-left: 10px;
     }
 }
 
