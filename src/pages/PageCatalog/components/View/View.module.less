@@ -1,0 +1,30 @@
+@import '/src/config/variables';
+
+.view {
+    display: flex;
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8c8c8c;
+    cursor: pointer;
+
+    &.active {
+        color: #000000;
+        cursor: auto;
+    }
+
+    &:nth-child(0) {
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}

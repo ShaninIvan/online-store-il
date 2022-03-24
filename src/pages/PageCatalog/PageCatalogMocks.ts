@@ -46,3 +46,33 @@ export const pageCatalogPrices: PriceType[] = [
         test: (price: number) => price >= 7000,
     },
 ]
+
+export const pageCatalogSortOptions = [
+    {
+        name: 'Position',
+        value: 'position',
+    },
+    {
+        name: 'Name',
+        value: 'name',
+    },
+    {
+        name: 'Price',
+        value: 'price',
+    },
+]
+
+export const pageCatalogPerpageOption = [
+    {
+        name: '5 per page',
+        value: 5,
+    },
+    {
+        name: '15 per page',
+        value: 15,
+    },
+    {
+        name: '25 per page',
+        value: 25,
+    },
+]

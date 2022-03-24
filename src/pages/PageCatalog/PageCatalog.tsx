@@ -8,6 +8,9 @@ import getCatalogColorsMap from 'services/Catalog/getCatalogColorsMap'
 import getCatalogPricesMap from 'services/Catalog/getCatalogPricesMap'
 import getRouteLineByCategory from 'services/RouteLine/getRouteLineByCategory'
 import { CategoryType } from 'types/CategoryType'
+import { PageCatalogBackButton } from './components/BackButton/PageCatalogBackButton'
+import { PageCatalogItemsCount } from './components/ItemsCount/PageCatalogItemsCount'
+import { PageCatalogSort } from './components/Sort/PageCatalogSort'
 import styles from './PageCatalog.module.less'
 import { pageCatalogPrices } from './PageCatalogMocks'
 
@@ -50,6 +53,17 @@ export const PageCatalog: React.FC = () => {
             <h2>
                 {currentCategory.name} ({productsCount})
             </h2>
+
+            <div className={styles.top}>
+                <PageCatalogBackButton />
+                <PageCatalogItemsCount start={0} end={10} total={20} />
+                {/* <PageCatalogSort /> */}
+            </div>
+
+            <div className={styles.bottom}>
+                <div className={styles.filters}></div>
+                <div className={styles.cards}></div>
+            </div>
         </div>
     )
 }
