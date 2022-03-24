@@ -1,9 +1,8 @@
 import getCategoryChildIds from 'services/Categories/getCategoryChildIds'
 import getProductsByCategoryIds from 'services/Products/getProductsByCategoryIds'
+import { CatalogCategoriesMapType } from 'types/CatalogType'
 import { CategoryType } from 'types/CategoryType'
 import { ProductType } from 'types/ProductType'
-
-type CatalogCategoriesMapType = Map<CategoryType, ProductType[]>
 
 const getCatalogCategoriesMap = (
     maincategory: CategoryType,

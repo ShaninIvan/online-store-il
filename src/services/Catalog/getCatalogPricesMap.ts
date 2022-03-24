@@ -1,14 +1,7 @@
+import { CatalogPricesMapType, CatalogPriceType } from 'types/CatalogType'
 import { ProductType } from 'types/ProductType'
 
-type PriceType = {
-    title: string
-    code: string
-    test: (price: number) => boolean
-}
-
-type CatalogPricesMapType = Map<PriceType, ProductType[]>
-
-const getCatalogPricesMap = (products: ProductType[], prices: PriceType[]) => {
+const getCatalogPricesMap = (products: ProductType[], prices: CatalogPriceType[]) => {
     const pricesMap: CatalogPricesMapType = new Map()
 
     prices.forEach((price) => {

@@ -1,3 +1,5 @@
+import { CatalogParamsShowType, CatalogParamsSortType } from 'types/CatalogType'
+
 type PriceType = {
     title: string
     code: string
@@ -47,7 +49,9 @@ export const pageCatalogPrices: PriceType[] = [
     },
 ]
 
-export const pageCatalogSortOptions = [
+type SortType = { name: string; value: CatalogParamsSortType }
+
+export const pageCatalogSortOptions: SortType[] = [
     {
         name: 'Position',
         value: 'position',
@@ -62,7 +66,9 @@ export const pageCatalogSortOptions = [
     },
 ]
 
-export const pageCatalogPerpageOption = [
+type ShowType = { name: string; value: CatalogParamsShowType }
+
+export const pageCatalogShowOption: ShowType[] = [
     {
         name: '5 per page',
         value: 5,

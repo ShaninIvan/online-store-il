@@ -1,19 +1,17 @@
 import Select from 'components/inputs/Select'
-import {
-    pageCatalogPerpageOption,
-    pageCatalogSortOptions,
-} from 'pages/PageCatalog/PageCatalogMocks'
+import { pageCatalogShowOption, pageCatalogSortOptions } from 'pages/PageCatalog/PageCatalogMocks'
 import React from 'react'
+import { CatalogParamsShowType, CatalogParamsSortType } from 'types/CatalogType'
 import styles from './Selects.module.less'
 
 type PropsType = {
     sort: {
-        get: () => string
-        set: (value: string) => void
+        get: () => CatalogParamsSortType
+        set: (value: CatalogParamsSortType) => void
     }
     show: {
-        get: () => number
-        set: (value: number) => void
+        get: () => CatalogParamsShowType
+        set: (value: CatalogParamsShowType) => void
     }
 }
 
@@ -27,7 +25,7 @@ export const PageCatalogSelects: React.FC<PropsType> = ({ sort, show }) => {
                 title='Sort by'
             />
             <Select
-                options={pageCatalogPerpageOption}
+                options={pageCatalogShowOption}
                 callback={show.set}
                 value={show.get()}
                 title='Show'

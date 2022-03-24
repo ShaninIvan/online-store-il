@@ -1,6 +1,5 @@
+import { CatalogColorsMapType } from 'types/CatalogType'
 import { ProductType } from 'types/ProductType'
-
-type CatalogColorsMapType = Map<ProductType['color'], ProductType[]>
 
 const colors: ProductType['color'][] = ['black', 'blue', 'gold', 'gray', 'red', 'silver', 'white']
 

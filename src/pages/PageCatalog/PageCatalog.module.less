@@ -22,6 +22,43 @@
     display: flex;
 }
 
+.bottom {
+    height: 100%;
+    display: flex;
+}
+
+.left {
+    width: 234px;
+    height: 100%;
+}
+
+.filters {
+    width: 100%;
+    height: auto;
+    padding: 20px 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f7ff;
+
+    button {
+        width: 200px;
+        height: 37px;
+    }
+
+    &__top {
+        height: 100px;
+
+        h4 {
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+    }
+}
+
 @media screen and (max-width: @maxwidth-tablet) {
 }
 

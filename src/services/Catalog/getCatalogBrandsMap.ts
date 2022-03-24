@@ -1,7 +1,6 @@
 import { BrandType } from 'types/BrandType'
+import { CatalogBrandsMapType } from 'types/CatalogType'
 import { ProductType } from 'types/ProductType'
-
-type CatalogBrandsMapType = Map<BrandType, ProductType[]>
 
 const getCatalogBrandsMap = (products: ProductType[], brands: BrandType[]) => {
     const brandsMap: CatalogBrandsMapType = new Map()

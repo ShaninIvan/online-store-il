@@ -1,10 +1,11 @@
 import Icon from 'components/parts/Icon'
 import React from 'react'
+import { CatalogParamsViewType } from 'types/CatalogType'
 import styles from './View.module.less'
 
 type PropsType = {
-    current: 'grid' | 'list'
-    changeHandler: (mode: 'grid' | 'list') => void
+    current: CatalogParamsViewType
+    changeHandler: (mode: CatalogParamsViewType) => void
 }
 
 export const PageCatalogView: React.FC<PropsType> = ({ current, changeHandler }) => {
