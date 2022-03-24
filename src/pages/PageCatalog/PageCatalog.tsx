@@ -14,6 +14,7 @@ import { CategoryType } from 'types/CategoryType'
 import { PageCatalogBackButton } from './components/BackButton/PageCatalogBackButton'
 import { PageCatalogCategoryFilter } from './components/CategoryFilter/PageCatalogCategoryFilter'
 import { PageCatalogItemsCount } from './components/ItemsCount/PageCatalogItemsCount'
+import { PageCatalogPriceFilter } from './components/PriceFilter/PageCatalogPriceFilter'
 import { PageCatalogSelects } from './components/Selects/PageCatalogSelects'
 import { PageCatalogView } from './components/View/PageCatalogView'
 import styles from './PageCatalog.module.less'
@@ -66,7 +67,6 @@ export const PageCatalog: React.FC = () => {
     const params = useCatalogParams()
 
     // VISIBLE DATA
-    console.log(fullProductList)
 
     const productsCount = fullProductList.length
     const routeLine = getRouteLineByCategory(currentCategory, categories)
@@ -114,6 +114,7 @@ export const PageCatalog: React.FC = () => {
                                 categoriesMap={categoriesMap}
                                 currentCategory={currentCategory}
                             />
+                            <PageCatalogPriceFilter pricesMap={pricesMap} />
 
                             <Button preset='blue-white'>Apply Filters({filtersCount})</Button>
                         </div>
