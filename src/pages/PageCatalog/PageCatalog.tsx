@@ -65,7 +65,6 @@ export const PageCatalog: React.FC = () => {
         () => categoriesMap.get(currentCategory) ?? [],
         [categoriesMap, currentCategory]
     )
-
     const pricesMap = useMemo(
         () => getCatalogPricesMap(fullProductList, pageCatalogPrices),
         [fullProductList]
@@ -117,8 +116,8 @@ export const PageCatalog: React.FC = () => {
 
     const sort = paramSort.get()
     const sortedProductList = getCatalogSortedProducts(productListIntersection, sort)
-    // VISIBLE DATA
 
+    // VISIBLE DATA
     const productsCount = fullProductList.length
     const routeLine = getRouteLineByCategory(currentCategory, categories)
     const filtersCount = Object.values(filters).reduce((acc, value) => {
@@ -142,8 +141,16 @@ export const PageCatalog: React.FC = () => {
     }
 
     const clearFiltersClickHandler = () => {
-        setFilters(initialFilters)
-        updateFilters(initialFilters)
+        const cleanParams = {
+            category: [],
+            price: [],
+            color: [],
+            name: '',
+            brand: [],
+        }
+
+        setFilters(cleanParams)
+        updateFilters(cleanParams)
     }
 
     return (
