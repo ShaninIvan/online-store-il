@@ -13,7 +13,7 @@ import { RouteObject } from 'react-router-dom'
 export type PATHS =
     | '/'
     | '/catalog/:id'
-    | '/product/:id/about'
+    | '/product/:id'
     | '/product/:id/details'
     | '/product/:id/specs'
     | '/contacts'

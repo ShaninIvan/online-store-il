@@ -92,6 +92,7 @@ const useCatalogParams = () => {
     const paramCategory = {
         get: (): CatalogParamsFiltersType['category'] => {
             const data = searchParams.getAll(KEYS.category)
+
             if (!data) return []
             return data.map((item) => Number(item))
         },

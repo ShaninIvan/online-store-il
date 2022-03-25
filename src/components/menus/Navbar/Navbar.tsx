@@ -60,7 +60,7 @@ export const Navbar: React.FC = () => {
     }
 
     const openProduct = (id: number) => {
-        navigate(getPath('/product/:id/about', { id: id }))
+        navigate(getPath('/product/:id', { id: id }))
         dispatch(navResetMenu())
     }
 

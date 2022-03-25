@@ -4,6 +4,7 @@ import useAppSelector from 'hooks/useAppSelector'
 import useCatalogParams from 'hooks/useCatalogParams'
 import React, { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import applyCatalogCategoryFilter from 'services/Catalog/applyCatalogCategoryFilter'
 import getCatalogBrandsMap from 'services/Catalog/getCatalogBrandsMap'
 import getCatalogCategoriesMap from 'services/Catalog/getCatalogCategoriesMap'
 import getCatalogColorsMap from 'services/Catalog/getCatalogColorsMap'
@@ -12,6 +13,7 @@ import getRouteLineByCategory from 'services/RouteLine/getRouteLineByCategory'
 import { CatalogParamsFiltersType } from 'types/CatalogType'
 import { CategoryType } from 'types/CategoryType'
 import { PageCatalogBackButton } from './components/BackButton/PageCatalogBackButton'
+import { PageCatalogCards } from './components/Cards/PageCatalogCards'
 import { PageCatalogCategoryFilter } from './components/CategoryFilter/PageCatalogCategoryFilter'
 import { PageCatalogColorFilter } from './components/ColorFilter/PageCatalogColorFilter'
 import { PageCatalogItemsCount } from './components/ItemsCount/PageCatalogItemsCount'
@@ -83,7 +85,11 @@ export const PageCatalog: React.FC = () => {
         brand: paramBrand.get(),
     })
 
-    // APPLY SORT & FILTER
+    // APPLY FILTER & SORT
+    const productListByCategory =
+        paramCategory.get().length === 0
+            ? fullProductList
+            : applyCatalogCategoryFilter(categoriesMap, paramCategory.get())
 
     // VISIBLE DATA
 
@@ -165,7 +171,12 @@ export const PageCatalog: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className={styles.right}></div>
+                    <div className={styles.right}>
+                        <PageCatalogCards
+                            productList={productListByCategory}
+                            mode={paramView.get()}
+                        />
+                    </div>
                 </div>
             </div>
         </CatalogFilterContext.Provider>
