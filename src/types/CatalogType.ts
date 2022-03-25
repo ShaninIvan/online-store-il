@@ -19,7 +19,7 @@ export type CatalogParamsViewType = 'grid' | 'list'
 export type CatalogParamsFiltersType = {
     category: number[]
     price: CatalogPriceType['code'][]
-    color: ProductType['color'][]
+    color: string[]
     name: string
-    brands: number[]
+    brand: number[]
 }

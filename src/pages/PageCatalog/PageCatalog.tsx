@@ -25,7 +25,7 @@ const initialFilters: CatalogParamsFiltersType = {
     price: [],
     color: [],
     name: '',
-    brands: [],
+    brand: [],
 }
 
 export const CatalogFilterContext = React.createContext({
@@ -47,8 +47,6 @@ export const PageCatalog: React.FC = () => {
     const { brands } = useAppSelector((state) => state.brands)
     const { products } = useAppSelector((state) => state.products)
 
-    const [filters, setFilters] = useState<CatalogParamsFiltersType>(initialFilters)
-
     const currentCategory =
         categories.find((category) => category.id === Number(id)) ?? ourDealsCategory
 
@@ -64,7 +62,27 @@ export const PageCatalog: React.FC = () => {
     const colorsMap = useMemo(() => getCatalogColorsMap(products), [products])
 
     // SEARCH PARAMS
-    const params = useCatalogParams()
+    const {
+        paramSort,
+        paramShow,
+        paramView,
+        paramCategory,
+        paramPrice,
+        paramColor,
+        paramName,
+        paramBrand,
+        updateFilters,
+    } = useCatalogParams()
+
+    const [filters, setFilters] = useState<CatalogParamsFiltersType>({
+        category: paramCategory.get(),
+        price: paramPrice.get(),
+        color: paramColor.get(),
+        name: paramName.get(),
+        brand: paramBrand.get(),
+    })
+
+    // APPLY SORT & FILTER
 
     // VISIBLE DATA
 
@@ -76,6 +94,24 @@ export const PageCatalog: React.FC = () => {
         }
         return acc + 0
     }, 0)
+
+    // HANDLERS
+    const applyFiltersClickHandler = () => {
+        const params: CatalogParamsFiltersType = {
+            category: filters.category,
+            price: filters.price,
+            color: filters.color,
+            name: filters.name,
+            brand: filters.brand,
+        }
+
+        updateFilters(params)
+    }
+
+    const clearFiltersClickHandler = () => {
+        setFilters(initialFilters)
+        applyFiltersClickHandler()
+    }
 
     return (
         <CatalogFilterContext.Provider value={{ filters, setFilters }}>
@@ -96,8 +132,8 @@ export const PageCatalog: React.FC = () => {
                 <div className={styles.top}>
                     <PageCatalogBackButton />
                     <PageCatalogItemsCount start={0} end={10} total={20} />
-                    <PageCatalogSelects sort={params.sort} show={params.show} />
-                    <PageCatalogView current={params.view.get()} changeHandler={params.view.set} />
+                    <PageCatalogSelects sort={paramSort} show={paramShow} />
+                    <PageCatalogView current={paramView.get()} changeHandler={paramView.set} />
                 </div>
 
                 <div className={styles.bottom}>
@@ -106,7 +142,12 @@ export const PageCatalog: React.FC = () => {
                             <div className={styles.filters__top}>
                                 <h4>Filters</h4>
                                 <div className={styles.clear}>
-                                    <Button preset='transparent-gray'>Clear Filter</Button>
+                                    <Button
+                                        preset='transparent-gray'
+                                        onClick={() => clearFiltersClickHandler()}
+                                    >
+                                        Clear Filter
+                                    </Button>
                                 </div>
                             </div>
 
@@ -116,7 +157,9 @@ export const PageCatalog: React.FC = () => {
                             />
                             <PageCatalogPriceFilter pricesMap={pricesMap} />
 
-                            <Button preset='blue-white'>Apply Filters({filtersCount})</Button>
+                            <Button preset='blue-white' onClick={() => applyFiltersClickHandler()}>
+                                Apply Filters({filtersCount})
+                            </Button>
                         </div>
                     </div>
 
