@@ -13,6 +13,7 @@ import { CatalogParamsFiltersType } from 'types/CatalogType'
 import { CategoryType } from 'types/CategoryType'
 import { PageCatalogBackButton } from './components/BackButton/PageCatalogBackButton'
 import { PageCatalogCategoryFilter } from './components/CategoryFilter/PageCatalogCategoryFilter'
+import { PageCatalogColorFilter } from './components/ColorFilter/PageCatalogColorFilter'
 import { PageCatalogItemsCount } from './components/ItemsCount/PageCatalogItemsCount'
 import { PageCatalogPriceFilter } from './components/PriceFilter/PageCatalogPriceFilter'
 import { PageCatalogSelects } from './components/Selects/PageCatalogSelects'
@@ -156,6 +157,7 @@ export const PageCatalog: React.FC = () => {
                                 currentCategory={currentCategory}
                             />
                             <PageCatalogPriceFilter pricesMap={pricesMap} />
+                            <PageCatalogColorFilter colorsMap={colorsMap} />
 
                             <Button preset='blue-white' onClick={() => applyFiltersClickHandler()}>
                                 Apply Filters({filtersCount})
