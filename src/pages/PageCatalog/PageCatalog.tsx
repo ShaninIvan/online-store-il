@@ -5,7 +5,8 @@ import useCatalogParams from 'hooks/useCatalogParams'
 import React, { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import applyCatalogCategoryFilter from 'services/Catalog/applyCatalogCategoryFilter'
-import applyCataogPriceFilter from 'services/Catalog/applyCataogPriceFilter'
+import applyCatalogColorFilter from 'services/Catalog/applyCatalogColorFilter'
+import applyCataogPriceFilter from 'services/Catalog/applyCatalogPriceFilter'
 import getCatalogBrandsMap from 'services/Catalog/getCatalogBrandsMap'
 import getCatalogCategoriesMap from 'services/Catalog/getCatalogCategoriesMap'
 import getCatalogColorsMap from 'services/Catalog/getCatalogColorsMap'
@@ -109,9 +110,14 @@ export const PageCatalog: React.FC = () => {
             ? productListByCategory
             : applyCataogPriceFilter(pricesMap, priceList)
 
+    const colorList = paramColor.get()
+    const productListByColor =
+        colorList.length === 0 ? productListByPrice : applyCatalogColorFilter(colorsMap, colorList)
+
     const productListIntersection = getProductsIntersection(
         productListByCategory,
-        productListByPrice
+        productListByPrice,
+        productListByColor
     )
 
     const sort = paramSort.get()
