@@ -5,10 +5,13 @@ import useCatalogParams from 'hooks/useCatalogParams'
 import React, { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import applyCatalogCategoryFilter from 'services/Catalog/applyCatalogCategoryFilter'
+import applyCataogPriceFilter from 'services/Catalog/applyCataogPriceFilter'
 import getCatalogBrandsMap from 'services/Catalog/getCatalogBrandsMap'
 import getCatalogCategoriesMap from 'services/Catalog/getCatalogCategoriesMap'
 import getCatalogColorsMap from 'services/Catalog/getCatalogColorsMap'
 import getCatalogPricesMap from 'services/Catalog/getCatalogPricesMap'
+import getCatalogSortedProducts from 'services/Catalog/getCatalogSortedProducts'
+import getProductsIntersection from 'services/Products/getProductsIntersection'
 import getRouteLineByCategory from 'services/RouteLine/getRouteLineByCategory'
 import { CatalogParamsFiltersType } from 'types/CatalogType'
 import { CategoryType } from 'types/CategoryType'
@@ -58,11 +61,20 @@ export const PageCatalog: React.FC = () => {
         () => getCatalogCategoriesMap(currentCategory, categories, products),
         [categories, currentCategory, products]
     )
-    const fullProductList = categoriesMap.get(currentCategory) ?? []
+    const fullProductList = useMemo(
+        () => categoriesMap.get(currentCategory) ?? [],
+        [categoriesMap, currentCategory]
+    )
 
-    const pricesMap = useMemo(() => getCatalogPricesMap(products, pageCatalogPrices), [products])
-    const brandsMap = useMemo(() => getCatalogBrandsMap(products, brands), [products, brands])
-    const colorsMap = useMemo(() => getCatalogColorsMap(products), [products])
+    const pricesMap = useMemo(
+        () => getCatalogPricesMap(fullProductList, pageCatalogPrices),
+        [fullProductList]
+    )
+    const brandsMap = useMemo(
+        () => getCatalogBrandsMap(fullProductList, brands),
+        [fullProductList, brands]
+    )
+    const colorsMap = useMemo(() => getCatalogColorsMap(fullProductList), [fullProductList])
 
     // SEARCH PARAMS
     const {
@@ -86,11 +98,25 @@ export const PageCatalog: React.FC = () => {
     })
 
     // APPLY FILTER & SORT
+    const categoryList = paramCategory.get()
     const productListByCategory =
-        paramCategory.get().length === 0
+        categoryList.length === 0
             ? fullProductList
-            : applyCatalogCategoryFilter(categoriesMap, paramCategory.get())
+            : applyCatalogCategoryFilter(categoriesMap, categoryList)
 
+    const priceList = paramPrice.get()
+    const productListByPrice =
+        priceList.length === 0
+            ? productListByCategory
+            : applyCataogPriceFilter(pricesMap, priceList)
+
+    const productListIntersection = getProductsIntersection(
+        productListByCategory,
+        productListByPrice
+    )
+
+    const sort = paramSort.get()
+    const sortedProductList = getCatalogSortedProducts(productListIntersection, sort)
     // VISIBLE DATA
 
     const productsCount = fullProductList.length
@@ -172,10 +198,7 @@ export const PageCatalog: React.FC = () => {
                     </div>
 
                     <div className={styles.right}>
-                        <PageCatalogCards
-                            productList={productListByCategory}
-                            mode={paramView.get()}
-                        />
+                        <PageCatalogCards productList={sortedProductList} mode={paramView.get()} />
                     </div>
                 </div>
             </div>

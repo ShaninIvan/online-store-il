@@ -6,11 +6,11 @@ const getCatalogSortedProducts = (products: ProductType[], sort: CatalogParamsSo
         case 'position':
             return products.sort((a, b) => a.id - b.id)
         case 'name':
-            return products.sort((a, b) => a.name.localeCompare(b.name))
+            return products.sort((a, b) => b.description.localeCompare(a.description))
         case 'price':
             return products.sort((a, b) => a.price - b.price)
         default:
-            break
+            return products
     }
 }
 
