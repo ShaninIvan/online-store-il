@@ -32,7 +32,7 @@ export const PageCatalogPriceFilter: React.FC<PropsType> = ({ pricesMap }) => {
     return (
         <div className={styles.pricefilter}>
             <div className={styles.title} onClick={() => setOpened(!opened)}>
-                <h5>Category</h5>
+                <h5>Price</h5>
                 <div className={`${styles.arrow} ${opened && styles.opened}`}>
                     <Icon name='arrowdown' />
                 </div>

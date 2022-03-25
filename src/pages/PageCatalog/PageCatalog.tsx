@@ -110,7 +110,7 @@ export const PageCatalog: React.FC = () => {
 
     const clearFiltersClickHandler = () => {
         setFilters(initialFilters)
-        applyFiltersClickHandler()
+        updateFilters(initialFilters)
     }
 
     return (
