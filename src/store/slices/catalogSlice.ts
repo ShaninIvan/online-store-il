@@ -26,6 +26,14 @@ const initialState: CatalogStateType = {
     },
 }
 
+const isEqual = <T>(a: T, b: T): boolean => {
+    if (Array.isArray(a) && Array.isArray(b)) {
+        return a.length === b.length && a.every((value, index) => b[index] === value)
+    }
+
+    return a === b
+}
+
 const catalogSlice = createSlice({
     name: 'catalog',
     initialState: initialState,
@@ -38,11 +46,7 @@ const catalogSlice = createSlice({
                 if (!state.potential[key]) continue
 
                 const value = action.payload[key]
-                if (
-                    state.potential[key] &&
-                    JSON.stringify(state.potential[key]) !== JSON.stringify(value)
-                )
-                    state.potential[key] = value
+                if (!isEqual(state.potential[key], value)) state.potential[key] = value
             }
         },
         setCatalogActualParams: (
@@ -54,7 +58,7 @@ const catalogSlice = createSlice({
 
                 const value = action.payload[key]
 
-                if (JSON.stringify(state.actual[key]) !== JSON.stringify(value)) {
+                if (!isEqual(state.actual[key], value)) {
                     state.actual[key] = value
                     state.potential[key] = value
                 }
