@@ -1,32 +1,36 @@
 import Icon from 'components/parts/Icon'
+import useAppSelector from 'hooks/useAppSelector'
+import useCatalogURLParams from 'hooks/useCatalogURLParams'
 import React from 'react'
 import { CatalogParamsViewType } from 'types/CatalogType'
 import styles from './View.module.less'
 
-type PropsType = {
-    current: CatalogParamsViewType
-    changeHandler: (mode: CatalogParamsViewType) => void
-}
+export const PageCatalogView: React.FC = () => {
+    const { setURLParams } = useCatalogURLParams()
+    const actual = useAppSelector((state) => state.catalog.actual)
 
-export const PageCatalogView: React.FC<PropsType> = ({ current, changeHandler }) => {
+    const changeViewHandler = (value: CatalogParamsViewType) => {
+        setURLParams({ ...actual, view: value })
+    }
+
     const gridClickHandler = () => {
-        if (current !== 'grid') changeHandler('grid')
+        if (actual.view !== 'grid') changeViewHandler('grid')
     }
 
     const listClickHandler = () => {
-        if (current !== 'list') changeHandler('list')
+        if (actual.view !== 'list') changeViewHandler('list')
     }
 
     return (
         <div className={styles.view}>
             <div
-                className={`${styles.mode} ${current === 'grid' && styles.active}`}
+                className={`${styles.mode} ${actual.view === 'grid' && styles.active}`}
                 onClick={() => gridClickHandler()}
             >
                 <Icon name='grid' />
             </div>
             <div
-                className={`${styles.mode} ${current === 'list' && styles.active}`}
+                className={`${styles.mode} ${actual.view === 'list' && styles.active}`}
                 onClick={() => listClickHandler()}
             >
                 <Icon name='list' />

@@ -1,6 +1,8 @@
 import Icon from 'components/parts/Icon'
-import { CatalogFilterContext } from 'pages/PageCatalog/PageCatalog'
-import React, { useContext, useState } from 'react'
+import useAppDispatch from 'hooks/useAppDispatch'
+import useAppSelector from 'hooks/useAppSelector'
+import React, { useState } from 'react'
+import { setCatalogPotentialParams } from 'store/slices/catalogSlice'
 import { CatalogCategoriesMapType } from 'types/CatalogType'
 import { CategoryType } from 'types/CategoryType'
 import styles from './CategoryFilter.module.less'
@@ -16,12 +18,14 @@ export const PageCatalogCategoryFilter: React.FC<PropsType> = ({
 }) => {
     const [opened, setOpened] = useState<boolean>(true)
 
-    const { filters, setFilters } = useContext(CatalogFilterContext)
+    const dispatch = useAppDispatch()
+
+    const filter = useAppSelector((state) => state.catalog.potential.category)
 
     const categories = Array.from(categoriesMap.keys())
 
     const itemClickHandler = (categoryId: number) => {
-        const arr = filters.category
+        const arr = [...filter]
 
         const index = arr.findIndex((id) => id === categoryId)
 
@@ -31,7 +35,7 @@ export const PageCatalogCategoryFilter: React.FC<PropsType> = ({
             arr.push(categoryId)
         }
 
-        setFilters({ ...filters, category: arr })
+        dispatch(setCatalogPotentialParams({ category: arr }))
     }
 
     return (
@@ -54,7 +58,7 @@ export const PageCatalogCategoryFilter: React.FC<PropsType> = ({
                         <div
                             key={category.id}
                             className={`${styles.item} ${
-                                filters.category.includes(category.id) && styles.selected
+                                filter.includes(category.id) && styles.selected
                             }`}
                             onClick={() => itemClickHandler(category.id)}
                         >

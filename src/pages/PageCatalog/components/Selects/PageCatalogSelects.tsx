@@ -1,33 +1,35 @@
 import Select from 'components/inputs/Select'
+import useAppSelector from 'hooks/useAppSelector'
+import useCatalogURLParams from 'hooks/useCatalogURLParams'
 import { pageCatalogShowOption, pageCatalogSortOptions } from 'pages/PageCatalog/PageCatalogMocks'
 import React from 'react'
 import { CatalogParamsShowType, CatalogParamsSortType } from 'types/CatalogType'
 import styles from './Selects.module.less'
 
-type PropsType = {
-    sort: {
-        get: () => CatalogParamsSortType
-        set: (value: CatalogParamsSortType) => void
-    }
-    show: {
-        get: () => CatalogParamsShowType
-        set: (value: CatalogParamsShowType) => void
-    }
-}
+export const PageCatalogSelects: React.FC = () => {
+    const { setURLParams } = useCatalogURLParams()
+    const actualParams = useAppSelector((state) => state.catalog.actual)
 
-export const PageCatalogSelects: React.FC<PropsType> = ({ sort, show }) => {
+    const selectSortHandler = (value: CatalogParamsSortType) => {
+        setURLParams({ ...actualParams, sort: value })
+    }
+
+    const selectShowHandler = (value: CatalogParamsShowType) => {
+        setURLParams({ ...actualParams, show: value })
+    }
+
     return (
         <div className={styles.selects}>
             <Select
                 options={pageCatalogSortOptions}
-                callback={sort.set}
-                value={sort.get()}
+                callback={selectSortHandler}
+                value={actualParams.sort}
                 title='Sort by'
             />
             <Select
                 options={pageCatalogShowOption}
-                callback={show.set}
-                value={show.get()}
+                callback={selectShowHandler}
+                value={actualParams.show}
                 title='Show'
             />
         </div>

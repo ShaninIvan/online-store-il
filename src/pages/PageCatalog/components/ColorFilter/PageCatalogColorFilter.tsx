@@ -1,6 +1,8 @@
 import Icon from 'components/parts/Icon'
-import { CatalogFilterContext } from 'pages/PageCatalog/PageCatalog'
-import React, { useContext, useState } from 'react'
+import useAppDispatch from 'hooks/useAppDispatch'
+import useAppSelector from 'hooks/useAppSelector'
+import React, { useState } from 'react'
+import { setCatalogPotentialParams } from 'store/slices/catalogSlice'
 import { CatalogColorsMapType } from 'types/CatalogType'
 import styles from './ColorFilter.module.less'
 
@@ -11,12 +13,14 @@ type PropsType = {
 export const PageCatalogColorFilter: React.FC<PropsType> = ({ colorsMap }) => {
     const [opened, setOpened] = useState<boolean>(true)
 
-    const { filters, setFilters } = useContext(CatalogFilterContext)
+    const dispatch = useAppDispatch()
+
+    const filter = useAppSelector((state) => state.catalog.potential.color)
 
     const colors = Array.from(colorsMap.keys())
 
     const itemClickHandler = (colorCode: string) => {
-        const arr = filters.color
+        const arr = [...filter]
 
         const index = arr.findIndex((color) => color === colorCode)
 
@@ -26,7 +30,7 @@ export const PageCatalogColorFilter: React.FC<PropsType> = ({ colorsMap }) => {
             arr.push(colorCode)
         }
 
-        setFilters({ ...filters, color: arr })
+        dispatch(setCatalogPotentialParams({ color: arr }))
     }
 
     return (
@@ -47,7 +51,7 @@ export const PageCatalogColorFilter: React.FC<PropsType> = ({ colorsMap }) => {
                         <div
                             key={index}
                             className={`${styles.item} ${styles[color]} ${
-                                filters.color.includes(color) && styles.selected
+                                filter.includes(color) && styles.selected
                             }`}
                             onClick={() => itemClickHandler(color)}
                         ></div>

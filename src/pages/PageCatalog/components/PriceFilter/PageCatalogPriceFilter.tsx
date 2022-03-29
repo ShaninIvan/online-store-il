@@ -1,6 +1,8 @@
 import Icon from 'components/parts/Icon'
-import { CatalogFilterContext } from 'pages/PageCatalog/PageCatalog'
-import React, { useContext, useState } from 'react'
+import useAppDispatch from 'hooks/useAppDispatch'
+import useAppSelector from 'hooks/useAppSelector'
+import React, { useState } from 'react'
+import { setCatalogPotentialParams } from 'store/slices/catalogSlice'
 import { CatalogPricesMapType } from 'types/CatalogType'
 import styles from './PriceFilter.module.less'
 
@@ -11,12 +13,13 @@ type PropsType = {
 export const PageCatalogPriceFilter: React.FC<PropsType> = ({ pricesMap }) => {
     const [opened, setOpened] = useState<boolean>(true)
 
-    const { filters, setFilters } = useContext(CatalogFilterContext)
+    const dispatch = useAppDispatch()
+    const filter = useAppSelector((state) => state.catalog.potential.price)
 
     const prices = Array.from(pricesMap.keys())
 
     const itemClickHandler = (pricecode: string) => {
-        const arr = filters.price
+        const arr = [...filter]
 
         const index = arr.findIndex((code) => code === pricecode)
 
@@ -26,7 +29,7 @@ export const PageCatalogPriceFilter: React.FC<PropsType> = ({ pricesMap }) => {
             arr.push(pricecode)
         }
 
-        setFilters({ ...filters, price: arr })
+        dispatch(setCatalogPotentialParams({ price: arr }))
     }
 
     return (
@@ -47,7 +50,7 @@ export const PageCatalogPriceFilter: React.FC<PropsType> = ({ pricesMap }) => {
                         <div
                             key={price.code}
                             className={`${styles.item} ${
-                                filters.price.includes(price.code) && styles.selected
+                                filter.includes(price.code) && styles.selected
                             }`}
                             onClick={() => itemClickHandler(price.code)}
                         >

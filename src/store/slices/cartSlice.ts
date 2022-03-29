@@ -9,6 +9,7 @@ const initialState: CartStateType = {
     error: null,
 }
 
+// TODO: Сделать умный action
 export const cartRequest = createAsyncThunk(
     'cartSlice/load',
     async (params: AxiosRequestConfig, { rejectWithValue, getState }) => {
@@ -21,7 +22,11 @@ export const cartRequest = createAsyncThunk(
 
             return normalize.data
         } catch (error: any) {
-            return rejectWithValue(error.response.data.error.message ?? '')
+            return rejectWithValue(
+                axios.isAxiosError(error)
+                    ? error?.response?.data.error.message
+                    : 'cart request error'
+            )
         }
     }
 )

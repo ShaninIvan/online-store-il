@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import styles from './Select.module.less'
 
 type PropsType<T> = {
@@ -12,19 +12,19 @@ type PropsType<T> = {
 }
 
 export function Select<T>({ options, title, callback, value }: PropsType<T>): React.ReactElement {
-    let initial = { value: options[0].value, name: options[0].name }
+    let selected = useRef({ value: options[0].value, name: options[0].name })
 
     if (value) {
         const chosenInitial = options.find((option) => option.value === value)
-        if (chosenInitial) initial = chosenInitial
+
+        if (chosenInitial) selected.current = chosenInitial
     }
 
-    const [chosen, setChosen] = useState<{ value: T; name: string }>(initial)
     const [opened, setOpened] = useState<boolean>(false)
 
     const choseOption = (option: { value: T; name: string }) => {
         callback(option.value)
-        setChosen(option)
+        selected.current = option
         setOpened(false)
     }
 
@@ -32,7 +32,7 @@ export function Select<T>({ options, title, callback, value }: PropsType<T>): Re
         <div className={`${styles.select} ${opened && styles.opened}`}>
             <div className={styles.label} onClick={() => setOpened(!opened)}>
                 <div className={styles.title}>{title}: </div>
-                <div className={styles.chosen}>{chosen.name}</div>
+                <div className={styles.chosen}>{selected.current.name}</div>
                 <div className={styles.arrow}>
                     <span className='icon-arrowdown'></span>
                 </div>
