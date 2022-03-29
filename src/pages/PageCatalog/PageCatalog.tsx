@@ -17,13 +17,16 @@ import { selectorCatalogMaps } from 'store/selectors/selectorCatalogMaps'
 import { setCatalogActualParams } from 'store/slices/catalogSlice'
 import { CatalogParamsFiltersType } from 'types/CatalogType'
 import { PageCatalogBackButton } from './components/BackButton/PageCatalogBackButton'
+import { PageCatalogBrands } from './components/Brands/PageCatalogBrands'
 import { PageCatalogCards } from './components/Cards/PageCatalogCards'
 import { PageCatalogCategoryFilter } from './components/CategoryFilter/PageCatalogCategoryFilter'
 import { PageCatalogColorFilter } from './components/ColorFilter/PageCatalogColorFilter'
+import { PageCatalogCompare } from './components/Compare/PageCatalogCompare'
 import { PageCatalogItemsCount } from './components/ItemsCount/PageCatalogItemsCount'
 import { PageCatalogPriceFilter } from './components/PriceFilter/PageCatalogPriceFilter'
 import { PageCatalogSelects } from './components/Selects/PageCatalogSelects'
 import { PageCatalogView } from './components/View/PageCatalogView'
+import { PageCatalogWish } from './components/Wish/PageCatalogWish'
 import styles from './PageCatalog.module.less'
 
 export const PageCatalog: React.FC = () => {
@@ -138,6 +141,16 @@ export const PageCatalog: React.FC = () => {
                             Apply Filters({filtersCount})
                         </Button>
                     </div>
+
+                    <PageCatalogBrands brandsMap={brandsMap} />
+                    <PageCatalogCompare />
+                    <PageCatalogWish />
+                    <aside>
+                        <img
+                            src='https://i.onthe.io/smngoz1vqjkc34hoqg.a001bda0.jpg'
+                            alt='noblechairs'
+                        />
+                    </aside>
                 </div>
 
                 <div className={styles.right}>
