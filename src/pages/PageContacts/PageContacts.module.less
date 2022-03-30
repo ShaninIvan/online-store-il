@@ -9,7 +9,7 @@
     }
 }
 
-.grid {
+.contaiter {
     width: 100%;
     display: grid;
     grid-template-rows: 60px 1fr;
@@ -83,7 +83,68 @@
 }
 
 @media screen and (max-width: @maxwidth-tablet) {
+    .pagecontacts {
+        h2 {
+            font-size: 18px;
+            margin: 13px 0;
+        }
+    }
+
+    .contaiter {
+        grid-template-rows: auto;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 'text text' 'form info';
+    }
+
+    .text {
+        font-size: 12px;
+    }
+
+    .form {
+        input {
+            width: 345px;
+        }
+
+        button {
+            width: 133px;
+            height: 38px;
+        }
+    }
+
+    .info {
+        width: 345px;
+        height: 325px;
+    }
+
+    .info__title {
+        font-size: 14px;
+    }
+
+    .info__content {
+        font-size: 11px;
+    }
 }
 
 @media screen and (max-width: @maxwidth-mobile) {
+    .contaiter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form {
+        width: 345px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 24px;
+
+        input {
+            width: 345px;
+        }
+
+        button {
+            align-self: flex-start;
+        }
+    }
 }

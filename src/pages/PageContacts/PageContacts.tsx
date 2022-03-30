@@ -16,18 +16,22 @@ const crumbs = [
 export const PageContacts: React.FC = () => {
     const { contacts } = useSettings()
 
+    const formSubmitHandler = (event: React.FormEvent) => {
+        event.preventDefault()
+    }
+
     return (
         <div className={styles.pagecontacts}>
             <Breadcrumbs crumbs={crumbs} />
             <h2>Contact Us</h2>
-            <div className={styles.grid}>
+            <div className={styles.contaiter}>
                 <div className={styles.text}>
                     We love hearing from you, our Shop customers. <br />
                     Please contact us and we will make sure to get back to you as soon as we
                     possibly can.
                 </div>
 
-                <form className={styles.form}>
+                <form className={styles.form} onSubmit={(event) => formSubmitHandler(event)}>
                     <TextBox
                         type='text'
                         name='name'

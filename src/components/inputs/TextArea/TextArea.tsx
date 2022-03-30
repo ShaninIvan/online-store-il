@@ -1,4 +1,4 @@
-import React, { TextareaHTMLAttributes } from 'react'
+import React from 'react'
 import styles from './TextArea.module.less'
 
 type PropsType = {
