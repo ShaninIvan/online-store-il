@@ -18,6 +18,7 @@ import {
 import { selectorCatalogMaps } from 'store/selectors/selectorCatalogMaps'
 import { setCatalogActualParams } from 'store/slices/catalogSlice'
 import { CatalogParamsFiltersType } from 'types/CatalogType'
+import { PageCatalogActiveFilters } from './components/ActiveFilters/PageCatalogActiveFilters'
 import { PageCatalogBackButton } from './components/BackButton/PageCatalogBackButton'
 import { PageCatalogBrands } from './components/Brands/PageCatalogBrands'
 import { PageCatalogCards } from './components/Cards/PageCatalogCards'
@@ -175,6 +176,7 @@ export const PageCatalog: React.FC = () => {
                 </div>
 
                 <div className={styles.right}>
+                    <PageCatalogActiveFilters categoryMap={categoriesMap} />
                     <PageCatalogCards productList={visibleProducts} mode={actualParams.view} />
                     <Pagination
                         total={sortedProducts.length}
