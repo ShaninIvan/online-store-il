@@ -33,7 +33,7 @@ export const Pagination: React.FC<PropsType> = ({
 
     return (
         <div className={styles.pagination}>
-            <div className={styles.item}>
+            <div className={styles.item} onClick={() => itemClickHandler(current - 1)}>
                 <Icon name='arrowleft' />
             </div>
 
@@ -47,7 +47,7 @@ export const Pagination: React.FC<PropsType> = ({
                 </div>
             ))}
 
-            <div className={styles.item}>
+            <div className={styles.item} onClick={() => itemClickHandler(current + 1)}>
                 <Icon name='arrowright' />
             </div>
         </div>
