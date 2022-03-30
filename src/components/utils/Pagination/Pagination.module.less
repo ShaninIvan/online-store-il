@@ -1,0 +1,33 @@
+@import '/src/config/variables';
+
+.pagination {
+    display: flex;
+}
+
+.item {
+    min-width: 37px;
+    height: 37px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #8c8c8c;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 600;
+    color: #8c8c8c;
+    margin-right: 12px;
+    cursor: pointer;
+
+    &.current {
+        border: none;
+        background-color: #ebebeb;
+        color: #000000;
+        cursor: auto;
+    }
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}

@@ -1,5 +1,6 @@
 import Button from 'components/buttons/Button'
 import RouteLine from 'components/parts/RouteLine'
+import Pagination from 'components/utils/Pagination'
 import useAppDispatch from 'hooks/useAppDispatch'
 import useAppSelector from 'hooks/useAppSelector'
 import useCatalogParams from 'hooks/useCatalogURLParams'
@@ -86,9 +87,14 @@ export const PageCatalog: React.FC = () => {
         potentialParams.color.length +
         potentialParams.brand.length
 
+    const endProductIndex = actualParams.page * actualParams.show
+    const startProductIndex = endProductIndex - actualParams.show
+
+    const visibleProducts = sortedProducts.slice(startProductIndex, endProductIndex)
+
     // HANDLERS
     const applyFiltersClickHandler = () => {
-        setURLParams(potentialParams)
+        setURLParams({ ...potentialParams, page: 1 })
     }
 
     const clearFiltersClickHandler = () => {
@@ -100,7 +106,11 @@ export const PageCatalog: React.FC = () => {
             name: '',
         }
 
-        setURLParams({ ...potentialParams, ...cleanFilters })
+        setURLParams({ ...potentialParams, ...cleanFilters, page: 1 })
+    }
+
+    const changePageHandler = (page: number) => {
+        setURLParams({ ...actualParams, page: page })
     }
 
     return (
@@ -117,7 +127,11 @@ export const PageCatalog: React.FC = () => {
 
             <div className={styles.top}>
                 <PageCatalogBackButton />
-                <PageCatalogItemsCount start={0} end={10} total={20} />
+                <PageCatalogItemsCount
+                    start={startProductIndex + 1}
+                    end={endProductIndex}
+                    total={sortedProducts.length}
+                />
                 <PageCatalogSelects />
                 <PageCatalogView />
             </div>
@@ -161,7 +175,13 @@ export const PageCatalog: React.FC = () => {
                 </div>
 
                 <div className={styles.right}>
-                    <PageCatalogCards productList={sortedProducts} mode={actualParams.view} />
+                    <PageCatalogCards productList={visibleProducts} mode={actualParams.view} />
+                    <Pagination
+                        total={sortedProducts.length}
+                        onPage={actualParams.show}
+                        current={actualParams.page}
+                        pageChangeHadler={changePageHandler}
+                    />
                     <PageCatalogDescription>{PageCatalogDescriptionMock}</PageCatalogDescription>
                 </div>
             </div>

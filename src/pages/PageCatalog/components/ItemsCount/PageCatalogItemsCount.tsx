@@ -10,7 +10,7 @@ type PropsType = {
 export const PageCatalogItemsCount: React.FC<PropsType> = ({ start, end, total }) => {
     return (
         <div className={styles.itemscount}>
-            Items {start}–{end} of {total}
+            Items {start}–{Math.min(end, total)} of {total}
         </div>
     )
 }
