@@ -1,0 +1,45 @@
+@import '/src/config/variables';
+
+.textarea {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    width: fit-content;
+    height: 38px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    &:empty {
+        height: 0;
+    }
+}
+
+.required {
+    color: rgb(209, 15, 15);
+    margin-left: 2px;
+}
+
+.input {
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: 400;
+    border: 1px solid #8c8c8c;
+    border-radius: 4px;
+    background-color: inherit;
+    color: inherit;
+    resize: none;
+}
+@media screen and (max-width: @maxwidth-tablet) {
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}

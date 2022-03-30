@@ -1,6 +1,85 @@
 @import '/src/config/variables';
 
 .pagecontacts {
+    margin-top: 20px;
+    h2 {
+        font-size: 32px;
+        font-weight: 600;
+        margin: 15px 0;
+    }
+}
+
+.grid {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2.5fr 1fr;
+    grid-template-areas: 'text info' 'form info';
+    grid-column-gap: 50px;
+}
+
+.text {
+    grid-area: text;
+}
+
+.form {
+    grid-area: form;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    input {
+        width: 450px;
+    }
+
+    button {
+        width: 150px;
+        height: 50px;
+        margin-top: 16px;
+    }
+
+    textarea {
+        min-height: 200px;
+    }
+}
+
+.info {
+    grid-area: info;
+    width: 400px;
+    height: 400px;
+    padding: 32px;
+    background-color: #f5f9ff;
+}
+
+.info__item {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 25px 1fr;
+    grid-column-gap: 15px;
+    grid-template-areas: 'info-icon info-title' '. info-content';
+    margin-bottom: 20px;
+}
+
+.info__icon {
+    grid-area: info-icon;
+    font-size: 22px;
+}
+
+.info__title {
+    grid-area: info-title;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.info__content {
+    grid-area: info-content;
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.blue {
+    color: #0156ff;
 }
 
 @media screen and (max-width: @maxwidth-tablet) {
