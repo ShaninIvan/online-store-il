@@ -1,10 +1,12 @@
 import { createSelector } from '@reduxjs/toolkit'
+import applyCatalogBrandFilter from 'services/Catalog/applyCatalogBrandFilter'
 import applyCatalogCategoryFilter from 'services/Catalog/applyCatalogCategoryFilter'
 import applyCatalogColorFilter from 'services/Catalog/applyCatalogColorFilter'
 import applyCatalogPriceFilter from 'services/Catalog/applyCatalogPriceFilter'
 import getCatalogSortedProducts from 'services/Catalog/getCatalogSortedProducts'
 import { RootState } from 'store/store'
 import {
+    CatalogBrandsMapType,
     CatalogCategoriesMapType,
     CatalogColorsMapType,
     CatalogPricesMapType,
@@ -46,6 +48,18 @@ export const selectorCatalogColorFilter = createSelector(
         if (colorList.length === 0) return products
 
         return applyCatalogColorFilter(colorMap, colorList)
+    }
+)
+
+const paramBrandSelector = (state: RootState) => state.catalog.actual.brand
+const mapBrandSelector = (_: any, brandMap: CatalogBrandsMapType) => brandMap
+
+export const selectorCatalogBrandFilter = createSelector(
+    [paramBrandSelector, mapBrandSelector, productListSelector],
+    (brandList, brandMap, products) => {
+        if (brandList.length === 0) return products
+
+        return applyCatalogBrandFilter(brandMap, brandList)
     }
 )
 

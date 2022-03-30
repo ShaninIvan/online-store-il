@@ -21,6 +21,9 @@ export const PageCatalogCards: React.FC<PropsType> = ({ productList, mode = 'gri
         navigate(getPath('/product/:id', { id: id }))
     }
 
+    if (productList.length === 0)
+        return <div className={styles.empty}>There's nothing here. Try changing filters.</div>
+
     if (mode === 'grid')
         return (
             <div className={styles.cards}>

@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom'
 import getProductsIntersection from 'services/Products/getProductsIntersection'
 import getRouteLineByCategory from 'services/RouteLine/getRouteLineByCategory'
 import {
+    selectorCatalogBrandFilter,
     selectorCatalogCategoryFilter,
     selectorCatalogColorFilter,
     selectorCatalogPriceFilter,
@@ -22,12 +23,14 @@ import { PageCatalogCards } from './components/Cards/PageCatalogCards'
 import { PageCatalogCategoryFilter } from './components/CategoryFilter/PageCatalogCategoryFilter'
 import { PageCatalogColorFilter } from './components/ColorFilter/PageCatalogColorFilter'
 import { PageCatalogCompare } from './components/Compare/PageCatalogCompare'
+import { PageCatalogDescription } from './components/Description/PageCatalogDescription'
 import { PageCatalogItemsCount } from './components/ItemsCount/PageCatalogItemsCount'
 import { PageCatalogPriceFilter } from './components/PriceFilter/PageCatalogPriceFilter'
 import { PageCatalogSelects } from './components/Selects/PageCatalogSelects'
 import { PageCatalogView } from './components/View/PageCatalogView'
 import { PageCatalogWish } from './components/Wish/PageCatalogWish'
 import styles from './PageCatalog.module.less'
+import { PageCatalogDescriptionMock } from './PageCatalogMocks'
 
 export const PageCatalog: React.FC = () => {
     const { id } = useParams()
@@ -59,11 +62,15 @@ export const PageCatalog: React.FC = () => {
     const filteredColorProducts = useAppSelector((state) =>
         selectorCatalogColorFilter(state, colorsMap, filteredPriceProducts)
     )
+    const filteredBrandProducts = useAppSelector((state) =>
+        selectorCatalogBrandFilter(state, brandsMap, filteredColorProducts)
+    )
 
     const filterIntersection = getProductsIntersection(
         filteredCategoryProducts,
         filteredPriceProducts,
-        filteredColorProducts
+        filteredColorProducts,
+        filteredBrandProducts
     )
 
     const sortedProducts = useAppSelector((state) =>
@@ -155,6 +162,7 @@ export const PageCatalog: React.FC = () => {
 
                 <div className={styles.right}>
                     <PageCatalogCards productList={sortedProducts} mode={actualParams.view} />
+                    <PageCatalogDescription>{PageCatalogDescriptionMock}</PageCatalogDescription>
                 </div>
             </div>
         </div>
