@@ -1,5 +1,5 @@
 import Button from 'components/buttons/Button'
-import RouteLine from 'components/parts/RouteLine'
+import Breadcrumbs from 'components/parts/Breadcrumbs'
 import Pagination from 'components/utils/Pagination'
 import useAppDispatch from 'hooks/useAppDispatch'
 import useAppSelector from 'hooks/useAppSelector'
@@ -7,7 +7,7 @@ import useCatalogParams from 'hooks/useCatalogURLParams'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import getProductsIntersection from 'services/Products/getProductsIntersection'
-import getRouteLineByCategory from 'services/RouteLine/getRouteLineByCategory'
+import getBreadcrumbsByCategory from 'services/RouteLine/getBreadcrumbsByCategory'
 import {
     selectorCatalogBrandFilter,
     selectorCatalogCategoryFilter,
@@ -81,7 +81,7 @@ export const PageCatalog: React.FC = () => {
 
     // VISIBLE DATA
     const productsCount = fullProductList.length
-    const routeLine = getRouteLineByCategory(currentCategory, categories)
+    const crumbs = getBreadcrumbsByCategory(currentCategory, categories)
     const filtersCount =
         potentialParams.category.length +
         potentialParams.price.length +
@@ -120,7 +120,7 @@ export const PageCatalog: React.FC = () => {
                 <img src='https://i.onthe.io/smngoz4vi39k0a9dk.e3d29a71.jpg' alt='banner ASUS' />
             </div>
 
-            <RouteLine routes={routeLine} />
+            <Breadcrumbs crumbs={crumbs} />
 
             <h2>
                 {currentCategory.name} ({productsCount})

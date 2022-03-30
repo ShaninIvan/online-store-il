@@ -1,32 +1,32 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Icon from '../Icon'
-import styles from './RouteLine.module.less'
+import styles from './Breadcrumbs.module.less'
 
 type PropsType = {
-    routes: {
+    crumbs: {
         name: string
         path: string
     }[]
 }
 
-export const RouteLine: React.FC<PropsType> = ({ routes }) => {
-    if (routes.length === 0) return null
-    const lastRoute = routes[routes.length - 1]
+export const Breadcrumbs: React.FC<PropsType> = ({ crumbs }) => {
+    if (crumbs.length === 0) return null
+    const lastCrumb = crumbs[crumbs.length - 1]
 
     return (
         <div className={styles.routeline}>
-            {routes.map((route, index) => {
-                if (route === lastRoute) {
+            {crumbs.map((crumb, index) => {
+                if (crumb === lastCrumb) {
                     return (
                         <span key={index} className={styles.last}>
-                            {route.name}
+                            {crumb.name}
                         </span>
                     )
                 } else {
                     return (
                         <span key={index} className={styles.link}>
-                            <Link to={route.path}>{route.name}</Link>
+                            <Link to={crumb.path}>{crumb.name}</Link>
                             <span className={styles.arrow}>
                                 <Icon name='arrowright' />
                             </span>

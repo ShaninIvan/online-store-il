@@ -1,7 +1,7 @@
 import getPath from 'core/routing/getPath'
 import { CategoryType } from 'types/CategoryType'
 
-const getRouteLineByCategory = (category: CategoryType, categories: CategoryType[]) => {
+const getBreadcrumbsByCategory = (category: CategoryType, categories: CategoryType[]) => {
     const homeRoute = {
         name: 'Home',
         path: getPath('/'),
@@ -12,7 +12,7 @@ const getRouteLineByCategory = (category: CategoryType, categories: CategoryType
         path: getPath('/catalog/:id', { id: category.id }),
     }
 
-    const routeLine = [endRoute]
+    const crumbs = [endRoute]
 
     const getParent = (category: CategoryType) => {
         if (!category.parent) return
@@ -25,16 +25,16 @@ const getRouteLineByCategory = (category: CategoryType, categories: CategoryType
                 path: getPath('/catalog/:id', { id: parent.id }),
             }
 
-            routeLine.unshift(route)
+            crumbs.unshift(route)
             getParent(parent)
         }
     }
 
     getParent(category)
 
-    routeLine.unshift(homeRoute)
+    crumbs.unshift(homeRoute)
 
-    return routeLine
+    return crumbs
 }
 
-export default getRouteLineByCategory
+export default getBreadcrumbsByCategory
