@@ -17,11 +17,11 @@ export const Rating: React.FC<PropsType> = ({ stars }) => {
 
     return (
         <div className={styles.rating}>
-            <Icon name='star' color={color.one} size={13} />
-            <Icon name='star' color={color.two} size={13} />
-            <Icon name='star' color={color.three} size={13} />
-            <Icon name='star' color={color.four} size={13} />
-            <Icon name='star' color={color.five} size={13} />
+            <Icon name='star' color={color.one} />
+            <Icon name='star' color={color.two} />
+            <Icon name='star' color={color.three} />
+            <Icon name='star' color={color.four} />
+            <Icon name='star' color={color.five} />
         </div>
     )
 }

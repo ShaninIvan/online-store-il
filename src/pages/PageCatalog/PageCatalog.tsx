@@ -1,9 +1,11 @@
 import Button from 'components/buttons/Button'
 import Breadcrumbs from 'components/parts/Breadcrumbs'
 import Pagination from 'components/utils/Pagination'
+import ScreenChecker from 'components/utils/ScreenChecker'
 import useAppDispatch from 'hooks/useAppDispatch'
 import useAppSelector from 'hooks/useAppSelector'
 import useCatalogParams from 'hooks/useCatalogURLParams'
+import useScreenStatus from 'hooks/useScreenStatus'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import getProductsIntersection from 'services/Products/getProductsIntersection'
@@ -48,6 +50,8 @@ export const PageCatalog: React.FC = () => {
     // SEARCH PARAMS
     const { getURLParams, setURLParams } = useCatalogParams()
 
+    const { desktop } = useScreenStatus()
+
     const params = getURLParams()
 
     useEffect(() => {
@@ -88,8 +92,10 @@ export const PageCatalog: React.FC = () => {
         potentialParams.color.length +
         potentialParams.brand.length
 
-    const endProductIndex = actualParams.page * actualParams.show
-    const startProductIndex = endProductIndex - actualParams.show
+    const countOnPage = desktop ? actualParams.show : 5
+
+    const endProductIndex = actualParams.page * countOnPage
+    const startProductIndex = endProductIndex - countOnPage
 
     const visibleProducts = sortedProducts.slice(startProductIndex, endProductIndex)
 
@@ -126,16 +132,18 @@ export const PageCatalog: React.FC = () => {
                 {currentCategory.name} ({productsCount})
             </h2>
 
-            <div className={styles.top}>
-                <PageCatalogBackButton />
-                <PageCatalogItemsCount
-                    start={startProductIndex + 1}
-                    end={endProductIndex}
-                    total={sortedProducts.length}
-                />
-                <PageCatalogSelects />
-                <PageCatalogView />
-            </div>
+            <ScreenChecker desktop>
+                <div className={styles.top}>
+                    <PageCatalogBackButton />
+                    <PageCatalogItemsCount
+                        start={startProductIndex + 1}
+                        end={endProductIndex}
+                        total={sortedProducts.length}
+                    />
+                    <PageCatalogSelects />
+                    <PageCatalogView />
+                </div>
+            </ScreenChecker>
 
             <div className={styles.bottom}>
                 <div className={styles.left}>
@@ -176,11 +184,23 @@ export const PageCatalog: React.FC = () => {
                 </div>
 
                 <div className={styles.right}>
+                    <ScreenChecker tablet mobile>
+                        <div className={styles.top}>
+                            <PageCatalogItemsCount
+                                start={startProductIndex + 1}
+                                end={endProductIndex}
+                                total={sortedProducts.length}
+                            />
+                            <PageCatalogSelects />
+                            <PageCatalogView />
+                        </div>
+                    </ScreenChecker>
+
                     <PageCatalogActiveFilters categoryMap={categoriesMap} />
                     <PageCatalogCards productList={visibleProducts} mode={actualParams.view} />
                     <Pagination
                         total={sortedProducts.length}
-                        onPage={actualParams.show}
+                        onPage={countOnPage}
                         current={actualParams.page}
                         pageChangeHadler={changePageHandler}
                     />

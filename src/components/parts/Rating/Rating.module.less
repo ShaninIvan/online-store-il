@@ -4,12 +4,16 @@
     width: fit-content;
     height: fit-content;
     display: flex;
+    font-size: 13px;
     & > *:not(:last-of-type) {
         margin-right: 2px;
     }
 }
 
 @media screen and (max-width: @maxwidth-tablet) {
+    .rating {
+        font-size: 10px;
+    }
 }
 
 @media screen and (max-width: @maxwidth-mobile) {

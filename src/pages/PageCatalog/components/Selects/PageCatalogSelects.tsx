@@ -1,4 +1,5 @@
 import Select from 'components/inputs/Select'
+import ScreenChecker from 'components/utils/ScreenChecker'
 import useAppSelector from 'hooks/useAppSelector'
 import useCatalogURLParams from 'hooks/useCatalogURLParams'
 import { pageCatalogShowOption, pageCatalogSortOptions } from 'pages/PageCatalog/PageCatalogMocks'
@@ -26,12 +27,14 @@ export const PageCatalogSelects: React.FC = () => {
                 value={actualParams.sort}
                 title='Sort by'
             />
-            <Select
-                options={pageCatalogShowOption}
-                callback={selectShowHandler}
-                value={actualParams.show}
-                title='Show'
-            />
+            <ScreenChecker desktop>
+                <Select
+                    options={pageCatalogShowOption}
+                    callback={selectShowHandler}
+                    value={actualParams.show}
+                    title='Show'
+                />
+            </ScreenChecker>
         </div>
     )
 }
