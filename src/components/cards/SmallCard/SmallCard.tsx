@@ -14,9 +14,15 @@ type PropsType = {
     product: ProductType
     discount?: number
     onCardClick: (id: number) => void
+    mobile?: boolean
 }
 
-export const SmallCard: React.FC<PropsType> = ({ product, discount = 0, onCardClick }) => {
+export const SmallCard: React.FC<PropsType> = ({
+    product,
+    discount = 0,
+    onCardClick,
+    mobile = false,
+}) => {
     const { addToCart } = useCartFunctions()
 
     const stars = getCardStars(product.rating)
@@ -32,11 +38,14 @@ export const SmallCard: React.FC<PropsType> = ({ product, discount = 0, onCardCl
     }
 
     return (
-        <div className={styles.smallcard} onClick={() => onCardClick(product.id)}>
+        <div
+            className={`${styles.smallcard} ${mobile && styles.mobile}`}
+            onClick={() => onCardClick(product.id)}
+        >
             <div className={styles.availability}>
                 <Availability count={product.inStock} />
             </div>
-            <img height={120} src={product.image[0].imageUrl} alt={product.image[0].imageAlt} />
+            <img src={product.image[0].imageUrl} alt={product.image[0].imageAlt} />
             <div className={styles.circles}>
                 <Circle type='heart' callback={() => {}} />
                 <Circle type='stats' callback={() => {}} />

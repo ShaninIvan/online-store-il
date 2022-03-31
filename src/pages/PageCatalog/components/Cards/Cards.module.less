@@ -1,11 +1,15 @@
 @import '/src/config/variables';
 
 .cards {
-    width: 100%;
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     margin-bottom: 25px;
+    &::after {
+        content: '';
+        flex: auto;
+    }
 }
 
 .empty {
@@ -14,12 +18,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     font-size: 36px;
     font-weight: 600;
     padding: 50px;
 }
 
 @media screen and (max-width: @maxwidth-tablet) {
+    .empty {
+        padding: 30px;
+        font-size: 18px;
+    }
 }
 
 @media screen and (max-width: @maxwidth-mobile) {

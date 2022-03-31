@@ -29,6 +29,7 @@ import { PageCatalogColorFilter } from './components/ColorFilter/PageCatalogColo
 import { PageCatalogCompare } from './components/Compare/PageCatalogCompare'
 import { PageCatalogDescription } from './components/Description/PageCatalogDescription'
 import { PageCatalogItemsCount } from './components/ItemsCount/PageCatalogItemsCount'
+import { PageCatalogMobileFilter } from './components/MobileFilter/PageCatalogMobileFilter'
 import { PageCatalogPriceFilter } from './components/PriceFilter/PageCatalogPriceFilter'
 import { PageCatalogSelects } from './components/Selects/PageCatalogSelects'
 import { PageCatalogView } from './components/View/PageCatalogView'
@@ -146,57 +147,80 @@ export const PageCatalog: React.FC = () => {
             </ScreenChecker>
 
             <div className={styles.bottom}>
-                <div className={styles.left}>
-                    <div className={styles.filters}>
-                        <div className={styles.filters__top}>
-                            <h4>Filters</h4>
-                            <div className={styles.clear}>
-                                <Button
-                                    preset='transparent-gray'
-                                    onClick={() => clearFiltersClickHandler()}
-                                >
-                                    Clear Filter
-                                </Button>
+                <ScreenChecker tablet desktop>
+                    <div className={styles.left}>
+                        <div className={styles.filters}>
+                            <div className={styles.filters__top}>
+                                <h4>Filters</h4>
+                                <div className={styles.clear}>
+                                    <Button
+                                        preset='transparent-gray'
+                                        onClick={() => clearFiltersClickHandler()}
+                                    >
+                                        Clear Filter
+                                    </Button>
+                                </div>
                             </div>
+
+                            <PageCatalogCategoryFilter
+                                categoriesMap={categoriesMap}
+                                currentCategory={currentCategory}
+                            />
+                            <PageCatalogPriceFilter pricesMap={pricesMap} />
+                            <PageCatalogColorFilter colorsMap={colorsMap} />
+
+                            <Button preset='blue-white' onClick={() => applyFiltersClickHandler()}>
+                                Apply Filters({filtersCount})
+                            </Button>
                         </div>
 
-                        <PageCatalogCategoryFilter
-                            categoriesMap={categoriesMap}
-                            currentCategory={currentCategory}
-                        />
-                        <PageCatalogPriceFilter pricesMap={pricesMap} />
-                        <PageCatalogColorFilter colorsMap={colorsMap} />
-
-                        <Button preset='blue-white' onClick={() => applyFiltersClickHandler()}>
-                            Apply Filters({filtersCount})
-                        </Button>
+                        <PageCatalogBrands brandsMap={brandsMap} />
+                        <PageCatalogCompare />
+                        <PageCatalogWish />
+                        <aside>
+                            <img
+                                src='https://i.onthe.io/smngoz1vqjkc34hoqg.a001bda0.jpg'
+                                alt='noblechairs'
+                            />
+                        </aside>
                     </div>
-
-                    <PageCatalogBrands brandsMap={brandsMap} />
-                    <PageCatalogCompare />
-                    <PageCatalogWish />
-                    <aside>
-                        <img
-                            src='https://i.onthe.io/smngoz1vqjkc34hoqg.a001bda0.jpg'
-                            alt='noblechairs'
-                        />
-                    </aside>
-                </div>
+                </ScreenChecker>
 
                 <div className={styles.right}>
                     <ScreenChecker tablet mobile>
                         <div className={styles.top}>
-                            <PageCatalogItemsCount
-                                start={startProductIndex + 1}
-                                end={endProductIndex}
-                                total={sortedProducts.length}
-                            />
-                            <PageCatalogSelects />
-                            <PageCatalogView />
+                            <ScreenChecker tablet>
+                                <PageCatalogItemsCount
+                                    start={startProductIndex + 1}
+                                    end={endProductIndex}
+                                    total={sortedProducts.length}
+                                />
+                                <PageCatalogSelects />
+                                <PageCatalogView />
+                            </ScreenChecker>
+
+                            <ScreenChecker mobile>
+                                <PageCatalogMobileFilter
+                                    currentCategory={currentCategory}
+                                    categoryMap={categoriesMap}
+                                    priceMap={pricesMap}
+                                    colorMap={colorsMap}
+                                    brandMap={brandsMap}
+                                />
+                                <PageCatalogSelects />
+                                <PageCatalogItemsCount
+                                    start={startProductIndex + 1}
+                                    end={endProductIndex}
+                                    total={sortedProducts.length}
+                                />
+                            </ScreenChecker>
                         </div>
                     </ScreenChecker>
 
-                    <PageCatalogActiveFilters categoryMap={categoriesMap} />
+                    <ScreenChecker tablet desktop>
+                        <PageCatalogActiveFilters categoryMap={categoriesMap} />
+                    </ScreenChecker>
+
                     <PageCatalogCards productList={visibleProducts} mode={actualParams.view} />
                     <Pagination
                         total={sortedProducts.length}
@@ -204,6 +228,16 @@ export const PageCatalog: React.FC = () => {
                         current={actualParams.page}
                         pageChangeHadler={changePageHandler}
                     />
+                    <ScreenChecker mobile>
+                        <PageCatalogCompare />
+                        <PageCatalogWish />
+                        <aside>
+                            <img
+                                src='https://i.onthe.io/smngoz1vqjkc34hoqg.a001bda0.jpg'
+                                alt='noblechairs'
+                            />
+                        </aside>
+                    </ScreenChecker>
                     <PageCatalogDescription>{PageCatalogDescriptionMock}</PageCatalogDescription>
                 </div>
             </div>
