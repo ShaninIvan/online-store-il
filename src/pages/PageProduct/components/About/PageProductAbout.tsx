@@ -1,15 +1,10 @@
 import React from 'react'
+import { useOutletContext } from 'react-router-dom'
+import { ProductType } from 'types/ProductType'
 import styles from './About.module.less'
 
-type PropsType = {
-   
-}
+export const PageProductAbout: React.FC = () => {
+    const product: ProductType = useOutletContext()
 
-export const PageProductAbout: React.FC<PropsType> = ({}) => {
-
-    return (
-        <div className={styles.about}>
-            
-        </div>
-    )
+    return <div className={styles.about}>{product.description}</div>
 }

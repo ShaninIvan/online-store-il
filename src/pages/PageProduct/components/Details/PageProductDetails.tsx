@@ -1,15 +1,16 @@
 import React from 'react'
+import { useOutletContext } from 'react-router-dom'
+import { ProductType } from 'types/ProductType'
 import styles from './Details.module.less'
 
-type PropsType = {
-   
-}
-
-export const PageProductDetails: React.FC<PropsType> = ({}) => {
+export const PageProductDetails: React.FC = () => {
+    const product: ProductType = useOutletContext()
 
     return (
-        <div className={styles.details}>
-            
-        </div>
+        <ul className={styles.details}>
+            {product.details.map((item) => (
+                <li key={item.id}>{item.detail}</li>
+            ))}
+        </ul>
     )
 }

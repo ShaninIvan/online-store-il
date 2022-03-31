@@ -1,10 +1,11 @@
 import useAppSelector from 'hooks/useAppSelector'
 import React from 'react'
-import { Outlet, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { selectorProduct } from 'store/selectors/selectorProduct'
 import { PageProductImages } from './components/Images/PageProductImages'
 import { PageProductNav } from './components/Nav/PageProductNav'
 import { PageProductOrder } from './components/Order/PageProductOrder'
+import { PageProductOutlets } from './components/Outlets/PageProductOutlets'
 import styles from './PageProduct.module.less'
 
 export const PageProduct: React.FC = () => {
@@ -21,7 +22,7 @@ export const PageProduct: React.FC = () => {
             </div>
 
             <div className={styles.content}>
-                <Outlet />
+                <PageProductOutlets product={product} />
                 <PageProductImages product={product} />
             </div>
 

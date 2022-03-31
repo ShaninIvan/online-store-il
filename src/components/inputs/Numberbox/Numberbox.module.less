@@ -1,0 +1,70 @@
+@import '/src/config/variables';
+
+.numberbox {
+    width: 70px;
+    height: 50px;
+    border-radius: 6px;
+    background: #ebebeb;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 3fr 2fr;
+    grid-template-areas: 'value inc' 'value dec';
+    align-items: center;
+}
+
+.value {
+    grid-area: value;
+    width: 46px;
+    height: 27px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.increment,
+.decrement {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    user-select: none;
+    color: #8c8c8c;
+    font-size: 6px;
+    &:hover:not(.lock) {
+        background: #bdbdbd;
+    }
+}
+
+.increment {
+    grid-area: inc;
+    border-top-right-radius: 6px;
+}
+
+.decrement {
+    grid-area: dec;
+    border-bottom-right-radius: 6px;
+}
+
+.lock {
+    background: #f3f3f3;
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+    .numberbox {
+        width: 56px;
+        height: 42px;
+    }
+
+    input {
+        width: 38px;
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}

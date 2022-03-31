@@ -9,7 +9,6 @@ import useScreenStatus from 'hooks/useScreenStatus'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import getProductsIntersection from 'services/Products/getProductsIntersection'
-import getBreadcrumbsByCategory from 'services/RouteLine/getBreadcrumbsByCategory'
 import {
     selectorCatalogBrandFilter,
     selectorCatalogCategoryFilter,
@@ -18,6 +17,7 @@ import {
     selectorCatalogSort,
 } from 'store/selectors/selectorCatalogFilters'
 import { selectorCatalogMaps } from 'store/selectors/selectorCatalogMaps'
+import { selectorCategoryCrumbs } from 'store/selectors/selectorCategoryCrumbs'
 import { setCatalogActualParams } from 'store/slices/catalogSlice'
 import { CatalogParamsFiltersType } from 'types/CatalogType'
 import { PageCatalogActiveFilters } from './components/ActiveFilters/PageCatalogActiveFilters'
@@ -39,7 +39,6 @@ import { PageCatalogDescriptionMock } from './PageCatalogMocks'
 
 export const PageCatalog: React.FC = () => {
     const { id } = useParams()
-    const { categories } = useAppSelector((state) => state.categories)
     const potentialParams = useAppSelector((state) => state.catalog.potential)
     const actualParams = useAppSelector((state) => state.catalog.actual)
 
@@ -86,7 +85,7 @@ export const PageCatalog: React.FC = () => {
 
     // VISIBLE DATA
     const productsCount = fullProductList.length
-    const crumbs = getBreadcrumbsByCategory(currentCategory, categories)
+    const crumbs = useAppSelector((state) => selectorCategoryCrumbs(state, currentCategory))
     const filtersCount =
         potentialParams.category.length +
         potentialParams.price.length +

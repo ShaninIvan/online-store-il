@@ -1,7 +1,17 @@
 @import '/src/config/variables';
 
 .order {
-    
+    height: 100%;
+    display: flex;
+    align-items: center;
+    & > *:not(:last-child) {
+        margin-right: 15px;
+    }
+
+    button {
+        width: 150px;
+        height: 50px;
+    }
 }
 
 @media screen and (max-width: @maxwidth-tablet) {
