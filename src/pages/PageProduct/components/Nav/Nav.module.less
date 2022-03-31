@@ -1,0 +1,32 @@
+@import '/src/config/variables';
+
+.nav {
+    display: flex;
+}
+
+.item,
+.active {
+    font-size: 14px;
+    font-weight: 600;
+    &:hover {
+        box-shadow: 0 4px 0 -2px #0156ff;
+    }
+
+    &:not(:last-child) {
+        margin-right: 30px;
+    }
+}
+
+.item {
+    color: #666666;
+}
+
+.active {
+    color: #000000;
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}

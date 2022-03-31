@@ -3,9 +3,9 @@ import PageLogin from 'pages/PageLogin'
 import { PageLoginAuth } from 'pages/PageLogin/components/Auth/PageLoginAuth'
 import { PageLoginRegister } from 'pages/PageLogin/components/Register/PageLoginRegister'
 import PageNotFound from 'pages/PageNotFound'
-import ProductAbout from 'pages/PageProduct/components/ProductAbout'
-import ProductDetails from 'pages/PageProduct/components/ProductDetails'
-import ProductSpecs from 'pages/PageProduct/components/ProductSpecs'
+import { PageProductAbout } from 'pages/PageProduct/components/About/PageProductAbout'
+import { PageProductDetails } from 'pages/PageProduct/components/Details/PageProductDetails'
+import { PageProductSpecs } from 'pages/PageProduct/components/Specs/PageProductSpecs'
 import PageTerms from 'pages/PageTerms'
 import { lazy } from 'react'
 import { RouteObject } from 'react-router-dom'
@@ -49,15 +49,15 @@ const ROUTES_CONFIG: RouteObject[] = [
         children: [
             {
                 index: true,
-                element: <ProductAbout />,
+                element: <PageProductAbout />,
             },
             {
                 path: 'details',
-                element: <ProductDetails />,
+                element: <PageProductDetails />,
             },
             {
                 path: 'specs',
-                element: <ProductSpecs />,
+                element: <PageProductSpecs />,
             },
         ],
     },

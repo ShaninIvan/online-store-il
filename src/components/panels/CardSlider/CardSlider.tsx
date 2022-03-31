@@ -33,8 +33,8 @@ export const CardSlider: React.FC<PropsType> = ({
 
     const navigate = useNavigate()
 
-    const openCatalog = (id: number) => {
-        navigate(getPath('/catalog/:id', { id: id }))
+    const openProduct = (id: number) => {
+        navigate(getPath('/product/:id', { id: id }))
     }
 
     const slideLeftHandler = () => {
@@ -87,7 +87,7 @@ export const CardSlider: React.FC<PropsType> = ({
                         key={product.id}
                         product={product}
                         discount={discount}
-                        onCardClick={openCatalog}
+                        onCardClick={openProduct}
                     />
                 ))}
             </div>
