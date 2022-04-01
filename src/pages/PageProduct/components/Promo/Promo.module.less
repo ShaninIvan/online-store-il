@@ -71,4 +71,24 @@
 }
 
 @media screen and (max-width: @maxwidth-mobile) {
+    .promo{
+        height: auto;
+        flex-direction: column-reverse;
+    }
+
+    .image{
+        position: static;
+        right: 0;
+        
+        img{
+            width: 100%;
+            object-fit: contain;
+
+        }
+    }
+
+    .description{
+        padding: 0;
+        margin-bottom: 31px;
+    }
 }

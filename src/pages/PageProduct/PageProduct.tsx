@@ -1,3 +1,4 @@
+import ScreenChecker from 'components/utils/ScreenChecker'
 import useAppSelector from 'hooks/useAppSelector'
 import React from 'react'
 import { useParams } from 'react-router-dom'
@@ -19,15 +20,24 @@ export const PageProduct: React.FC = () => {
 
     return (
         <div className={styles.pageproduct}>
-            <div className={styles.top}>
-                <PageProductNav />
-                <PageProductOrder product={product} />
-            </div>
+            <ScreenChecker tablet desktop>
+                <div className={styles.top}>
+                    <PageProductNav />
+                    <PageProductOrder product={product} />
+                </div>
 
-            <div className={styles.content}>
-                <PageProductOutlets product={product} />
+                <div className={styles.content}>
+                    <PageProductOutlets product={product} />
+                    <PageProductImages product={product} />
+                </div>
+            </ScreenChecker>
+
+            <ScreenChecker mobile>
                 <PageProductImages product={product} />
-            </div>
+                <PageProductNav />
+                <PageProductOutlets product={product} />
+                <PageProductOrder product={product} />
+            </ScreenChecker>
 
             <PageProductPromo />
 

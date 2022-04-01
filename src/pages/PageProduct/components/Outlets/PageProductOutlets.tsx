@@ -1,4 +1,5 @@
 import Breadcrumbs from 'components/parts/Breadcrumbs'
+import ScreenChecker from 'components/utils/ScreenChecker'
 import getPath from 'core/routing/getPath'
 import useAppSelector from 'hooks/useAppSelector'
 import { ProductColorsMock } from 'pages/PageProduct/PageProductMocks'
@@ -21,7 +22,9 @@ export const PageProductOutlets: React.FC<PropsType> = ({ product }) => {
     return (
         <div className={styles.outlets}>
             <div className={styles.top}>
-                <Breadcrumbs crumbs={crumbs} />
+                <ScreenChecker tablet desktop>
+                    <Breadcrumbs crumbs={crumbs} />
+                </ScreenChecker>
                 <h2>{product.name}</h2>
                 <div className={styles.review}>Be the first to review this product</div>
                 <Outlet context={product} />
