@@ -45,6 +45,28 @@
 }
 
 @media screen and (max-width: @maxwidth-tablet) {
+    .help{
+        height: 275px;
+        background-position:  100% 100%;
+        background-size: contain;
+    }
+
+    .options{
+        margin-left: 10%;
+    }
+
+    .option{
+        width: 243px;
+        height: 40px;
+            
+        &:not(:last-child){
+            margin-bottom: 14px;
+        }
+    }
+
+    .name{
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: @maxwidth-mobile) {

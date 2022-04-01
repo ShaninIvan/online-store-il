@@ -63,6 +63,48 @@
 }
 
 @media screen and (max-width: @maxwidth-tablet) {
+    .featues{
+        height: auto;
+        padding: 31px 85px 70px;
+    }
+
+    .title{
+        font-size: 32px;
+        margin-top: 31px;
+        margin-bottom: 14px;
+    }
+
+    .description{
+        width: 300px;
+        font-size: 12px;
+        margin-bottom: 41px;
+    }
+
+    .items{
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .item{
+        margin-bottom: 50px;
+        &:not(:last-child){
+            margin-right: 0;
+        }
+
+        &__image{
+            width: 80px;
+            height: 80px;
+            padding: 13px;
+
+            img{
+                width: 100%;
+            }
+        }
+
+        &__text{
+            font-size: 12px;
+        }
+    }
 }
 
 @media screen and (max-width: @maxwidth-mobile) {
