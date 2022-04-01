@@ -1,0 +1,50 @@
+@import '/src/config/variables';
+
+.promo {
+    width: 100%;
+    height: 680px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(#010101 100%, #0E0F10  100%, #141517 0%);
+    position: relative;
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+    padding: 165px 0;
+    padding-left: 380px;
+    color: #FFFFFF;
+    z-index: 1;
+    
+}
+
+.title{
+    width: 465px;
+    font-size: 44px;
+    font-weight: 500;
+    margin-bottom: 60px;
+}
+
+.text{
+    width: 440px;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.image{
+    height: 100%;
+    position: absolute;
+    right: 280px;
+
+    img{
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}

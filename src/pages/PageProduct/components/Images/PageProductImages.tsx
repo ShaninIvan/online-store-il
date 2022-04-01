@@ -1,7 +1,10 @@
 import Icon from 'components/parts/Icon'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ProductType } from 'types/ProductType'
 import styles from './Images.module.less'
+import ZipImg from 'assets/zip.png'
+import getPath from 'core/routing/getPath'
 
 type PropsType = {
     product: ProductType
@@ -31,7 +34,13 @@ export const PageProductImages: React.FC<PropsType> = ({ product }) => {
                 />
             </div>
 
-            <div className={styles.zip}></div>
+            <div className={styles.zip}>
+                <img src={ZipImg} alt='zip' /> <span className={styles.vl}></span>
+                <div>
+                    <b>own</b>&nbsp; it now, up to 6 months interest free&nbsp;
+                    <Link to={getPath('/terms')}>learn more</Link>
+                </div>
+            </div>
 
             <div className={styles.switch}>
                 {product.image.map((_, index) => (

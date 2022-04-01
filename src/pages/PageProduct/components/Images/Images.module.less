@@ -2,6 +2,78 @@
 
 .images {
     width: 45%;
+    position: relative;
+    padding: 75px 100px;
+    display: flex;
+    flex-direction: column;
+
+    img{
+        width:  250px;
+    }
+}
+
+.controls{
+    position: absolute;
+    top: 70px;
+    left: 23px;
+
+    .circle {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #8c8c8c;
+        border-radius: 50%;
+        color: #8c8c8c;
+        cursor: pointer;
+    }
+}
+
+.zip {
+    width: 300px;
+    margin-top: 30px;
+    color: #272560;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    a {
+        text-decoration: underline;
+    }
+
+    img{
+        width: fit-content;
+        height: 23px;
+        object-fit: contain;
+    }
+}
+
+.vl {
+    margin: 0 13px;
+    width: 2px;
+    height: 23px;
+    background-color: #00aeb8;
+}
+
+.switch{
+    display: flex;
+    align-self: center;
+    margin-top: 30px;
+
+
+    &__item{
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        opacity: 0.3;
+        background-color: #0156FF;
+        margin-right: 11px;
+
+        &.active{
+            opacity: 1;
+        }
+    }
 }
 
 @media screen and (max-width: @maxwidth-tablet) {

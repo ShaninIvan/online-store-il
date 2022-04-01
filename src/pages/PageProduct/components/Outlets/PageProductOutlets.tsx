@@ -1,6 +1,7 @@
 import Breadcrumbs from 'components/parts/Breadcrumbs'
 import getPath from 'core/routing/getPath'
 import useAppSelector from 'hooks/useAppSelector'
+import { ProductColorsMock } from 'pages/PageProduct/PageProductMocks'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
@@ -24,6 +25,15 @@ export const PageProductOutlets: React.FC<PropsType> = ({ product }) => {
                 <h2>{product.name}</h2>
                 <div className={styles.review}>Be the first to review this product</div>
                 <Outlet context={product} />
+                <div className={styles.colors}>
+                    {ProductColorsMock.map((item, index) => (
+                        <div
+                            key={index}
+                            className={styles.colors__item}
+                            style={{ background: item }}
+                        ></div>
+                    ))}
+                </div>
             </div>
             <div className={styles.medium}>
                 <div className={styles.contact}>

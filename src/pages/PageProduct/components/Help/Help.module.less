@@ -1,0 +1,51 @@
+@import '/src/config/variables';
+
+.help {
+    width: 100%;
+    height: 407px;
+    background-image: url('https://i.onthe.io/smngoz3rqj87qgaqog.9458d298.jpg');
+    background-color: #F5F7FF;
+    background-repeat: no-repeat;
+    background-position: 60%;
+    display: flex;
+    align-items: center;
+
+}
+
+.options{
+    margin-left: 25%;
+}
+
+.option{
+    width: 347px;
+    height: 56px;
+    padding:  0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:not(:last-child){
+        margin-bottom: 20px;
+    }
+}
+
+.name{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.arrow{
+    font-size: 18px;
+    font-weight: 500;
+    color: #0156FF;
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}
