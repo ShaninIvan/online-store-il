@@ -10,10 +10,17 @@ export const Main: React.FC = () => {
     const routes = useRoutes(ROUTES_CONFIG)
     const { pathname } = useLocation()
 
+    const parent = pathname.match(/\/[a-z]*\/[0-9]*/)
+
     return (
         <main className={styles.main}>
             <TransitionGroup component={null}>
-                <CSSTransition key={pathname} classNames='page' timeout={3000} unmountOnExit>
+                <CSSTransition
+                    key={parent && parent[0]}
+                    classNames='page'
+                    timeout={3000}
+                    unmountOnExit
+                >
                     <Suspense fallback={<div>...</div>}>
                         <>
                             <ScrollerTop />
