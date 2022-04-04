@@ -19,7 +19,7 @@ export type ProductType = {
     specs: SpecType[]
     inStock: number
     rating: RatingType
-    color: ProductsColors
+    color: ProductsColors | string
 }
 
 type ProductsColors = 'black' | 'white' | 'red' | 'blue' | 'gray' | 'gold' | 'silver'

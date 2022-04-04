@@ -17,6 +17,8 @@ const cartAddToOrders = (orders: CartOrderType[], product: ProductType, count: n
             count: updatedOrders[index].count + count,
         }
 
+        if (newOrder.count < 1) newOrder.count = 1
+
         updatedOrders[index] = newOrder
     } else {
         const newOrder: CartOrderType = {

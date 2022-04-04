@@ -12,8 +12,8 @@ describe('Функция getCardcroppedDesc', () => {
     test('Строка меньше 55 символов не изменилась', () => {
         expect(getCardcroppedDesc(smallString)).toBe(smallString)
     })
-    test('Большая строка была обрезана до 58 символов', () => {
-        expect(getCardcroppedDesc(largeString).length).toBe(58)
+    test('Большая строка обрезана до 58 символов', () => {
+        expect(getCardcroppedDesc(largeString)).toHaveLength(58)
     })
     test('Обрезанная строка содержит многоточие', () => {
         expect(getCardcroppedDesc(largeString)).toMatch(/\.{3,}/)
