@@ -12,9 +12,7 @@ const initialState: CartStateType = {
 // TODO: Сделать умный action
 export const cartRequest = createAsyncThunk(
     'cartSlice/load',
-    async (params: AxiosRequestConfig, { rejectWithValue, getState }) => {
-        const { isLoading } = getState() as CartStateType
-        if (isLoading) return
+    async (params: AxiosRequestConfig, { rejectWithValue }) => {
         try {
             const response = await axios(params)
 
