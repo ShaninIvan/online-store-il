@@ -19,9 +19,12 @@ export const Numberbox: React.FC<PropsType> = ({ value, min, max, onChange }) =>
 
     return (
         <div className={styles.numberbox}>
-            <div className={styles.value}>{value}</div>
+            <div data-testid='value' className={styles.value}>
+                {value}
+            </div>
 
             <div
+                data-testid='increment'
                 className={value < max ? styles.increment : `${styles.increment} ${styles.lock}`}
                 onClick={() => incrementHandler()}
             >
@@ -29,6 +32,7 @@ export const Numberbox: React.FC<PropsType> = ({ value, min, max, onChange }) =>
             </div>
 
             <div
+                data-testid='decrement'
                 className={value > min ? styles.decrement : `${styles.decrement} ${styles.lock}`}
                 onClick={() => decrementHandler()}
             >
