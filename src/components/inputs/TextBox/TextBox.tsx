@@ -18,18 +18,21 @@ export const TextBox: React.FC<PropsType> = ({
 }) => {
     const req =
         required && label !== '' ? (
-            <span className={styles.required}>*</span>
+            <span data-testid='required' className={styles.required}>
+                *
+            </span>
         ) : (
             <></>
         )
 
     return (
         <div className={styles.textbox}>
-            <label className={styles.label}>
+            <label className={styles.label} data-testid='label'>
                 {label}
                 {req}
             </label>
             <input
+                data-testid='input'
                 className={styles.input}
                 type={type}
                 name={name}
