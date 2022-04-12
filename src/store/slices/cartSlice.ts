@@ -5,6 +5,9 @@ import { CartOrderType, CartStateType } from 'types/UserType'
 
 const initialState: CartStateType = {
     orders: [],
+    shipping: 21,
+    gst: 10,
+    tax: 1.91,
     isLoading: false,
     error: null,
 }
@@ -32,7 +35,14 @@ export const cartRequest = createAsyncThunk(
 const cartSlice = createSlice({
     name: 'cart',
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        setCartShipping: (state, action: PayloadAction<number>) => {
+            state.shipping = action.payload
+        },
+        setCartGST: (state, action: PayloadAction<number>) => {
+            state.gst = action.payload
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(cartRequest.pending, (state) => {
@@ -50,7 +60,5 @@ const cartSlice = createSlice({
     },
 })
 
-// export const {
-//     /* actions */
-// } = cartSlice.actions
+export const { setCartShipping, setCartGST } = cartSlice.actions
 export const cartReducer = cartSlice.reducer

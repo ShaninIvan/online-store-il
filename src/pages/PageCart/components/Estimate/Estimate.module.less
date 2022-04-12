@@ -1,0 +1,93 @@
+@import '/src/config/variables';
+
+// .estimate {
+    
+// }
+
+.title{
+    height: 30px;
+    font-size: 18px;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    .arrow{
+        font-size: 10px;
+        transition: 0.3s;
+
+        &.opened{
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.description{
+    font-size: 14px;
+    font-weight: 400;
+    color: #666666;
+    margin: 13px 0;
+}
+
+.list{
+    max-height: 0;
+    
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+
+    &>*{
+        flex-shrink: 0;
+    }
+
+    &.opened{
+        max-height: 530px;
+    }
+
+    label{
+        height: 38px;
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+    }
+
+    input[type="text"]{
+        background-color: #ffffff;
+        border: 2px solid #8C8C8C;
+        border-radius: 4px;
+    }
+
+    select{
+        height: 50px;
+        padding: 0 15px;
+        position: relative;
+        border: 2px solid #8C8C8C;
+        border-radius: 4px;
+        appearance: none;
+        cursor: pointer;
+    }
+}
+
+.radiogroup{
+    margin-top: 17px;
+    .radio{
+        display: flex;
+
+        input{
+            transform: scale(1.3);
+            margin-top: 5px;
+            margin-right: 10px;
+            margin-left: 3px;
+            accent-color: #0156FF;
+        }
+    }
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}

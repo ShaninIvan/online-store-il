@@ -13,6 +13,9 @@ export interface UserStateType extends IAPIState {
 
 export interface CartStateType extends IAPIState {
     orders: CartOrderType[]
+    shipping: number
+    gst: number
+    tax: number
 }
 
 export type CartOrderType = {

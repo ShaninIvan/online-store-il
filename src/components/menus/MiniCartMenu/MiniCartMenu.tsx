@@ -1,10 +1,12 @@
 import Button from 'components/buttons/Button'
 import Icon from 'components/parts/Icon'
 import getPath from 'core/routing/getPath'
+import getMoney from 'core/utils/getMoney'
 import useAppSelector from 'hooks/useAppSelector'
 import useCartFunctions from 'hooks/useCartFunctions'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { selectorCartSubtotal } from 'store/selectors/selectorCartSubtotal'
 import styles from './MiniCartMenu.module.less'
 
 export const MiniCartMenu: React.FC = () => {
@@ -12,6 +14,8 @@ export const MiniCartMenu: React.FC = () => {
 
     const { removeFromCart } = useCartFunctions()
     const navigate = useNavigate()
+
+    const subtotal = useAppSelector((state) => selectorCartSubtotal(state))
 
     if (orders.length === 0)
         return (
@@ -22,8 +26,6 @@ export const MiniCartMenu: React.FC = () => {
         )
 
     const firstTwoOrders = orders.slice(0, 2)
-
-    const subtotal = orders.reduce((acc, current) => acc + current.product.price * current.count, 0)
 
     const deleteClickHandler = (id: number) => {
         removeFromCart(id)
@@ -37,7 +39,9 @@ export const MiniCartMenu: React.FC = () => {
         <div className={styles.minicartmenu}>
             <h3>My Cart</h3>
             <div className={styles.count}>{orders.length} item in cart</div>
-            <Button preset='tranparent-blue'>View or Edit Your Cart</Button>
+            <Button preset='tranparent-blue' onClick={() => editClickHandler()}>
+                View or Edit Your Cart
+            </Button>
             <div className={styles.products}>
                 {firstTwoOrders.map((order, index) => (
                     <div key={index} className={styles.product}>
@@ -64,7 +68,7 @@ export const MiniCartMenu: React.FC = () => {
                 ))}
             </div>
             <div className={styles.subtotal}>
-                Subtotal: <span className={styles.subtotal__sum}>${subtotal}</span>
+                Subtotal: <span className={styles.subtotal__sum}>{getMoney(subtotal)}</span>
             </div>
             <Button preset='blue-white'>Go to Checkout</Button>
             <Button preset='orange-black' paypal>
