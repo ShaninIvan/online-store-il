@@ -1,5 +1,6 @@
 import Button from 'components/buttons/Button'
 import Breadcrumbs from 'components/parts/Breadcrumbs'
+import Zip from 'components/parts/Zip'
 import getPath from 'core/routing/getPath'
 import getMoney from 'core/utils/getMoney'
 import useAppSelector from 'hooks/useAppSelector'
@@ -93,6 +94,9 @@ export const PageCart: React.FC = () => {
                         Check out with
                     </Button>
                     <Button preset='transparent-gray'>Check Out with Multiple Addresses</Button>
+                    <div className={styles.zip}>
+                        <Zip />
+                    </div>
                 </div>
             </div>
         </div>

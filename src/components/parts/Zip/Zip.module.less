@@ -1,0 +1,47 @@
+@import '/src/config/variables';
+
+.zip {
+    margin-top: 30px;
+    color: #272560;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    flex: 0 0 auto;
+    a {
+        text-decoration: underline;
+    }
+
+    img{
+        width: min-content;
+        height: 20px;
+        object-fit: contain;
+    }
+}
+
+.vl {
+    margin: 0 8px;
+    width: 2px;
+    height: 23px;
+    background-color: #00aeb8;
+}
+
+@media screen and (max-width: @maxwidth-tablet) {
+    .zip {
+        width: 214px;
+        margin-top: 30px;
+        font-size: 10px;
+
+        img{
+            width: fit-content;
+            height: 20px;
+        }
+    }
+
+    .vl {
+        margin: 0 9px;
+        height: 20px;
+    }
+}
+
+@media screen and (max-width: @maxwidth-mobile) {
+}
