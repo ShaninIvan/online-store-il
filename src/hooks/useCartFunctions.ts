@@ -1,42 +1,48 @@
 import { useCallback } from 'react'
 import cartAddToOrders from 'services/Cart/cartAddToOrders'
 import cartRemoveFromOrders from 'services/Cart/cartRemoveFromOrders'
-import getCartUpdateParams from 'services/Cart/getCartUpdateParams'
-import { cartRequest } from 'store/slices/cartSlice'
+import cartUpdateOrderCount from 'services/Cart/cartUpdateOrderCount'
+import { cartRequestPut } from 'store/slices/cartSlice'
 import { ProductType } from 'types/ProductType'
 import useAppDispatch from './useAppDispatch'
 import useAppSelector from './useAppSelector'
 
 const useCartFunctions = () => {
     const dispatch = useAppDispatch()
-    const { jwt, user } = useAppSelector((state) => state.user)
     const { orders } = useAppSelector((state) => state.cart)
 
     const addToCart = useCallback(
         (product: ProductType, count: number) => {
-            if (!jwt) return
-
             const updatedOrders = cartAddToOrders(orders, product, count)
-            const params = getCartUpdateParams(jwt, user.cart, updatedOrders)
 
-            dispatch(cartRequest(params))
+            dispatch(cartRequestPut(updatedOrders))
         },
-        [dispatch, jwt, orders, user]
+        [dispatch, orders]
     )
 
     const removeFromCart = useCallback(
         (productId: number) => {
-            if (!jwt) return
-
             const updatedOrders = cartRemoveFromOrders(orders, productId)
-            const params = getCartUpdateParams(jwt, user.cart, updatedOrders)
 
-            dispatch(cartRequest(params))
+            dispatch(cartRequestPut(updatedOrders))
         },
-        [dispatch, jwt, orders, user]
+        [dispatch, orders]
     )
 
-    return { addToCart, removeFromCart }
+    const changeOrderCount = useCallback(
+        (id: number, count: number) => {
+            const updatedOrders = cartUpdateOrderCount(orders, id, count)
+
+            dispatch(cartRequestPut(updatedOrders))
+        },
+        [dispatch, orders]
+    )
+
+    const clearCart = useCallback(() => {
+        dispatch(cartRequestPut([]))
+    }, [dispatch])
+
+    return { addToCart, removeFromCart, changeOrderCount, clearCart }
 }
 
 export default useCartFunctions
