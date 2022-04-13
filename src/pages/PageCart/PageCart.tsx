@@ -3,8 +3,10 @@ import Breadcrumbs from 'components/parts/Breadcrumbs'
 import getPath from 'core/routing/getPath'
 import getMoney from 'core/utils/getMoney'
 import useAppSelector from 'hooks/useAppSelector'
+import useCartFunctions from 'hooks/useCartFunctions'
 import useJWTCheck from 'hooks/useJWTCheck'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { selectorCartSubtotal, selectorCartTotal } from 'store/selectors/selectorCartSubtotal'
 import { PageCartDiscount } from './components/Discount/PageCartDiscount'
 import { PageCartEstimate } from './components/Estimate/PageCartEstimate'
@@ -23,6 +25,8 @@ export const PageCart: React.FC = () => {
     const subtotal = useAppSelector((state) => selectorCartSubtotal(state))
     const total = useAppSelector((state) => selectorCartTotal(state))
 
+    const { clearCart } = useCartFunctions()
+
     const gstResult = subtotal * (gst / 100)
 
     return (
@@ -35,8 +39,12 @@ export const PageCart: React.FC = () => {
                     <PageCartTable />
                     <div className={styles.buttons}>
                         <div>
-                            <Button preset='transparent-gray'>Continue Shopping</Button>
-                            <Button preset='black-white'>Clear Shopping Cart</Button>
+                            <Link to='/'>
+                                <Button preset='transparent-gray'>Continue Shopping</Button>
+                            </Link>
+                            <Button preset='black-white' onClick={() => clearCart()}>
+                                Clear Shopping Cart
+                            </Button>
                         </div>
                         <Button preset='black-white'>Update Shopping Cart</Button>
                     </div>

@@ -1,5 +1,6 @@
 import Button from 'components/buttons/Button'
 import Numberbox from 'components/inputs/Numberbox'
+import useCartFunctions from 'hooks/useCartFunctions'
 import React, { useState } from 'react'
 import { ProductType } from 'types/ProductType'
 import styles from './Order.module.less'
@@ -11,7 +12,11 @@ type PropsType = {
 export const PageProductOrder: React.FC<PropsType> = ({ product }) => {
     const [count, setCount] = useState<number>(1)
 
-    const addToCartClickHandler = () => {}
+    const { addToCart } = useCartFunctions()
+
+    const addToCartClickHandler = () => {
+        addToCart(product, count)
+    }
 
     return (
         <div className={styles.order}>

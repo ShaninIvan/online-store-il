@@ -1,42 +1,39 @@
 import Numberbox from 'components/inputs/Numberbox'
 import Icon from 'components/parts/Icon'
+import ScreenChecker from 'components/utils/ScreenChecker'
 import getMoney from 'core/utils/getMoney'
-import useAppDispatch from 'hooks/useAppDispatch'
 import useAppSelector from 'hooks/useAppSelector'
+import useCartFunctions from 'hooks/useCartFunctions'
 import React from 'react'
-import cartUpdateOrderCount from 'services/Cart/cartUpdateOrderCount'
-import getCartUpdateParams from 'services/Cart/getCartUpdateParams'
-import { cartRequest } from 'store/slices/cartSlice'
 import styles from './Table.module.less'
 
 export const PageCartTable: React.FC = () => {
     const { orders } = useAppSelector((state) => state.cart)
-    const { jwt, user } = useAppSelector((state) => state.user)
-    const dispatch = useAppDispatch()
 
-    const deleteClickHandler = (id: number) => {}
+    const { changeOrderCount, removeFromCart } = useCartFunctions()
+
+    const deleteClickHandler = (id: number) => {
+        removeFromCart(id)
+    }
 
     const editClickHandler = () => {}
 
     const getNumberboxChangeHandler = (id: number) => {
         return (count: number) => {
-            if (!jwt) return
-            const updatetOrders = cartUpdateOrderCount(orders, id, count)
-
-            const params = getCartUpdateParams(jwt, user.cart, updatetOrders)
-
-            dispatch(cartRequest(params))
+            changeOrderCount(id, count)
         }
     }
 
     return (
         <div className={styles.table}>
-            <div className={styles.row}>
-                <div className={`${styles.title} ${styles.item}`}>Item</div>
-                <div className={`${styles.title} ${styles.price}`}>Price</div>
-                <div className={`${styles.title} ${styles.qty}`}>Qty</div>
-                <div className={`${styles.title} ${styles.subtotal}`}>Subtotal</div>
-            </div>
+            <ScreenChecker desktop>
+                <div className={styles.row}>
+                    <div className={`${styles.title} ${styles.item}`}>Item</div>
+                    <div className={`${styles.title} ${styles.price}`}>Price</div>
+                    <div className={`${styles.title} ${styles.qty}`}>Qty</div>
+                    <div className={`${styles.title} ${styles.subtotal}`}>Subtotal</div>
+                </div>
+            </ScreenChecker>
 
             {orders.map((order) => (
                 <div key={order.product.id} className={styles.row}>

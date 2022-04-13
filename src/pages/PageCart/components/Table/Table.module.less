@@ -76,6 +76,55 @@
 }
 
 @media screen and (max-width: @maxwidth-tablet) {
+    .row{
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-areas: 'item item item item' 'price qty subtotal controls';
+        grid-gap: 13px;
+    }
+
+    .item{
+        font-size: 12px;
+        &__image{
+            width: 70px;
+            height: 70px;
+            flex-shrink: 0;
+        }
+    }
+
+    .mix-title{
+        display: flex;
+        flex-direction: column;
+        &::before{
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+    }
+
+    .price{
+        .mix-title;
+        font-size: 12px;
+        &::before{
+            content: 'Price';
+        }
+    }
+
+    .qty{
+        .mix-title;
+        &::before{
+            content: 'Qty';
+        }
+    }
+
+    .subtotal{
+        font-size: 12px;
+        .mix-title;
+        &::before{
+            content: 'Subtotal';
+        }
+    }
+
 }
 
 @media screen and (max-width: @maxwidth-mobile) {

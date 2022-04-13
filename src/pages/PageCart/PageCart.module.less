@@ -84,7 +84,68 @@
 }
 
 @media screen and (max-width: @maxwidth-tablet) {
+    .pagecart{
+        padding: 20px;
+
+        h2{
+            font-size: 18px;
+            margin: 13px 0;
+        }
+    }
+
+    .buttons{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 6px;
+
+        button{
+            width: 308px;
+            height: 37px;
+            margin: 10px 0 0 0 !important;
+        }
+
+        div{
+            flex-direction: column;
+        }
+    }
+
+    .summary{
+        width: 340px;
+        padding: 20px;
+        height: min-content;
+
+        h3{
+            font-size: 14px;
+            margin-bottom: 13px;
+        }
+
+        button{
+            height: 38px;
+        }
+        
+    }
+
+    .cost{
+        font-size: 11px;
+    }
+
+    .total{
+        font-size: 11px;
+    }
 }
 
 @media screen and (max-width: @maxwidth-mobile) {
+    .pagecart{
+        padding: 15px;
+    }
+
+    .content{
+        flex-direction: column-reverse;
+    }
+
+    .summary{
+        width: 100%;
+        margin: 0;
+    }
 }
