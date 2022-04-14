@@ -8,9 +8,7 @@ export const CartLoader: React.FC = () => {
     const { jwt } = useAppSelector((state) => state.user)
 
     useEffect(() => {
-        if (jwt) {
-            dispatch(cartRequestGet())
-        }
+        dispatch(cartRequestGet())
     }, [jwt, dispatch])
 
     return null
