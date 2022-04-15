@@ -1,6 +1,8 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { SmallCard } from './SmallCard'
+import { Provider } from 'react-redux'
+import { store } from 'store/store'
 
 export default {
     title: 'SmallCard',
@@ -63,10 +65,17 @@ const defaultArgs = {
 }
 
 const Template: ComponentStory<typeof SmallCard> = (args) => (
-    <SmallCard {...defaultArgs} {...args} />
+    <Provider store={store}>
+        <SmallCard {...defaultArgs} {...args} />
+    </Provider>
 )
 
 export const inStock = Template.bind({})
 inStock.args = {
     onCardClick: (id: number) => {},
+}
+
+export const mobile = Template.bind({})
+mobile.args = {
+    mobile: true,
 }

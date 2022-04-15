@@ -1,6 +1,8 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { LargeCard } from './LargeCard'
+import { Provider } from 'react-redux'
+import { store } from 'store/store'
 
 export default {
     title: 'LargeCard',
@@ -62,7 +64,9 @@ const defaultArgs = {
 }
 
 const Template: ComponentStory<typeof LargeCard> = (args) => (
-    <LargeCard {...defaultArgs} {...args} />
+    <Provider store={store}>
+        <LargeCard {...defaultArgs} {...args} />
+    </Provider>
 )
 
 export const discount = Template.bind({})
